@@ -8,7 +8,7 @@ theme = {}
 
 --}}}
 
-theme.font          = "Iosevka Term SS09 14"
+theme.font          = "Iosevka Term SS09 13"
 
 theme.bg_normal     = "#252525"
 theme.bg_focus      = "#252525"
