@@ -403,7 +403,33 @@ globalkeys = gears.table.join(
              if s.mybottomwibox then
                  s.mybottomwibox.visible = not s.mybottomwibox.visible
              end
-     end, {description = "toggle wibox", group = "awesome"})
+     end, {description = "toggle wibox", group = "awesome"}),
+
+-- Super+Shift+Left/Right: move client to prev/next tag
+awful.key({ modkey, "Shift" }, "Left",
+    function ()
+        -- get current tag
+        local t = client.focus and client.focus.first_tag or nil
+        if t == nil then
+            return
+        end
+        -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
+        local tag = client.focus.screen.tags[(t.name - 2) % 9 + 1]
+        awful.client.movetotag(tag)
+    end,
+        {description = "move client to previous tag", group = "layout"}),
+awful.key({ modkey, "Shift" }, "Right",
+    function ()
+        -- get current tag
+        local t = client.focus and client.focus.first_tag or nil
+        if t == nil then
+            return
+        end
+        -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
+        local tag = client.focus.screen.tags[(t.name % 9) + 1]
+        awful.client.movetotag(tag)
+    end,
+        {description = "move client to next tag", group = "layout"})
 )
 
 clientkeys = gears.table.join(
