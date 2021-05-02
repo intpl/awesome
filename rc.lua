@@ -337,16 +337,18 @@ globalkeys = gears.table.join(
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn("pcmanfm") end,
               {description = "pcmanfm", group = "launcher"}),
-    awful.key({ modkey, }, "a", function () awful.util.spawn_with_shell("autorandr --change; nitrogen --restore") end,
-              {description = "autorandr and nitrogen restore", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
-              {description = "lxrandr", group = "launcher"}),
+    awful.key({ modkey }, "z", function () awful.spawn("toggle_spotify") end,
+              {description = "toggle spotify", group = "launcher"}),
 
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn("slock systemctl suspend") end,
               {description = "LOCK AND SUSPEND", group = "system"}),
     awful.key({ modkey, "Control" }, "s", function () awful.spawn("slock") end,
               {description = "LOCK", group = "system"}),
+    awful.key({ modkey, }, "a", function () awful.util.spawn_with_shell("autorandr --change; nitrogen --restore") end,
+              {description = "autorandr and nitrogen restore", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
+              {description = "lxrandr", group = "launcher"}),
 
    -- Volume Keys
    awful.key({}, "XF86AudioLowerVolume", function ()
