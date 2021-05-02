@@ -51,6 +51,9 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/home/b/.config/awesome/theme.lua")
 
+beautiful.gap_single_client = true
+beautiful.useless_gap = 5
+
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
