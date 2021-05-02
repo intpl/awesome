@@ -389,11 +389,18 @@ globalkeys = gears.table.join(
     {description = "show dmenu", group = "hotkeys"}),
 
     -- terminal
-    awful.key({ modkey, }, "Return",
-        function ()
-            awful.spawn(terminal_with_tmux)
-        end,
-        {description = "open a terminal", group = "launcher"})
+    awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
+        {description = "open a terminal", group = "launcher"}),
+
+ -- Show/Hide Wibox
+     awful.key({ modkey }, "b", function ()
+             s = mouse.screen
+
+             s.mywibox.visible = not s.mywibox.visible
+             if s.mybottomwibox then
+                 s.mybottomwibox.visible = not s.mybottomwibox.visible
+             end
+     end, {description = "toggle wibox", group = "awesome"})
 )
 
 clientkeys = gears.table.join(
