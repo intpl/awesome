@@ -58,6 +58,9 @@ terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
+-- Use Bash for all of shell calls
+awful.util.shell = "bash"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -368,11 +371,11 @@ globalkeys = gears.table.join(
    end),
 
    -- Screenshots
-   awful.key({ }, "Print", function () awful.util.spawn_with_shell("import -window root \"/home/b/Pictures/\"(date +%s)\".png\"") end,
+   awful.key({ }, "Print", function () awful.util.spawn_with_shell("import -window root \"/home/b/Pictures/`date +%s`.png\"") end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
-   awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn_with_shell("import \"/home/b/Pictures/\"(date +%s)\".png\"") end,
+   awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn_with_shell("import \"/home/b/Pictures/`date +%s`.png\"") end,
      {description = "Take a screenshot of selection", group = "screenshot"}),
-   awful.key({ modkey }, "Print", function () awful.util.spawn_with_shell("import -descend \"/home/b/Pictures/\"(date +%s)\".png\"") end,
+   awful.key({ modkey }, "Print", function () awful.util.spawn_with_shell("import -descend \"/home/b/Pictures/`date +%s`.png\"") end,
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
     -- dmenu
@@ -627,10 +630,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autorun/autostart programs
-awful.spawn.with_shell("caps_to_esc")
-awful.spawn.with_shell("blueman-applet")
-awful.spawn.with_shell("nm-applet")
+awful.spawn("caps_to_esc")
+awful.spawn("blueman-applet")
+awful.spawn("nm-applet")
+awful.spawn("nitrogen --restore")
+awful.spawn("compton")
+awful.spawn("xbindkeys")
 awful.spawn.with_shell("killall xfce4-volumed ; xfce4-volumed")
-awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("compton")
-awful.spawn.with_shell("xbindkeys")
