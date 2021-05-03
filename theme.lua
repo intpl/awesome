@@ -33,8 +33,11 @@ theme.taglist_squares = true
 
 -- Display close button inside titlebar
 theme.titlebar_close_button = true
-
 theme.tasklist_disable_icon = true
+
+-- Gaps
+theme.gap_single_client = true
+theme.useless_gap = 5
 
 return theme
 
