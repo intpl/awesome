@@ -500,6 +500,13 @@ for i = 1, 9 do
                       local tag = screen.tags[i]
                       if tag then
                          awful.tag.viewtoggle(tag)
+                         local clients = tag:clients()
+
+                         for i, c in pairs(clients) do
+                             if c:isvisible() then
+                                 client.focus = c
+                             end
+                         end
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
