@@ -379,6 +379,10 @@ globalkeys = gears.table.join(
         awful.util.spawn("xbacklight -dec 15") end),
     awful.key({ }, "XF86MonBrightnessUp", function ()
         awful.util.spawn("xbacklight -inc 15") end),
+    awful.key({modkey, }, "F5", function ()
+        awful.util.spawn("xbacklight -set 1") end),
+    awful.key({modkey, }, "F6", function ()
+        awful.util.spawn("xbacklight -set 100") end),
 
    -- Screenshots
    awful.key({ }, "Print", function () awful.util.spawn_with_shell("import -window root \"/home/b/Pictures/`date +%s`.png\"") end,
