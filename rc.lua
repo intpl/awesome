@@ -324,8 +324,9 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
+
     -- Menubar
-    awful.key({ modkey, "Shift" }, "p", function() menubar.show() end,
+    awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
     -- Transparency with compton
@@ -444,8 +445,10 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, }, "p", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey, "Shift" }, "p", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
+    awful.key({ modkey, }, "p",  function() client.focus = awful.client.getmaster(); client.focus:raise() end,
+              {description = "focus master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
