@@ -354,8 +354,8 @@ globalkeys = gears.table.join(
               {description = "LOCK", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.util.spawn_with_shell("autorandr --change; nitrogen --restore; caps_to_esc") end,
               {description = "autorandr and nitrogen restore, caps_to_esc", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
-              {description = "lxrandr", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("arandr") end,
+              {description = "arandr", group = "launcher"}),
 
    -- Volume Keys
    awful.key({}, "XF86AudioLowerVolume", function ()
