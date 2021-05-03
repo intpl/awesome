@@ -388,7 +388,7 @@ globalkeys = gears.table.join(
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
     -- dmenu
-    awful.key({ modkey, "Shift" }, "Return",
+    awful.key({ modkey, "Control" }, "Return",
     function ()
         awful.spawn(string.format("dmenu_run",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
@@ -447,7 +447,7 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey, "Shift" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
