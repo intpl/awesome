@@ -687,8 +687,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autorun/autostart programs
 awful.spawn("caps_to_esc")
 awful.spawn("blueman-applet")
-awful.spawn("nm-applet")
 awful.spawn("nitrogen --restore")
 awful.spawn("compton")
 awful.spawn("xbindkeys")
+awful.spawn.with_shell("killall nm-applet ; nm-applet")
 awful.spawn.with_shell("killall xfce4-volumed ; xfce4-volumed")
