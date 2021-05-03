@@ -377,6 +377,12 @@ globalkeys = gears.table.join(
      awful.util.spawn("playerctl previous", false)
    end),
 
+    -- Brightness
+    awful.key({ }, "XF86MonBrightnessDown", function ()
+        awful.util.spawn("xbacklight -dec 15") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()
+        awful.util.spawn("xbacklight -inc 15") end),
+
    -- Screenshots
    awful.key({ }, "Print", function () awful.util.spawn_with_shell("import -window root \"/home/b/Pictures/`date +%s`.png\"") end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
