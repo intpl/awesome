@@ -39,5 +39,8 @@ theme.tasklist_disable_icon = true
 theme.gap_single_client = true
 theme.useless_gap = 5
 
-return theme
+-- Icons
 
+theme.icon_theme = 'Numix'
+
+return theme
