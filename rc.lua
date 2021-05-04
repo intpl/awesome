@@ -235,7 +235,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "z",      hotkeys_popup.show_help,
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "h",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -359,7 +359,7 @@ globalkeys = gears.table.join(
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn("pcmanfm") end,
               {description = "pcmanfm", group = "launcher"}),
-    awful.key({ modkey }, "s", function () awful.spawn("toggle_spotify") end,
+    awful.key({ modkey }, "z", function () awful.spawn("toggle_spotify") end,
               {description = "toggle spotify", group = "launcher"}),
 
     -- system
