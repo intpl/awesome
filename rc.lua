@@ -308,21 +308,6 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
-
     -- Menubar
     awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
@@ -418,7 +403,7 @@ globalkeys = gears.table.join(
         awful.spawn(string.format("dmenu_run",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
 	end,
-    {description = "show dmenu", group = "hotkeys"}),
+    {description = "show dmenu", group = "launcher"}),
 
     -- terminal
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
