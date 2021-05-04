@@ -215,7 +215,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            require("battery-widget") {},
             mytextclock,
             s.mylayoutbox,
         },
@@ -693,6 +692,7 @@ awful.spawn("blueman-applet")
 awful.spawn("nitrogen --restore")
 awful.spawn("compton")
 awful.spawn("xbindkeys")
+awful.spawn.with_shell("killall cbatticon ; cbatticon")
 awful.spawn.with_shell("killall pasystray ; pasystray")
 awful.spawn.with_shell("killall nm-applet ; nm-applet")
 awful.spawn.with_shell("killall xfce4-volumed ; xfce4-volumed")
