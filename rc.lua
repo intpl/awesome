@@ -23,6 +23,9 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+-- Useful variables to reuse
+local screenshot_bash_date_path = '/home/b/Pictures/`date +"%F-%H:%M.%N"`.png'
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -402,11 +405,11 @@ globalkeys = gears.table.join(
         awful.util.spawn("xbacklight -set 100") end),
 
    -- Screenshots
-   awful.key({ }, "Print", function () awful.util.spawn_with_shell("import -window root \"/home/b/Pictures/`date +%s`.png\"") end,
+   awful.key({ }, "Print", function () awful.util.spawn_with_shell('import -window root ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
-   awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn_with_shell("import \"/home/b/Pictures/`date +%s`.png\"") end,
+   awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn_with_shell('import ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of selection", group = "screenshot"}),
-   awful.key({ modkey }, "Print", function () awful.util.spawn_with_shell("import -descend \"/home/b/Pictures/`date +%s`.png\"") end,
+   awful.key({ modkey }, "Print", function () awful.util.spawn_with_shell('import -descend ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
     -- dmenu
