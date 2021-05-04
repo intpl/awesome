@@ -43,4 +43,7 @@ theme.useless_gap = 5
 
 theme.icon_theme = 'Papirus-Dark'
 
+-- Default master width
+theme.master_width_factor = 0.7
+
 return theme
