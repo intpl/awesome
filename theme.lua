@@ -41,6 +41,6 @@ theme.useless_gap = 5
 
 -- Icons
 
-theme.icon_theme = 'Numix'
+theme.icon_theme = 'Papirus-Dark'
 
 return theme
