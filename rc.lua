@@ -331,7 +331,7 @@ globalkeys = gears.table.join(
               {description = "decrease transparency", group = "transparency"}),
 
     -- Useless gap increase/decrease
-    awful.key({modkey, "Shift"}, "-",
+    awful.key({modkey, "Shift"}, "=",
       function()
         if beautiful.useless_gap > 0 then
           beautiful.useless_gap = beautiful.useless_gap - 2
@@ -339,15 +339,15 @@ globalkeys = gears.table.join(
 
         awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
       end,
-      {description = "Decrease useless gap", group = "layout"}),
+      {description = "increase useless gap", group = "layout"}),
 
-    awful.key({modkey, "Shift"}, "=",
+    awful.key({modkey, "Shift"}, "-",
       function()
         beautiful.useless_gap = beautiful.useless_gap + 2
 
         awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
       end,
-      {description = "Increaase useless gap", group = "layout"}),
+      {description = "Decrease useless gap", group = "layout"}),
 
     -- My apps / shortcuts
     awful.key({ modkey }, "w", function () awful.spawn("google-chrome") end,
