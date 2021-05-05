@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- awesome-wm-widgets
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -218,8 +221,16 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            docker_widget(),
             mytextclock,
             s.mylayoutbox,
+            logout_menu_widget({
+                    onlogout = function() awesome.quit() end,
+                    onlock = function() awful.spawn.with_shell('slock') end,
+                    onsuspend = function() awful.spawn.with_shell("slock systemctl suspend") end,
+                    onreboot = function() awful.spawn.with_shell("sudo reboot") end,
+                    onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
+            })
         },
     }
 end)
@@ -679,7 +690,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autorun/autostart programs
-awful.spawn("caps_to_esc")
 awful.spawn("blueman-applet")
 awful.spawn("nitrogen --restore")
 awful.spawn("compton")
