@@ -336,9 +336,9 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Transparency with picom
-    awful.key({ modkey,  }, "=", function () awful.spawn("picom-trans -c +4") end,
+    awful.key({ modkey,  }, "=", function () awful.spawn.with_shell("picom-trans -c +4") end,
               {description = "increase transparency", group = "transparency"}),
-    awful.key({ modkey, }, "-", function () awful.spawn("picom-trans -c -4") end,
+    awful.key({ modkey, }, "-", function () awful.spawn.with_shell("picom-trans -c -4") end,
               {description = "decrease transparency", group = "transparency"}),
 
     -- Useless gap increase/decrease
@@ -367,63 +367,63 @@ globalkeys = gears.table.join(
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn("pcmanfm") end,
               {description = "pcmanfm", group = "launcher"}),
-    awful.key({ modkey }, "z", function () awful.spawn("toggle_spotify") end,
+    awful.key({ modkey }, "z", function () awful.spawn.with_shell("toggle_spotify") end,
               {description = "toggle spotify", group = "launcher"}),
 
     -- system
-    awful.key({ modkey, "Shift" }, "s", function () awful.spawn("slock systemctl suspend") end,
+    awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("slock systemctl suspend") end,
               {description = "LOCK AND SUSPEND", group = "system"}),
-    awful.key({ modkey, "Control" }, "s", function () awful.spawn("slock") end,
+    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("slock") end,
               {description = "LOCK", group = "system"}),
-    awful.key({ modkey, }, "a", function () awful.util.spawn_with_shell("autorandr --change; nitrogen --restore; caps_to_esc") end,
+    awful.key({ modkey, }, "a", function () awful.spawn.with_shell("autorandr --change; nitrogen --restore; caps_to_esc") end,
               {description = "autorandr and nitrogen restore, caps_to_esc", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("arandr") end,
+    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
               {description = "arandr", group = "launcher"}),
 
    -- Volume Keys
    awful.key({}, "XF86AudioLowerVolume", function ()
-     awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
+     awful.spawn.with_shell("amixer -q -D pulse sset Master 5%-", false)
    end),
    awful.key({}, "XF86AudioRaiseVolume", function ()
-     awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
+     awful.spawn.with_shell("amixer -q -D pulse sset Master 5%+", false)
    end),
    awful.key({}, "XF86AudioMute", function ()
-     awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
+     awful.spawn.with_shell("amixer -D pulse set Master 1+ toggle", false)
    end),
 
    -- Media Keys
    awful.key({}, "XF86AudioPlay", function()
-     awful.util.spawn("playerctl play-pause", false)
+     awful.spawn.with_shell("playerctl play-pause", false)
    end),
    awful.key({}, "XF86AudioNext", function()
-     awful.util.spawn("playerctl next", false)
+     awful.spawn.with_shell("playerctl next", false)
    end),
    awful.key({}, "XF86AudioPrev", function()
-     awful.util.spawn("playerctl previous", false)
+     awful.spawn.with_shell("playerctl previous", false)
    end),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.util.spawn("xbacklight -dec 15") end),
+        awful.spawn.with_shell("xbacklight -dec 15") end),
     awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.util.spawn("xbacklight -inc 15") end),
+        awful.spawn.with_shell("xbacklight -inc 15") end),
     awful.key({modkey, }, "F5", function ()
-        awful.util.spawn("xbacklight -set 1") end),
+        awful.spawn.with_shell("xbacklight -set 1") end),
     awful.key({modkey, }, "F6", function ()
-        awful.util.spawn("xbacklight -set 100") end),
+        awful.spawn.with_shell("xbacklight -set 100") end),
 
    -- Screenshots
-   awful.key({ }, "Print", function () awful.util.spawn_with_shell('import -window root ' .. screenshot_bash_date_path) end,
+   awful.key({ }, "Print", function () awful.spawn.with_shell('import -window root ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
-   awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn_with_shell('import ' .. screenshot_bash_date_path) end,
+   awful.key({ modkey, "Shift" }, "Print", function () awful.spawn.with_shell('import ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of selection", group = "screenshot"}),
-   awful.key({ modkey }, "Print", function () awful.util.spawn_with_shell('import -descend ' .. screenshot_bash_date_path) end,
+   awful.key({ modkey }, "Print", function () awful.spawn.with_shell('import -descend ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
     -- dmenu
     awful.key({ modkey, "Shift" }, "Return",
     function ()
-        awful.spawn(string.format("dmenu_run",
+        awful.spawn.with_shell(string.format("dmenu_run",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
 	end,
     {description = "show dmenu", group = "launcher"}),
@@ -702,9 +702,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autorun/autostart programs
-awful.spawn("blueman-applet")
-awful.spawn("nitrogen --restore")
-awful.spawn("xbindkeys")
+awful.spawn.with_shell("blueman-applet")
+awful.spawn.with_shell("nitrogen --restore")
+-- awful.spawn.with_shell("xbindkeys")
 awful.spawn.with_shell("picom --experimental-backends")
 awful.spawn.with_shell("killall cbatticon ; cbatticon")
 awful.spawn.with_shell("killall pasystray ; pasystray")
