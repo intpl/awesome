@@ -278,7 +278,7 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab", -- Alt+Tab to cycle through two windows
+    awful.key({ modkey,           }, "Tab", -- Super+Tab to cycle through two windows
         function ()
             awful.client.focus.history.previous()
             if client.focus then
