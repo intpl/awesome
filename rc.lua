@@ -21,6 +21,7 @@ require("awful.hotkeys_popup.keys")
 -- awesome-wm-widgets
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local apt_widget = require("awesome-wm-widgets.apt-widget.apt-widget")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -222,6 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             docker_widget(),
+            apt_widget(),
             mytextclock,
             s.mylayoutbox,
             logout_menu_widget({
