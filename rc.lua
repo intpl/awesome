@@ -377,8 +377,8 @@ globalkeys = gears.table.join(
               {description = "LOCK AND SUSPEND", group = "system"}),
     awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("slock") end,
               {description = "LOCK", group = "system"}),
-    awful.key({ modkey, }, "a", function () awful.spawn.with_shell("autorandr --change; nitrogen --restore; caps_to_esc") end,
-              {description = "autorandr and nitrogen restore, caps_to_esc", group = "launcher"}),
+    awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
+              {description = "arandr", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
               {description = "arandr", group = "launcher"}),
 
@@ -600,21 +600,13 @@ awful.rules.rules = {
     -- Floating clients.
     { rule_any = {
         instance = {
-          "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
           "pinentry",
         },
         class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
+          -- "Arandr",
+          -- "Blueman-manager",
+          "Spotify"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -622,9 +614,7 @@ awful.rules.rules = {
           "Event Tester",  -- xev.
         },
         role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+          -- "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
 
