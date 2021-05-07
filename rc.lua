@@ -364,9 +364,13 @@ globalkeys = gears.table.join(
 
     -- My apps / shortcuts
     awful.key({ modkey }, "w", function () awful.spawn("google-chrome") end,
-              {description = "open web browser", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "w", function () awful.spawn("qutebrowser") end,
-              {description = "open web browser", group = "launcher"}),
+              {description = "open google chrome", group = "launcher"}),
+    awful.key({ modkey, "Shift"}, "w", function () awful.spawn("brave-browser") end,
+              {description = "open brave browser", group = "launcher"}),
+    awful.key({ modkey}, "q", function () awful.spawn("qutebrowser") end,
+              {description = "open qutebrowser", group = "launcher"}),
+    awful.key({ modkey, "Shift"}, "q", function () awful.spawn("qutebrowser --target window https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/doc/img/cheatsheet-big.png") end,
+              {description = "open qutebrowser help", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn("pcmanfm") end,
@@ -607,8 +611,8 @@ awful.rules.rules = {
         },
         class = {
           -- "Arandr",
-          -- "Blueman-manager",
-          "Spotify"},
+          -- "Blueman-manager"
+          },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
