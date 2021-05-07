@@ -337,10 +337,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- Transparency with picom
-    awful.key({ modkey,  }, "=", function () awful.spawn.with_shell("picom-trans -c +4") end,
+    -- Transparency with compton
+    awful.key({ modkey,  }, "=", function () awful.spawn.with_shell("compton-trans -c +4") end,
               {description = "increase transparency", group = "transparency"}),
-    awful.key({ modkey, }, "-", function () awful.spawn.with_shell("picom-trans -c -4") end,
+    awful.key({ modkey, }, "-", function () awful.spawn.with_shell("compton-trans -c -4") end,
               {description = "decrease transparency", group = "transparency"}),
 
     -- Useless gap increase/decrease
@@ -703,7 +703,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xbindkeys")
-awful.spawn.with_shell("picom")
+awful.spawn.with_shell("compton")
 awful.spawn.with_shell("killall cbatticon ; cbatticon")
 awful.spawn.with_shell("killall pasystray ; pasystray")
 awful.spawn.with_shell("killall nm-applet ; nm-applet")
