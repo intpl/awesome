@@ -387,6 +387,8 @@ globalkeys = gears.table.join(
               {description = "arandr", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
               {description = "arandr", group = "launcher"}),
+    awful.key({ modkey, }, "v", function () awful.spawn("pavucontrol-qt") end,
+              {description = "pavucontrol-qt", group = "launcher"}),
 
    -- Volume Keys
    awful.key({}, "XF86AudioLowerVolume", function ()
