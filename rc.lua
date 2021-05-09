@@ -369,7 +369,7 @@ globalkeys = gears.table.join(
               {description = "open brave browser", group = "launcher"}),
     awful.key({ modkey}, "q", function () awful.spawn("qutebrowser") end,
               {description = "open qutebrowser", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "q", function () awful.spawn("qutebrowser --target window https://raw.githubusercontent.com/qutebrowser/qutebrowser/master/doc/img/cheatsheet-big.png") end,
+    awful.key({ modkey, "Shift"}, "q", function () awful.spawn("qutebrowser --target window ~/Pictures/cheatsheet-qutebrowser.png") end,
               {description = "open qutebrowser help", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
               {description = "emacs", group = "launcher"}),
