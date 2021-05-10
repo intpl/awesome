@@ -274,6 +274,8 @@ globalkeys = gears.table.join(
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
+    awful.key({ modkey }, "o", function () awful.screen.focus_relative( 1) end,
+              {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey }, ",", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, }, ".", function () awful.screen.focus_relative(-1) end,
@@ -441,6 +443,8 @@ globalkeys = gears.table.join(
     -- terminal
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
         {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, }, "g", function () awful.spawn(terminal .. " -e glances") end,
+        {description = "open glances", group = "launcher"}),
 
  -- Show/Hide Wibox
      awful.key({ modkey }, "b", function ()
@@ -494,8 +498,12 @@ clientkeys = gears.table.join(
               {description = "move to master", group = "client"}),
     awful.key({ modkey, }, "p",  function() client.focus = awful.client.getmaster(); client.focus:raise() end,
               {description = "focus master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey, "Shift" }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
+    awful.key({ modkey, "Shift" },  ",",      function (c) c:move_to_screen (c.screen.index-1)               end,
+              {description = "move to previous screen", group = "client"}),
+    awful.key({ modkey, "Shift" },  ".",      function (c) c:move_to_screen (c.screen.index+1)               end,
+              {description = "move to next screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
