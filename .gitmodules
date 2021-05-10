@@ -1,3 +1,6 @@
 [submodule "awesome-wm-widgets"]
 	path = awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
+[submodule "calendar"]
+	path = calendar
+	url = https://github.com/deficient/calendar.git

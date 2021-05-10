@@ -23,6 +23,9 @@ local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local apt_widget = require("awesome-wm-widgets.apt-widget.apt-widget")
 
+-- calendar from https://github.com/deficient/calendar
+local calendar = require("calendar")
+
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
@@ -136,6 +139,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock('<span color="#ffffff"> [%d/%m/%Y] %H:%M </span>', 5)
+calendar({}):attach(mytextclock)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
