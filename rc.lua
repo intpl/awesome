@@ -381,8 +381,12 @@ globalkeys = gears.table.join(
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn("pcmanfm") end,
               {description = "pcmanfm", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "f", function () awful.spawn(terminal .. " -e vifm") end,
+        {description = "open vifm", group = "launcher"}),
     awful.key({ modkey }, "z", function () awful.spawn.with_shell("toggle_spotify") end,
               {description = "toggle spotify", group = "launcher"}),
+    awful.key({ modkey, }, "c", function () awful.spawn("/snap/bin/caprine") end,
+        {description = "open caprine", group = "launcher"}),
 
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("slock systemctl suspend") end,
@@ -714,6 +718,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autorun/autostart programs
+awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY") -- gtk apps take ages to load without that
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xbindkeys")
