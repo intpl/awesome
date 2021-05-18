@@ -427,9 +427,9 @@ globalkeys = gears.table.join(
         awful.spawn.with_shell("xbacklight -dec 15") end),
     awful.key({ }, "XF86MonBrightnessUp", function ()
         awful.spawn.with_shell("xbacklight -inc 15") end),
-    awful.key({modkey, }, "F5", function ()
+    awful.key({modkey, "Control" }, "-", function ()
         awful.spawn.with_shell("xbacklight -set 1") end),
-    awful.key({modkey, }, "F6", function ()
+    awful.key({modkey, "Control" }, "=", function ()
         awful.spawn.with_shell("xbacklight -set 100") end),
 
    -- Screenshots
