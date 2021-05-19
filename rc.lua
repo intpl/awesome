@@ -411,6 +411,13 @@ globalkeys = gears.table.join(
      awful.spawn.with_shell("amixer -D pulse set Master 1+ toggle", false)
    end),
 
+   awful.key({modkey_alt, "Control" }, "-", function ()
+     awful.spawn.with_shell("amixer -q -D pulse sset Master 5%-", false)
+   end),
+   awful.key({modkey_alt, "Control" }, "=", function ()
+     awful.spawn.with_shell("amixer -q -D pulse sset Master 5%+", false)
+   end),
+
    -- Media Keys
    awful.key({}, "XF86AudioPlay", function()
      awful.spawn.with_shell("playerctl play-pause", false)
