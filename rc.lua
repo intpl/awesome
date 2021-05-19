@@ -722,5 +722,6 @@ gears.wallpaper.set("#333333")
 
 -- Autorun/autostart programs
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
+awful.spawn.with_shell("killall fusuma; ~/.rvm/gems/ruby-3.0.1/bin/fusuma")
 awful.spawn.with_shell("xbindkeys")
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")

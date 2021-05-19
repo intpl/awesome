@@ -9,6 +9,7 @@ function run {
 
 run "blueman-applet"
 # run "nitrogen --restore"
+run "xbindkeys"
 run "compton"
 run "cbatticon"
 run "pasystray"
