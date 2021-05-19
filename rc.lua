@@ -720,7 +720,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autorun/autostart programs
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY") -- gtk apps take ages to load without that
 awful.spawn.with_shell("blueman-applet")
-awful.spawn.with_shell("nitrogen --restore")
+-- awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xbindkeys")
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("killall cbatticon ; cbatticon")
@@ -728,3 +728,6 @@ awful.spawn.with_shell("killall pasystray ; pasystray")
 awful.spawn.with_shell("killall nm-applet ; nm-applet")
 awful.spawn.with_shell("killall xfce4-volumed ; xfce4-volumed")
 awful.spawn.with_shell("dropbox start")
+
+-- Wallpaper
+gears.wallpaper.set("#333333")
