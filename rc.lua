@@ -113,11 +113,19 @@ myawesomemenu = {
 
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "terminal", terminal }
+local menu_system = { "system", {
+                          {'slock', 'slock'},
+                          {'suspend', 'slock systemctl suspend'},
+                          {'reboot', 'sudo reboot'},
+                          {'poweroff', 'sudo poweroff'}
+    }
+}
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
                 menu_awesome,
+                menu_system,
                 menu_terminal,
                 {"Google Chrome", "google-chrome" },
                 {"Caprine", "caprine" },
