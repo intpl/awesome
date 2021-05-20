@@ -9,11 +9,11 @@ function run {
 
 run "blueman-applet"
 run "xbindkeys"
-# run "compton"
+run "compton"
 run "cbatticon"
 run "pasystray"
 run "nm-applet"
 run "xfce4-volumed"
 run "dropbox start"
-run "conky"
+# run "conky"
 run "ulauncher --no-window-shadow --hide-window"
