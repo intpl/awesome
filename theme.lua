@@ -69,4 +69,7 @@ theme.layout_cornerse   = default_theme_path.."layouts/cornersew.png"
 -- Default master width
 theme.master_width_factor = 0.7
 
+-- Menu
+theme.menu_width = 200
+
 return theme

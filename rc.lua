@@ -112,12 +112,19 @@ myawesomemenu = {
 }
 
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "open terminal", terminal }
+local menu_terminal = { "terminal", terminal }
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
-        before = { menu_awesome },
-        after =  { menu_terminal }
+            before = {
+                menu_awesome,
+                menu_terminal,
+                {"Google Chrome", "google-chrome" },
+                {"Caprine", "caprine" },
+                {"Thunar", "thunar" },
+                {"Spotify (toggle)", "toggle_spotify" }
+            },
+        after =  {}
     })
 else
     mymainmenu = awful.menu({
