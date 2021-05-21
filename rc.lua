@@ -462,13 +462,15 @@ globalkeys = gears.table.join(
    awful.key({ modkey }, "Print", function () awful.spawn.with_shell('import -descend ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
-    -- dmenu
-    awful.key({ modkey, "Shift" }, "Return",
-    function ()
-        awful.spawn.with_shell(string.format("dmenu_run",
-        beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-	end,
-    {description = "show dmenu", group = "launcher"}),
+    -- rofi
+    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show run") end,
+    {description = "show rofi run", group = "launcher"}),
+
+    awful.key({ modkey, }, "`", function () awful.spawn.with_shell("rofi -show window") end,
+    {description = "show rofi window", group = "launcher"}),
+
+    awful.key({ modkey, "Shift" }, "\\", function () awful.spawn.with_shell("rofi -show ssh") end,
+    {description = "show rofi ssh", group = "launcher"}),
 
     -- terminal
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
