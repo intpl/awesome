@@ -463,7 +463,7 @@ globalkeys = gears.table.join(
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
 
     -- rofi
-    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show run") end,
+    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show drun") end,
     {description = "show rofi run", group = "launcher"}),
 
     awful.key({ modkey, }, "`", function () awful.spawn.with_shell("rofi -show window") end,
