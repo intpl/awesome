@@ -741,7 +741,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Wallpaper
 -- awful.spawn.with_shell("nitrogen --restore")
-gears.wallpaper.set("#333333")
+gears.wallpaper.set("#222222")
 
 -- Autorun/autostart programs
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
