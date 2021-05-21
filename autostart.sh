@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# TODO: add second argument to know what to pgrep, move unusual commands from rc.lua
 function run {
   if ! pgrep $1 ;
   then
@@ -16,4 +17,3 @@ run "nm-applet"
 run "xfce4-volumed"
 run "dropbox start"
 # run "conky"
-run "ulauncher --no-window-shadow --hide-window"
