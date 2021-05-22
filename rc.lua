@@ -130,7 +130,7 @@ if has_fdo then
                 {"Google Chrome", "google-chrome" },
                 {"Caprine", "caprine" },
                 {"Thunar", "thunar" },
-                {"Spotify (toggle)", "toggle_spotify" }
+                {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" }
             },
         after =  {}
     })
@@ -398,8 +398,8 @@ globalkeys = gears.table.join(
         {description = "open ranger", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "f", function () awful.spawn("thunar") end,
               {description = "thunar", group = "launcher"}),
-    awful.key({ modkey }, "z", function () awful.spawn.with_shell("toggle_spotify") end,
-              {description = "toggle spotify", group = "launcher"}),
+    awful.key({ modkey }, "z", function () awful.spawn.with_shell("google-chrome --app=https://open.spotify.com/") end,
+              {description = "open spotify in google chrome", group = "launcher"}),
     awful.key({ modkey, }, "c", function () awful.spawn("/snap/bin/caprine") end,
         {description = "open caprine", group = "launcher"}),
 
@@ -743,7 +743,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Wallpaper
 -- awful.spawn.with_shell("nitrogen --restore")
-gears.wallpaper.set("#222222")
+gears.wallpaper.set("#202020")
 
 -- Autorun/autostart programs
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
