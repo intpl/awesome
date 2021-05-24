@@ -72,4 +72,7 @@ theme.master_width_factor = 0.7
 -- Menu
 theme.menu_width = 200
 
+-- Wibar
+theme.wibar_height = 16
+
 return theme
