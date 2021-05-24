@@ -27,7 +27,7 @@ theme.fg_urgent     = "#ffffff"
 
 theme.border_width  = 1
 theme.border_normal = "#444444"
-theme.border_focus  = "#aaaaaa"
+theme.border_focus  = "#888888"
 theme.border_marked = "#91231c"
 
 -- Display the taglist squares
