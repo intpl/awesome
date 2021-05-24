@@ -462,6 +462,8 @@ globalkeys = gears.table.join(
      {description = "Take a screenshot of selection", group = "screenshot"}),
    awful.key({ modkey }, "Print", function () awful.spawn.with_shell('import -descend ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of clicked window", group = "screenshot"}),
+   awful.key({ modkey }, "BackSpace", function () awful.spawn.with_shell('import ' .. screenshot_bash_date_path) end,
+     {description = "Take a screenshot of selection", group = "screenshot"}),
 
     -- rofi
     awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show drun") end,
