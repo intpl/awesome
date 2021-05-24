@@ -22,7 +22,7 @@ theme.bg_focus      = "#252525"
 theme.bg_urgent     = "#ff0000"
 
 theme.fg_normal     = "#888888"
-theme.fg_focus      = "#ffffff"
+theme.fg_focus      = "#dddddd"
 theme.fg_urgent     = "#ffffff"
 
 theme.border_width  = 1

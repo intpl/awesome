@@ -152,7 +152,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = awful.widget.textclock('<span color="#ffffff"> %A [%d/%m/%Y] %H:%M</span> ', 5)
+mytextclock = awful.widget.textclock('<span color="#dddddd"> %A %d/%m/%Y %H:%M</span> ', 5)
 calendar({}):attach(mytextclock)
 
 -- Create a wibox for each screen and add it
@@ -239,9 +239,9 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            mytextclock,
             wibox.widget.systray(),
             docker_widget(),
-            mytextclock,
             s.mylayoutbox,
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
