@@ -368,8 +368,6 @@ globalkeys = gears.table.join(
         if useless_gap > 0 then
           awful.screen.focused().selected_tag.gap = useless_gap - 2
         end
-
-        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
       end,
       {description = "increase useless gap", group = "layout"}),
 
@@ -378,8 +376,6 @@ globalkeys = gears.table.join(
         local useless_gap = awful.screen.focused().selected_tag.gap
 
         awful.screen.focused().selected_tag.gap = useless_gap + 2
-
-        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
       end,
       {description = "Decrease useless gap", group = "layout"}),
 
