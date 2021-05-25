@@ -11,7 +11,7 @@ theme = {}
 
 --}}}
 
-theme.font                     = "Iosevka Term SS09 13"
+theme.font                     = "Iosevka Term SS09 11"
 theme.hotkeys_font             = "Iosevka Term SS09 17"
 theme.hotkeys_description_font = "Iosevka Term SS09 17"
 
