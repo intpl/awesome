@@ -403,6 +403,8 @@ globalkeys = gears.table.join(
               {description = "open spotify in google chrome", group = "launcher"}),
     awful.key({ modkey, }, "c", function () awful.spawn("/snap/bin/caprine") end,
         {description = "open caprine", group = "launcher"}),
+    awful.key({ modkey }, "r", function () awful.spawn.with_shell("toggle_redshift") end,
+              {description = "toggle redshift", group = "launcher"}),
 
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("slock systemctl suspend") end,
