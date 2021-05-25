@@ -44,7 +44,7 @@ theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
-theme.useless_gap = 15
+theme.useless_gap = 12
 
 -- Icons
 theme.icon_theme = 'Papirus-Dark'
