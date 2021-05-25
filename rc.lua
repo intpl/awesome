@@ -359,13 +359,30 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- Transparency with compton
-    awful.key({ modkey,  }, "=", function () awful.spawn.with_shell("compton-trans -c +4") end,
-              {description = "increase transparency", group = "transparency"}),
-    awful.key({ modkey, }, "-", function () awful.spawn.with_shell("compton-trans -c -4") end,
-              {description = "decrease transparency", group = "transparency"}),
+    -- Useless gap increase/decrease per tag
+    awful.key({modkey}, "=",
+      function()
+        local useless_gap = awful.screen.focused().selected_tag.gap
 
-    -- Useless gap increase/decrease
+        if useless_gap > 0 then
+          awful.screen.focused().selected_tag.gap = useless_gap - 2
+        end
+
+        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
+      end,
+      {description = "increase useless gap", group = "layout"}),
+
+    awful.key({modkey}, "-",
+      function()
+        local useless_gap = awful.screen.focused().selected_tag.gap
+
+        awful.screen.focused().selected_tag.gap = useless_gap + 2
+
+        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
+      end,
+      {description = "Decrease useless gap", group = "layout"}),
+
+    -- Useless gap increase/decrease globally
     awful.key({modkey, "Shift"}, "=",
       function()
         if beautiful.useless_gap > 0 then
