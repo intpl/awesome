@@ -127,6 +127,7 @@ if has_fdo then
                 menu_system,
                 menu_terminal,
                 {"Google Chrome", "google-chrome" },
+                {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
                 {"Caprine", "caprine" },
                 {"Thunar", "thunar" },
                 {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" }
