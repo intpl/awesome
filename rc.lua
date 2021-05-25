@@ -671,6 +671,9 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
+    -- No borders for conky
+    { rule_any = {instance = {"conky"}}, properties = { border_width = 0 }},
+
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = false }

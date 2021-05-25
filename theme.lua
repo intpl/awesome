@@ -17,11 +17,11 @@ theme.hotkeys_description_font = "Iosevka Term SS09 17"
 
 theme.hotkeys_bg               = "#dddddd"
 
-theme.bg_normal     = "#252525"
-theme.bg_focus      = "#252525"
+theme.bg_normal     = "#202020"
+theme.bg_focus      = "#202020"
 theme.bg_urgent     = "#ff0000"
 
-theme.fg_normal     = "#888888"
+theme.fg_normal     = "#444444"
 theme.fg_focus      = "#dddddd"
 theme.fg_urgent     = "#ffffff"
 
