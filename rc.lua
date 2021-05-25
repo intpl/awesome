@@ -153,7 +153,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(
-    '<span color="#aaaaaa">%A %d/%m/%Y</span> <span color="#ffffff">%H:%M</span> | '
+    '<span color="#aaaaaa">%A %d/%m/%Y</span> <span color="#ffffff">%H:%M</span> <span color="#333333">|</span> '
 , 5)
 
 calendar({}):attach(mytextclock)
