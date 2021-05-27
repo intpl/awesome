@@ -269,8 +269,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-              {description="show help", group="awesome"}),
+    -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    --           {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "h",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "l",  awful.tag.viewnext,
@@ -497,8 +497,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey, }, "g", function () awful.spawn(terminal .. " -e glances") end,
         {description = "open glances", group = "launcher"}),
 
- -- Show/Hide Wibox
-     awful.key({ modkey }, "b", function ()
+    -- Toggler Wibox
+     awful.key({ modkey, "Shift" }, "b", function ()
              s = mouse.screen
 
              s.mywibox.visible = not s.mywibox.visible
@@ -555,8 +555,11 @@ clientkeys = gears.table.join(
               {description = "move to previous screen", group = "client"}),
     awful.key({ modkey, "Shift" },  ".",      function (c) c:move_to_screen (c.screen.index+1)               end,
               {description = "move to next screen", group = "client"}),
+    awful.key({ modkey,           }, "s",      function (c) c.sticky = not c.sticky            end,
+              {description = "toggle sticky", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
+    awful.key({ modkey,           }, 'b', function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
@@ -690,7 +693,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+      }, properties = { titlebars_enabled = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -728,31 +731,36 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
+    awful.titlebar(c, {size = 20}) : setup {
+        { -- Left -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
+            layout  = wibox.layout.flex.horizontal
         },
         { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
+            -- { Title align  = "center", -- widget = awful.titlebar.widget.titlewidget(c)},
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
+            awful.titlebar.widget.minimizebutton (c),
+            awful.titlebar.widget.stickybutton   (c),
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
     }
 end)
+
+-- TODO: fix conky: floating windows with titlebars
+-- client.connect_signal("property::floating", function(c)
+--     if c.floating then
+--         awful.titlebar.show(c)
+--     else
+--         awful.titlebar.hide(c)
+--     end
+-- end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)

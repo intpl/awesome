@@ -1,15 +1,13 @@
--- anon, awesome3 theme
-
---{{{ Main
+-- Requires
 local awful = require("awful")
 awful.util = require("awful.util")
 
 local gfs = require("gears.filesystem")
 local default_theme_path = gfs.get_themes_dir() .. "/default/"
+local default_titlebar_path = default_theme_path .. "/titlebar/"
 
+-- Theme fonts and colors
 theme = {}
-
---}}}
 
 theme.font                     = "Iosevka Term SS09 11"
 theme.hotkeys_font             = "Iosevka Term SS09 17"
@@ -21,8 +19,13 @@ theme.bg_normal     = "#202020"
 theme.bg_focus      = "#202020"
 theme.bg_urgent     = "#ff0000"
 
+theme.titlebar_fg_normal = "#444444"
+theme.titlebar_fg_focus = "#aaaaaa"
+theme.titlebar_bg_focus = "#282828"
+theme.titlebar_bg_normal = "#282828"
+
 theme.fg_normal     = "#444444"
-theme.fg_focus      = "#dddddd"
+theme.fg_focus      = "#aaaaaa"
 theme.fg_urgent     = "#ffffff"
 
 theme.border_width  = 0
@@ -33,18 +36,21 @@ theme.border_marked = "#91231c"
 -- Display the taglist squares
 theme.taglist_squares = true
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---bg_widget    = #cc0000
-
--- Display close button inside titlebar
-theme.titlebar_close_button = true
+-- Don't show app icons in wibar
 theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
 theme.useless_gap = 12
+
+-- Default master width
+theme.master_width_factor = 0.7
+
+-- Menu
+theme.menu_width = 200
+
+-- Wibar
+theme.wibar_height = 16
 
 -- Icons
 theme.icon_theme = 'Papirus-Dark'
@@ -66,13 +72,25 @@ theme.layout_cornerne   = default_theme_path.."layouts/cornernew.png"
 theme.layout_cornersw   = default_theme_path.."layouts/cornersww.png"
 theme.layout_cornerse   = default_theme_path.."layouts/cornersew.png"
 
--- Default master width
-theme.master_width_factor = 0.7
-
--- Menu
-theme.menu_width = 200
-
--- Wibar
-theme.wibar_height = 16
+theme.titlebar_close_button_normal              = default_titlebar_path .. "close_normal.png"
+theme.titlebar_close_button_focus               = default_titlebar_path .. "close_focus.png"
+theme.titlebar_minimize_button_normal           = default_titlebar_path .. "minimize_normal.png"
+theme.titlebar_minimize_button_focus            = default_titlebar_path .. "minimize_focus.png"
+theme.titlebar_ontop_button_normal_inactive     = default_titlebar_path .. "ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive      = default_titlebar_path .. "ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active       = default_titlebar_path .. "ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active        = default_titlebar_path .. "ontop_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive    = default_titlebar_path .. "sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive     = default_titlebar_path .. "sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active      = default_titlebar_path .. "sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active       = default_titlebar_path .. "sticky_focus_active.png"
+theme.titlebar_floating_button_normal_inactive  = default_titlebar_path .. "floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive   = default_titlebar_path .. "floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active    = default_titlebar_path .. "floating_normal_active.png"
+theme.titlebar_floating_button_focus_active     = default_titlebar_path .. "floating_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = default_titlebar_path .. "maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = default_titlebar_path .. "maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active   = default_titlebar_path .. "maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active    = default_titlebar_path .. "maximized_focus_active.png"
 
 return theme
