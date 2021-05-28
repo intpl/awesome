@@ -753,15 +753,6 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- TODO: fix conky: floating windows with titlebars
--- client.connect_signal("property::floating", function(c)
---     if c.floating then
---         awful.titlebar.show(c)
---     else
---         awful.titlebar.hide(c)
---     end
--- end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
