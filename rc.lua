@@ -775,5 +775,6 @@ awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSIO
 awful.spawn.with_shell("killall fusuma; ~/.rvm/gems/ruby-3.0.1/bin/fusuma")
 awful.spawn.with_shell("killall ulauncher; ulauncher --no-window-shadow --hide-window")
 awful.spawn.with_shell("killall conky ; conky")
+awful.spawn.with_shell("killall xss-lock ; xss-lock slock") -- slock on lid close/sleep
 
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
