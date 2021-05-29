@@ -32,6 +32,22 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- Useful variables to reuse
 local screenshot_bash_date_path = '/home/b/Pictures/`date +"%F-%H:%M.%N"`.png'
 
+-- Extract useless gap increase per tag
+local useless_gap_increase_current_tag = function()
+    local useless_gap = awful.screen.focused().selected_tag.gap
+
+    if useless_gap > 0 then
+        awful.screen.focused().selected_tag.gap = useless_gap - 2
+    end
+end
+
+local useless_gap_decrease_current_tag = function()
+    local useless_gap = awful.screen.focused().selected_tag.gap
+
+    awful.screen.focused().selected_tag.gap = useless_gap + 2
+end
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -261,9 +277,14 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
-    -- awful.button({ }, 4, awful.tag.viewnext),
-    -- awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 4, useless_gap_decrease_current_tag),
+    awful.button({ }, 5, function ()
+            -- leave a little space for the cursor
+            if awful.screen.focused().selected_tag.gap > 2 then
+                useless_gap_increase_current_tag()
+            end
+    end)
 ))
 -- }}}
 
@@ -361,23 +382,8 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Useless gap increase/decrease per tag
-    awful.key({modkey}, "=",
-      function()
-        local useless_gap = awful.screen.focused().selected_tag.gap
-
-        if useless_gap > 0 then
-          awful.screen.focused().selected_tag.gap = useless_gap - 2
-        end
-      end,
-      {description = "increase useless gap", group = "layout"}),
-
-    awful.key({modkey}, "-",
-      function()
-        local useless_gap = awful.screen.focused().selected_tag.gap
-
-        awful.screen.focused().selected_tag.gap = useless_gap + 2
-      end,
-      {description = "Decrease useless gap", group = "layout"}),
+    awful.key({modkey}, "=", useless_gap_increase_current_tag, {description = "Increase useless gap", group = "layout"}),
+    awful.key({modkey}, "-", useless_gap_decrease_current_tag, {description = "Decrease useless gap", group = "layout"}),
 
     -- Useless gap increase/decrease globally
     awful.key({modkey, "Shift"}, "=",
