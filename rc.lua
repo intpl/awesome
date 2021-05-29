@@ -128,7 +128,7 @@ if has_fdo then
                 menu_terminal,
                 {"Google Chrome", "google-chrome" },
                 {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
-                {"Caprine", "caprine" },
+                {"Messenger", "google-chrome --app=https://messenger.com/" },
                 {"Thunar", "thunar" },
                 {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" }
             },
@@ -415,8 +415,8 @@ globalkeys = gears.table.join(
               {description = "thunar", group = "launcher"}),
     awful.key({ modkey }, "z", function () awful.spawn.with_shell("google-chrome --app=https://open.spotify.com/") end,
               {description = "open spotify in google chrome", group = "launcher"}),
-    awful.key({ modkey, }, "c", function () awful.spawn("/snap/bin/caprine") end,
-        {description = "open caprine", group = "launcher"}),
+    awful.key({ modkey, }, "c", function () awful.spawn("google-chrome --app=https://messenger.com/") end,
+        {description = "open messenger in google chrome", group = "launcher"}),
     awful.key({ modkey }, "r", function () awful.spawn.with_shell("toggle_redshift") end,
               {description = "toggle redshift", group = "launcher"}),
 
@@ -572,7 +572,11 @@ clientkeys = gears.table.join(
             c.maximized = not c.maximized
             c:raise()
         end ,
-        {description = "(un)maximize", group = "client"})
+        {description = "(un)maximize", group = "client"}),
+    awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
+    awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
+    awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
+    awful.key({ modkey,  }, "Right", function(c) c.opacity = c.opacity + 0.1 end, {description = "increase opacity", group = "client"})
 )
 
 
