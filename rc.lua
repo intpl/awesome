@@ -278,13 +278,13 @@ end)
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, useless_gap_decrease_current_tag),
-    awful.button({ }, 5, function ()
+    awful.button({ }, 4, function ()
             -- leave a little space for the cursor
             if awful.screen.focused().selected_tag.gap > 2 then
                 useless_gap_increase_current_tag()
             end
-    end)
+    end),
+    awful.button({ }, 5, useless_gap_decrease_current_tag)
 ))
 -- }}}
 
@@ -381,28 +381,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- Useless gap increase/decrease per tag
-    awful.key({modkey}, "=", useless_gap_increase_current_tag, {description = "Increase useless gap", group = "layout"}),
-    awful.key({modkey}, "-", useless_gap_decrease_current_tag, {description = "Decrease useless gap", group = "layout"}),
-
-    -- Useless gap increase/decrease globally
-    awful.key({modkey, "Shift"}, "=",
-      function()
-        if beautiful.useless_gap > 0 then
-          beautiful.useless_gap = beautiful.useless_gap - 2
-        end
-
-        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
-      end,
-      {description = "increase useless gap", group = "layout"}),
-
-    awful.key({modkey, "Shift"}, "-",
-      function()
-        beautiful.useless_gap = beautiful.useless_gap + 2
-
-        awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
-      end,
-      {description = "Decrease useless gap", group = "layout"}),
+    -- Useless gap increase/decrease
+    awful.key({modkey, "Shift"}, "=", useless_gap_increase_current_tag {description = "Increase useless gap", group = "layout"}),
+    awful.key({modkey, "Shift"}, "-", useless_gap_decrease_current_tag, {description = "Decrease useless gap", group = "layout"}),
 
     -- My apps / shortcuts
     awful.key({ modkey }, "w", function () awful.spawn("google-chrome") end,
@@ -566,6 +547,11 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, 'b', function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
+
+    -- Opacity changes
+    awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.1 end, {description = "Decrease opacity", group = "layout"}),
+    awful.key({modkey}, "=", function(c) c.opacity = c.opacity + 0.1 end, {description = "Increase opacity", group = "layout"}),
+
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
@@ -647,6 +633,8 @@ clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end),
+    awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.1 end),
+    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.1 end)
 )
 
 -- Set keys
