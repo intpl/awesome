@@ -512,6 +512,7 @@ awful.key({ modkey, "Shift" }, "h",
         -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
         local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
         awful.client.movetotag(tag)
+        tag:view_only()
     end,
         {description = "move client to previous tag", group = "layout"}),
 awful.key({ modkey, "Shift" }, "l",
@@ -524,6 +525,7 @@ awful.key({ modkey, "Shift" }, "l",
         -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
         local tag = client.focus.screen.tags[(t.index % 9) + 1]
         awful.client.movetotag(tag)
+        tag:view_only()
     end,
         {description = "move client to next tag", group = "layout"})
 )
