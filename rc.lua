@@ -136,11 +136,18 @@ local menu_system = { "system", {
     }
 }
 
+local menu_config_files = { "config files", {
+                                {'rc.lua', 'emacs ~/.config/awesome/rc.lua'},
+                                {'autostart.sh', 'emacs ~/.config/awesome/autostart.sh'}
+    }
+}
+
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
                 menu_awesome,
                 menu_system,
+                menu_config_files,
                 menu_terminal,
                 {"Google Chrome", "google-chrome" },
                 {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
