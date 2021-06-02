@@ -77,12 +77,8 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/home/b/.config/awesome/theme.lua")
 
--- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
-
-editor = os.getenv("EDITOR") or "editor"
-editor_cmd = terminal .. " -e " .. editor
 
 -- Use Bash for all of shell calls
 awful.util.shell = "bash"
@@ -121,7 +117,7 @@ awful.layout.layouts = {
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", "emacs " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
@@ -136,26 +132,20 @@ local menu_system = { "system", {
     }
 }
 
-local menu_config_files = { "config files", {
-                                {'rc.lua', 'emacs ~/.config/awesome/rc.lua'},
-                                {'autostart.sh', 'emacs ~/.config/awesome/autostart.sh'}
-    }
-}
-
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
-                menu_awesome,
-                menu_system,
-                menu_config_files,
                 menu_terminal,
                 {"Google Chrome", "google-chrome" },
                 {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
                 {"Thunar", "thunar" },
-                {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" }
+                {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" },
             },
-        after =  {}
+            after =  {
+                menu_awesome,
+                menu_system,
+            }
     })
 else
     mymainmenu = awful.menu({
