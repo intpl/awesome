@@ -24,9 +24,9 @@ theme.titlebar_fg_focus = "#aaaaaa"
 theme.titlebar_bg_focus = "#282828"
 theme.titlebar_bg_normal = "#282828"
 
-theme.fg_normal     = "#444444"
-theme.fg_focus      = "#aaaaaa"
-theme.fg_urgent     = "#ffffff"
+theme.fg_normal     = "#aaaaaa"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ff0000"
 
 theme.border_width  = 0
 theme.border_normal = "#444444"
