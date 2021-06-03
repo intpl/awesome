@@ -456,12 +456,13 @@ globalkeys = gears.table.join(
    -- Screenshots
    awful.key({ }, "Print", function () awful.spawn.with_shell('import -window root ' .. screenshot_bash_date_path) end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
-   awful.key({ modkey, "Shift" }, "Print", function () awful.spawn.with_shell('import ' .. screenshot_bash_date_path) end,
-     {description = "Take a screenshot of selection", group = "screenshot"}),
-   awful.key({ modkey }, "Print", function () awful.spawn.with_shell('import -descend ' .. screenshot_bash_date_path) end,
-     {description = "Take a screenshot of clicked window", group = "screenshot"}),
-   awful.key({ modkey }, "BackSpace", function () awful.spawn.with_shell('import ' .. screenshot_bash_date_path) end,
-     {description = "Take a screenshot of selection", group = "screenshot"}),
+   awful.key({ modkey, "Shift" }, "Print", function () awful.spawn.with_shell('flameshot gui') end,
+     {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
+   awful.key({ modkey, }, "Print", function () awful.spawn.with_shell('flameshot gui') end,
+     {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
+
+   awful.key({ modkey }, "BackSpace", function () awful.spawn.with_shell('flameshot gui') end,
+     {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
 
     -- rofi
     awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show drun") end,
