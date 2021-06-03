@@ -125,7 +125,7 @@ local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "terminal", terminal }
 local menu_system = { "system", {
                           {'slock', 'slock'},
-                          {'suspend', 'slock systemctl suspend'},
+                          {'suspend', 'sudo systemctl suspend'},
                           {'reboot', 'sudo reboot'},
                           {'poweroff', 'sudo poweroff'}
     }
@@ -262,7 +262,7 @@ awful.screen.connect_for_each_screen(function(s)
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
                     onlock = function() awful.spawn.with_shell('slock') end,
-                    onsuspend = function() awful.spawn.with_shell("slock systemctl suspend") end,
+                    onsuspend = function() awful.spawn.with_shell("sudo systemctl suspend") end,
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
             })
@@ -403,10 +403,10 @@ globalkeys = gears.table.join(
               {description = "toggle redshift", group = "launcher"}),
 
     -- system
-    awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("slock systemctl suspend") end,
-              {description = "LOCK AND SUSPEND", group = "system"}),
+    awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("sudo systemctl suspend") end,
+              {description = "Suspend", group = "system"}),
     awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("slock") end,
-              {description = "LOCK", group = "system"}),
+              {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
