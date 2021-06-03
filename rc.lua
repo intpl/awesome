@@ -275,8 +275,9 @@ end)
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, function ()
-            -- don't leave space for the cursor: if awful.screen.focused().selected_tag.gap > 2 then
-            useless_gap_decrease()
+            if awful.screen.focused().selected_tag.gap > 2 then
+                useless_gap_decrease()
+            end
     end),
     awful.button({ }, 5, useless_gap_increase)
 ))
