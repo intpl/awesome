@@ -477,6 +477,8 @@ globalkeys = gears.table.join(
     -- terminal
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
         {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, }, "t", function () awful.spawn(terminal_with_tmux) end,
+        {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, }, "g", function () awful.spawn(terminal .. " -e glances") end,
         {description = "open glances", group = "launcher"}),
 
@@ -542,8 +544,8 @@ clientkeys = gears.table.join(
               {description = "move to next screen", group = "client"}),
     awful.key({ modkey,           }, "s",      function (c) c.sticky = not c.sticky            end,
               {description = "toggle sticky", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
+    -- awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+    --           {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, 'b', function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
 
     -- Opacity changes
