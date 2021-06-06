@@ -33,7 +33,7 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- Useful variables to reuse
-local screenshot_bash_date_path = '/home/b/Pictures/`date +"%F-%H:%M.%N"`.png'
+local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
 local myviewnext = function(screen)
     -- TODO: loop to find next tag with any clients
@@ -85,7 +85,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/b/.config/awesome/theme.lua")
+beautiful.init("~/.config/awesome/theme.lua")
 
 terminal = "alacritty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
@@ -127,35 +127,35 @@ awful.layout.layouts = {
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", "emacs " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
 
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "terminal", terminal }
-local menu_system = { "system", {
-                          {'slock', 'slock'},
-                          {'suspend', 'sudo systemctl suspend'},
-                          {'reboot', 'sudo reboot'},
-                          {'poweroff', 'sudo poweroff'}
-    }
-}
+local menu_terminal = { "Terminal", terminal }
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
                 menu_terminal,
+                {"Thunar", "thunar" },
                 {"Google Chrome", "google-chrome" },
-                {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
+                wibox.widget {widget = wibox.widget.separator},
+                {"Signal", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
                 {"Tinder", "google-chrome --app=https://tinder.com/" },
-                {"Thunar", "thunar" },
-                {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" },
+                {"Spotify", "google-chrome --app=https://open.spotify.com/" },
+                wibox.widget {widget = wibox.widget.separator},
             },
             after =  {
+                wibox.widget {widget = wibox.widget.separator},
                 menu_awesome,
-                menu_system,
+                { "edit rc.lua", "emacs " .. awesome.conffile },
+                wibox.widget {widget = wibox.widget.separator},
+                {'lock', 'slock'},
+                {'suspend', 'sudo systemctl suspend'},
+                {'reboot', 'sudo reboot'},
+                {'poweroff', 'sudo poweroff'}
             }
     })
 else
