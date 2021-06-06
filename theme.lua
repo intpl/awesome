@@ -38,6 +38,8 @@ theme.taglist_squares = true
 
 -- Don't show app icons in wibar
 theme.tasklist_disable_icon = true
+theme.tasklist_fg_minimize = "#444444"
+theme.tasklist_fg_normal = "#666666"
 
 -- Gaps
 theme.gap_single_client = true

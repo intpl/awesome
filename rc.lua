@@ -45,8 +45,6 @@ local useless_gap_increase = function()
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
-
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -167,7 +165,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(
-    '<span color="#aaaaaa">%A %d/%m/%Y</span> <span color="#ffffff">%H:%M</span> <span color="#333333">|</span> '
+    '<span color="#aaaaaa">%d/%m/%Y</span> <span color="#ffffff">%H:%M</span> <span color="#333333">|</span> '
 , 5)
 
 calendar({}):attach(mytextclock)
@@ -241,7 +239,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
+        filter  = awful.widget.tasklist.filter.alltags,
         buttons = tasklist_buttons
     }
 
