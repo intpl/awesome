@@ -4,3 +4,6 @@
 [submodule "calendar"]
 	path = calendar
 	url = https://github.com/deficient/calendar.git
+[submodule "cyclefocus"]
+	path = cyclefocus
+	url = https://github.com/blueyed/awesome-cyclefocus
