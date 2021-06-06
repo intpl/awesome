@@ -32,6 +32,16 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- Useful variables to reuse
 local screenshot_bash_date_path = '/home/b/Pictures/`date +"%F-%H:%M.%N"`.png'
 
+local myviewnext = function(screen)
+    -- TODO: loop to find next tag with any clients
+    awful.tag.viewnext()
+end
+
+local myviewprev = function(screen)
+    -- TODO: loop to find prev tag with any clients
+    awful.tag.viewprev()
+end
+
 -- Extract useless gap increase per tag
 local useless_gap_decrease = function()
     if beautiful.useless_gap > 0 then
@@ -291,9 +301,9 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
     --           {description="show help", group="awesome"}),
-    awful.key({ modkey,           }, "h",   awful.tag.viewprev,
+    awful.key({ modkey,           }, "h",   myviewprev,
               {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "l",  awful.tag.viewnext,
+    awful.key({ modkey,           }, "l",  myviewnext,
               {description = "view next", group = "tag"}),
     awful.key({ modkey,       }, "Tab", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
@@ -639,6 +649,17 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end),
     awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.1 end),
     awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.1 end)
+    -- TODO
+    -- awful.button({ modkey }, 8, function(c)
+            -- local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
+            -- awful.client.movetotag(tag)
+            -- tag:view_only()
+    -- end),
+    -- awful.button({ modkey }, 9, function(c)
+            -- local tag = client.focus.screen.tags[(t.index % 9) + 1]
+            -- awful.client.movetotag(tag)
+            -- tag:view_only()
+    -- end)
 )
 
 -- Set keys
