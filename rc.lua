@@ -138,6 +138,7 @@ if has_fdo then
                 {"Google Chrome", "google-chrome" },
                 {"Signal (disabled GPU)", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
+                {"Tinder", "google-chrome --app=https://tinder.com/" },
                 {"Thunar", "thunar" },
                 {"open spotify in google chrome", "google-chrome --app=https://open.spotify.com/" },
             },
