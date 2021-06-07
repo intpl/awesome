@@ -43,7 +43,7 @@ local myviewnext = function(screen)
         repeat
             awful.tag.viewnext()
             t = awful.screen.focused().selected_tags[1]
-        until #t:clients() > 0 or t.index == original_t_index -- and t.index < 5
+        until #t:clients() > 0 or t.index < 5
     end
 end
 
@@ -55,7 +55,7 @@ local myviewprev = function(screen)
         repeat
             awful.tag.viewprev()
             t = awful.screen.focused().selected_tags[1]
-        until #t:clients() > 0 -- or t.index < 5
+        until #t:clients() > 0 or t.index < 5
     end
 end
 
