@@ -36,13 +36,27 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
 local myviewnext = function(screen)
-    -- TODO: loop to find next tag with any clients
-    awful.tag.viewnext()
+    local t = awful.screen.focused().selected_tags[1]
+    local original_t_index = t.index
+
+    if t ~= nil then
+        repeat
+            awful.tag.viewnext()
+            t = awful.screen.focused().selected_tags[1]
+        until #t:clients() > 0 or t.index == original_t_index -- and t.index < 5
+    end
 end
 
 local myviewprev = function(screen)
-    -- TODO: loop to find prev tag with any clients
-    awful.tag.viewprev()
+    local t = awful.screen.focused().selected_tags[1]
+    local original_t_index = t.index
+
+    if t ~= nil then
+        repeat
+            awful.tag.viewprev()
+            t = awful.screen.focused().selected_tags[1]
+        until #t:clients() > 0 -- or t.index < 5
+    end
 end
 
 -- Extract useless gap increase per tag
