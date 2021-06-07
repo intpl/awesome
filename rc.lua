@@ -658,18 +658,19 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end),
     awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.1 end),
-    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.1 end)
-    -- TODO
-    -- awful.button({ modkey }, 8, function(c)
-            -- local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
-            -- awful.client.movetotag(tag)
-            -- tag:view_only()
-    -- end),
-    -- awful.button({ modkey }, 9, function(c)
-            -- local tag = client.focus.screen.tags[(t.index % 9) + 1]
-            -- awful.client.movetotag(tag)
-            -- tag:view_only()
-    -- end)
+    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.1 end),
+    awful.button({ modkey }, 8, function(c)
+         local t = c.first_tag
+         local tag = c.screen.tags[(t.index % 9) + 1]
+         awful.client.movetotag(tag)
+         tag:view_only()
+    end),
+    awful.button({ modkey }, 9, function(c)
+         local t = c.first_tag
+         local tag = c.screen.tags[(t.index - 2) % 9 + 1]
+         awful.client.movetotag(tag)
+         tag:view_only()
+    end)
 )
 
 -- Set keys
