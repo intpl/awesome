@@ -152,8 +152,9 @@ if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
                 menu_terminal,
-                {"Thunar", "thunar" },
                 {"Google Chrome", "google-chrome" },
+                {"Thunar", "thunar" },
+                {"Tranmission GTK", "transmission-gtk" },
                 wibox.widget {widget = wibox.widget.separator},
                 {"Signal", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
