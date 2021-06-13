@@ -36,6 +36,7 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
 local myviewnext = function(screen)
+    -- TODO: refactor this to not cycle on empty tags
     local t = awful.screen.focused().selected_tags[1]
     local original_t_index = t.index
 
@@ -48,6 +49,7 @@ local myviewnext = function(screen)
 end
 
 local myviewprev = function(screen)
+    -- TODO: refactor this to not cycle on empty tags
     local t = awful.screen.focused().selected_tags[1]
     local original_t_index = t.index
 
@@ -571,7 +573,7 @@ clientkeys = gears.table.join(
               {description = "toggle sticky", group = "client"}),
     -- awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
     --           {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, 'b', function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
+    awful.key({ modkey,           }, "b", function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
 
     -- Opacity changes
     awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.1 end, {description = "Decrease opacity", group = "layout"}),
