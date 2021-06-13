@@ -10,7 +10,9 @@ configuration {
   kb-mode-previous:               "Shift+Left,Control+Shift+Tab,Control+h";
   kb-remove-char-back:            "BackSpace";
   kb-remove-word-back:            "Alt+BackSpace,Control+BackSpace";
-}
+  me-select-entry:                "MouseSecondary";
+  me-accept-entry:                "MousePrimary";
+  }
 
 /*	modi: "window,run,ssh";*/
 /*	width: 50;*/
