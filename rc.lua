@@ -161,6 +161,7 @@ if has_fdo then
                 {"Signal", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
                 {"Tinder", "google-chrome --app=https://tinder.com/" },
+                {"Instagram", "google-chrome --app=https://instagram.com/" },
                 {"Spotify", "google-chrome --app=https://open.spotify.com/" },
                 wibox.widget {widget = wibox.widget.separator},
             },
