@@ -21,6 +21,7 @@ require("awful.hotkeys_popup.keys")
 -- awesome-wm-widgets
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 
 -- calendar from https://github.com/deficient/calendar
 local calendar = require("calendar")
@@ -291,6 +292,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
+            battery_widget(),
             wibox.widget.systray(),
             docker_widget(),
             s.mylayoutbox,

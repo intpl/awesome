@@ -11,7 +11,6 @@ function run {
 run "blueman-applet"
 run "xbindkeys"
 run "compton"
-run "cbatticon"
 run "pasystray"
 run "nm-applet"
 run "xfce4-volumed"
