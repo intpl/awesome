@@ -224,7 +224,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(
-    '<span color="#aaaaaa">%d/%m/%Y</span> <span color="#ffffff">%H:%M</span>'
+    '<span color="#aaaaaa">%d/%m/%Y %a</span> <span color="#ffffff">%H:%M</span>'
 , 5)
 
 calendar({}):attach(mytextclock)
@@ -329,7 +329,7 @@ awful.screen.connect_for_each_screen(function(s)
             view_prev_tag_button,
             view_next_tag_button,
             wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-            battery_widget(),
+            battery_widget({show_current_level = true, display_notification = true, font = beautiful.font, margin_right = 10}),
             wibox.widget.systray(),
             docker_widget(),
             s.mylayoutbox,
