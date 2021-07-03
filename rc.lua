@@ -358,9 +358,15 @@ globalkeys = gears.table.join(
     -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
     --           {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "h",   myviewprev,
-              {description = "view previous", group = "tag"}),
+              {description = "my view previous tag", group = "tag"}),
     awful.key({ modkey,           }, "l",  myviewnext,
-              {description = "view next", group = "tag"}),
+              {description = "my view next tag", group = "tag"}),
+
+    awful.key({ modkey, "Control" }, "h",   awful.tag.viewprev,
+              {description = "view previous tag", group = "tag"}),
+    awful.key({ modkey, "Control" }, "l",  awful.tag.viewnext,
+              {description = "view next tag", group = "tag"}),
+
     awful.key({ modkey,       }, "Tab", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
     awful.key({ modkey,           }, "j",
@@ -441,9 +447,18 @@ globalkeys = gears.table.join(
         {description = "lua execute prompt", group = "awesome"}),
 
 
-    -- Menubar
-    awful.key({ modkey, "Control" }, "Return", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+    -- First empty tag
+    awful.key({ modkey, "Control" }, "Return", function()
+            local t = awful.screen.focused().tags[1]
+
+            if t ~= nil then
+                repeat
+                    t = awful.screen.focused().tags[(t.index % 9) + 1]
+                until #t:clients() == 0 or t.index == 1
+
+                t:view_only()
+            end
+    end, {description = "find first empty tag", group = "launcher"}),
 
     -- Useless gap increase/decrease
     awful.key({modkey, "Shift"}, "=", useless_gap_decrease, {description = "Decrease useless gap", group = "layout"}),
