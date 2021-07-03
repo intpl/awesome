@@ -86,7 +86,6 @@ local myviewprev = function(screen)
     end
 end
 
--- Extract useless gap increase per tag
 local useless_gap_decrease = function()
     local selected_tag = awful.screen.focused().selected_tag
 
