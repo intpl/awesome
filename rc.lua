@@ -36,6 +36,23 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
+local toggle_even_split = function()
+    -- WIP
+    -- t = ascreen.focused().selected_tag
+
+    -- tag.object.set_master_width_factor(t, tag.object.get_master_width_factor(t) + add)
+
+    if beautiful.useless_gap ~= 0 then
+        beautiful.useless_gap = 0
+        -- beautiful.master_width_factor = 0.5
+    else
+        beautiful.useless_gap = 12
+        -- beautiful.master_width_factor = 0.7
+    end
+
+    awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
+end
+
 local myviewnext = function(screen)
     -- TODO: refactor this to not cycle on empty tags
     local t = awful.screen.focused().selected_tags[1]
@@ -356,6 +373,8 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
+    awful.key({ modkey,           }, ";", toggle_even_split,
+              {description = "toggle even split in current tag", group = "client"}),
     cyclefocus.key({ modkey_alt, }, "Tab", {}),
 
     -- Standard program
