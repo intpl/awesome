@@ -36,18 +36,25 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
-local toggle_even_split = function()
-    -- WIP
-    -- t = ascreen.focused().selected_tag
+local toggle_useless_gaps = function()
+    local selected_tag = awful.screen.focused().selected_tag
 
-    -- tag.object.set_master_width_factor(t, tag.object.get_master_width_factor(t) + add)
-
-    if beautiful.useless_gap ~= 0 then
-        beautiful.useless_gap = 0
-        -- beautiful.master_width_factor = 0.5
+    if selected_tag.gap ~= 0 then
+        selected_tag.gap = 0
     else
-        beautiful.useless_gap = 12
-        -- beautiful.master_width_factor = 0.7
+        selected_tag.gap = 12
+    end
+
+    awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
+end
+
+local toggle_even_split = function()
+    local selected_tag = awful.screen.focused().selected_tag
+
+    if selected_tag.master_width_factor ~= 0.5 then
+        selected_tag.master_width_factor = 0.5
+    else
+        selected_tag.master_width_factor = 0.7
     end
 
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
@@ -81,14 +88,18 @@ end
 
 -- Extract useless gap increase per tag
 local useless_gap_decrease = function()
-    if beautiful.useless_gap > 0 then
-        beautiful.useless_gap = beautiful.useless_gap - 2
+    local selected_tag = awful.screen.focused().selected_tag
+
+    if selected_tag.gap > 0 then
+        selected_tag.gap = selected_tag.gap - 2
         awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
     end
 end
 
 local useless_gap_increase = function()
-    beautiful.useless_gap = beautiful.useless_gap + 2
+    local selected_tag = awful.screen.focused().selected_tag
+
+    selected_tag.gap = selected_tag.gap + 2
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
@@ -373,7 +384,9 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, ";", toggle_even_split,
+    awful.key({ modkey,           }, ";", toggle_useless_gaps,
+              {description = "toggle useless gaps in current tag", group = "client"}),
+    awful.key({ modkey,           }, "/", toggle_even_split,
               {description = "toggle even split in current tag", group = "client"}),
     cyclefocus.key({ modkey_alt, }, "Tab", {}),
 
