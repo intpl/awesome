@@ -61,28 +61,28 @@ local toggle_even_split = function()
 end
 
 local myviewnext = function(screen)
-    -- TODO: refactor this to not cycle on empty tags
     local t = awful.screen.focused().selected_tags[1]
     local original_t_index = t.index
 
     if t ~= nil then
         repeat
-            awful.tag.viewnext()
-            t = awful.screen.focused().selected_tags[1]
-        until #t:clients() > 0 or t.index < 5
+            t = awful.screen.focused().tags[(t.index % 9) + 1]
+        until #t:clients() > 0 or t.index == original_t_index
+
+        t:view_only()
     end
 end
 
 local myviewprev = function(screen)
-    -- TODO: refactor this to not cycle on empty tags
     local t = awful.screen.focused().selected_tags[1]
     local original_t_index = t.index
 
     if t ~= nil then
         repeat
-            awful.tag.viewprev()
-            t = awful.screen.focused().selected_tags[1]
-        until #t:clients() > 0 or t.index < 5
+            t = awful.screen.focused().tags[(t.index - 2) % 9 + 1]
+        until #t:clients() > 0 or t.index == original_t_index
+
+        t:view_only()
     end
 end
 
