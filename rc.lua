@@ -394,6 +394,8 @@ globalkeys = gears.table.join(
               {description = "toggle useless gaps in current tag", group = "client"}),
     awful.key({ modkey,           }, "/", toggle_even_split,
               {description = "toggle even split in current tag", group = "client"}),
+    awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
+              {description = "toggle master size fill policy", group = "client"}),
     cyclefocus.key({ modkey_alt, }, "Tab", {}),
 
     -- Standard program
