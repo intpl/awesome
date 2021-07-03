@@ -39,8 +39,8 @@ local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 local toggle_useless_gaps = function()
     local selected_tag = awful.screen.focused().selected_tag
 
-    if selected_tag.gap ~= 0 then
-        selected_tag.gap = 0
+    if selected_tag.gap ~= 2 then
+        selected_tag.gap = 2
     else
         selected_tag.gap = 12
     end
@@ -90,7 +90,7 @@ end
 local useless_gap_decrease = function()
     local selected_tag = awful.screen.focused().selected_tag
 
-    if selected_tag.gap > 0 then
+    if selected_tag.gap > 2 then
         selected_tag.gap = selected_tag.gap - 2
         awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
     end
@@ -339,11 +339,7 @@ end)
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, function ()
-            if awful.screen.focused().selected_tag.gap > 2 then
-                useless_gap_decrease()
-            end
-    end),
+    awful.button({ }, 4, function () useless_gap_decrease() end),
     awful.button({ }, 5, useless_gap_increase)
 ))
 -- }}}
