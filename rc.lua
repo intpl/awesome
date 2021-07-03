@@ -225,10 +225,16 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(
-    '<span color="#aaaaaa">%d/%m/%Y</span> <span color="#ffffff">%H:%M</span> <span color="#333333">|</span> '
+    '<span color="#aaaaaa">%d/%m/%Y</span> <span color="#ffffff">%H:%M</span>'
 , 5)
 
 calendar({}):attach(mytextclock)
+
+view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-back.png", os.getenv("HOME"))})
+view_prev_tag_button:connect_signal("button::press", function() myviewprev() end)
+
+view_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-forward.png", os.getenv("HOME"))})
+view_next_tag_button:connect_signal("button::press", function() myviewnext() end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -320,6 +326,10 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
+            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+            view_prev_tag_button,
+            view_next_tag_button,
+            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
             battery_widget(),
             wibox.widget.systray(),
             docker_widget(),
