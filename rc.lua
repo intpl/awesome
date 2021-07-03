@@ -86,6 +86,30 @@ local myviewprev = function(screen)
     end
 end
 
+local move_client_to_next_tag = function()
+    -- get current tag
+    local t = client.focus and client.focus.first_tag or nil
+    if t == nil then
+        return
+    end
+    -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
+    local tag = client.focus.screen.tags[(t.index % 9) + 1]
+    awful.client.movetotag(tag)
+    tag:view_only()
+end
+
+local move_client_to_prev_tag = function()
+    -- get current tag
+    local t = client.focus and client.focus.first_tag or nil
+    if t == nil then
+        return
+    end
+    -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
+    local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
+    awful.client.movetotag(tag)
+    tag:view_only()
+end
+
 local useless_gap_decrease = function()
     local selected_tag = awful.screen.focused().selected_tag
 
@@ -229,11 +253,17 @@ mytextclock = awful.widget.textclock(
 
 calendar({}):attach(mytextclock)
 
-view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-back.png", os.getenv("HOME"))})
-view_prev_tag_button:connect_signal("button::press", function() myviewprev() end)
+view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-back.png", os.getenv("HOME"))})
+view_prev_tag_button:connect_signal("button::press", function() awful.tag.viewprev(awful.screen.focused()) end)
 
-view_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-forward.png", os.getenv("HOME"))})
-view_next_tag_button:connect_signal("button::press", function() myviewnext() end)
+view_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-forward.png", os.getenv("HOME"))})
+view_next_tag_button:connect_signal("button::press", function() awful.tag.viewnext(awful.screen.focused()) end)
+
+move_client_to_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-back.png", os.getenv("HOME"))})
+move_client_to_prev_tag_button:connect_signal("button::press", move_client_to_prev_tag)
+
+move_client_to_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-forward.png", os.getenv("HOME"))})
+move_client_to_next_tag_button:connect_signal("button::press", move_client_to_next_tag)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -325,6 +355,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
+            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+            move_client_to_prev_tag_button,
+            move_client_to_next_tag_button,
             wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
             view_prev_tag_button,
             view_next_tag_button,
@@ -576,33 +609,9 @@ globalkeys = gears.table.join(
              end
      end, {description = "toggle wibox", group = "awesome"}),
 
--- Super+Shift+h/l: move client to prev/next tag
-awful.key({ modkey, "Shift" }, "h",
-    function ()
-        -- get current tag
-        local t = client.focus and client.focus.first_tag or nil
-        if t == nil then
-            return
-        end
-        -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
-        local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
-        awful.client.movetotag(tag)
-        tag:view_only()
-    end,
-        {description = "move client to previous tag", group = "layout"}),
-awful.key({ modkey, "Shift" }, "l",
-    function ()
-        -- get current tag
-        local t = client.focus and client.focus.first_tag or nil
-        if t == nil then
-            return
-        end
-        -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
-        local tag = client.focus.screen.tags[(t.index % 9) + 1]
-        awful.client.movetotag(tag)
-        tag:view_only()
-    end,
-        {description = "move client to next tag", group = "layout"})
+    -- Super+Shift+h/l: move client to prev/next tag
+    awful.key({ modkey, "Shift" }, "h", move_client_to_prev_tag, {description = "move client to previous tag", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "l", move_client_to_next_tag, {description = "move client to next tag", group = "layout"})
 )
 
 clientkeys = gears.table.join(
