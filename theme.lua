@@ -41,7 +41,7 @@ theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
-theme.useless_gap = 12
+theme.useless_gap = 2
 
 -- Default master width
 theme.master_width_factor = 0.7
