@@ -648,10 +648,11 @@ clientkeys = gears.table.join(
         {description = "minimize", group = "client"}),
     awful.key({ modkey,           }, "m",
         function (c)
+            if c.maximized then awful.titlebar.show(c) else awful.titlebar.hide(c) end
             c.maximized = not c.maximized
+
             c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
+        end, {description = "(un)maximize", group = "client"}),
     awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
     awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
     awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
@@ -854,6 +855,8 @@ client.connect_signal("request::titlebars", function(c)
         },
         layout = wibox.layout.align.horizontal
     }
+
+    if c.maximized then awful.titlebar.hide(c); end
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
