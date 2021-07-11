@@ -424,7 +424,7 @@ globalkeys = gears.table.join(
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, ";", toggle_useless_gaps,
               {description = "toggle useless gaps in current tag", group = "client"}),
-    awful.key({ modkey,           }, "/", toggle_even_split,
+    awful.key({ modkey,           }, "'", toggle_even_split,
               {description = "toggle even split in current tag", group = "client"}),
     awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
               {description = "toggle master size fill policy", group = "client"}),
