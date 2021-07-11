@@ -778,13 +778,13 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- No borders for conky
-    { rule_any = {instance = {"conky"}}, properties = { border_width = 0 }},
-
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
     },
+
+    -- No borders for conky and ulauncher
+    { rule_any = {instance = {"conky", "ulauncher"}}, properties = { border_width = 0, titlebars_enabled = false }},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
