@@ -454,11 +454,7 @@ globalkeys = gears.table.join(
         function ()
             local c = awful.client.restore()
             -- Focus restored client
-            if c then
-                c:emit_signal(
-                    "request::activate", "key.unminimize", {raise = true}
-                )
-            end
+            if c then c:emit_signal("request::activate", "key.unminimize", {raise = true}) end
         end,
         {description = "restore minimized", group = "client"}),
 
@@ -470,8 +466,7 @@ globalkeys = gears.table.join(
                 exe_callback = awful.util.eval,
                 history_path = awful.util.get_cache_dir() .. "/history_eval"
             }
-        end,
-        {description = "lua execute prompt", group = "awesome"}),
+        end, {description = "lua execute prompt", group = "awesome"}),
 
 
     -- First empty tag
