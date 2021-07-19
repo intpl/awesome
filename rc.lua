@@ -643,7 +643,17 @@ clientkeys = gears.table.join(
         {description = "minimize", group = "client"}),
     awful.key({ modkey,           }, "m",
         function (c)
+            -- Toggle titlebar
             if c.maximized then awful.titlebar.show(c) else awful.titlebar.hide(c) end
+
+            -- Toggle rounded corners
+            if c.maximized then
+                c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,10) end
+            else
+                c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,0) end
+            end
+
+            -- Toggle maximize
             c.maximized = not c.maximized
 
             c:raise()
@@ -800,6 +810,12 @@ client.connect_signal("manage", function (c)
       and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
+    end
+
+    if c.maximized then
+        c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,0) end
+    else
+        c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,10) end
     end
 end)
 
