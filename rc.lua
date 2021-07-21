@@ -214,6 +214,7 @@ if has_fdo then
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
                 {"Tinder", "google-chrome --app=https://tinder.com/" },
                 {"Instagram", "google-chrome --app=https://instagram.com/" },
+                {"WhatsApp", "google-chrome --app=https://web.whatsapp.com/" },
                 {"Spotify", "google-chrome --app=https://open.spotify.com/" },
                 wibox.widget {widget = wibox.widget.separator},
             },
