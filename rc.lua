@@ -29,6 +29,9 @@ local calendar = require("calendar")
 -- Awesome Cyclefocus
 local cyclefocus = require('cyclefocus')
 
+-- My Minimal Mode
+my_minimal_mode = require('my_modules.my_minimal_mode')
+
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
@@ -373,7 +376,8 @@ awful.screen.connect_for_each_screen(function(s)
                     onsuspend = function() awful.spawn.with_shell("sudo systemctl suspend") end,
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
-            })
+            }),
+            my_minimal_mode.widget
         },
     }
 end)
@@ -645,13 +649,17 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "m",
         function (c)
             -- Toggle titlebar
-            if c.maximized then awful.titlebar.show(c) else awful.titlebar.hide(c) end
+            if c.maximized then
+                if not my_minimal_mode.is_enabled then awful.titlebar.show(c) end
+            else
+                awful.titlebar.hide(c)
+            end
 
             -- Toggle rounded corners
             if c.maximized then
-                c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,10) end
+                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
             else
-                c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,0) end
+                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
             end
 
             -- Toggle maximize
@@ -659,6 +667,7 @@ clientkeys = gears.table.join(
 
             c:raise()
         end, {description = "(un)maximize", group = "client"}),
+    awful.key({ modkey, "Shift" }, "m", my_minimal_mode.toggle, {description = "toggle minimal mode", group = "layout"}),
     awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
     awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
     awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
@@ -814,9 +823,9 @@ client.connect_signal("manage", function (c)
     end
 
     if c.maximized then
-        c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,0) end
+        c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
     else
-        c.shape = function(cr,w,h) gears.shape.octogon(cr,w,h,10) end
+        c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
     end
 end)
 
@@ -868,7 +877,7 @@ client.connect_signal("request::titlebars", function(c)
         layout = wibox.layout.align.horizontal
     }
 
-    if c.maximized then awful.titlebar.hide(c); end
+    if c.maximized or my_minimal_mode.is_enabled then awful.titlebar.hide(c); end
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
