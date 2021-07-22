@@ -454,6 +454,7 @@ globalkeys = gears.table.join(
               {description = "select next", group = "layout"}),
     awful.key({ modkey_alt, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "m", my_minimal_mode.toggle, {description = "toggle minimal mode", group = "layout"}),
 
     awful.key({ modkey, "Shift" }, "n",
         function ()
@@ -667,7 +668,6 @@ clientkeys = gears.table.join(
 
             c:raise()
         end, {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Shift" }, "m", my_minimal_mode.toggle, {description = "toggle minimal mode", group = "layout"}),
     awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
     awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
     awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
