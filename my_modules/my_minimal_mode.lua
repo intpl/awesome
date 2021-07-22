@@ -7,9 +7,7 @@ local my_minimal_mode = {is_enabled = false}
 
 function enable_minimal_mode()
   -- hide all titlebars
-  for _, c in pairs(client.get()) do
-    awful.titlebar.hide(c)
-  end
+  for _, c in pairs(client.get()) do awful.titlebar.hide(c) end
 
   -- disable useless gaps
   for _, t in pairs(root.tags()) do t.gap = 0 end
@@ -19,7 +17,11 @@ end
 
 function disable_minimal_mode()
   -- show titlebars for unmaximized clients
-  for _, c in pairs(client.get()) do if not c.maximized then awful.titlebar.show(c) end end
+  for _, c in pairs(client.get()) do
+    if not c.maximized and c.instance ~= "conky" then
+      awful.titlebar.show(c)
+    end
+  end
 
   -- enable useless gaps
   for _, t in pairs(root.tags()) do t.gap = 2 end
