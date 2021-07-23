@@ -28,6 +28,9 @@ theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ff0000"
 
+-- Only modify empty taglist fg, rest is inherited from theme.fg_*
+theme.taglist_fg_empty     = "#505050"
+
 theme.border_width  = 1
 theme.border_normal = "#444444"
 theme.border_focus  = "#888888"
