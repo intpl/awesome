@@ -63,6 +63,7 @@ theme.menu_width = 200
 theme.wibar_height = 16
 
 -- Icons
+theme.awesome_icon = '/usr/share/awesome/themes/sky/awesome-icon.png'
 theme.icon_theme = 'Papirus-Dark'
 
 theme.layout_fairh      = default_theme_path.."layouts/fairhw.png"
