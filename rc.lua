@@ -45,7 +45,7 @@ local toggle_useless_gaps = function()
     if selected_tag.gap ~= 2 then
         selected_tag.gap = 2
     else
-        selected_tag.gap = 12
+        selected_tag.gap = beautiful.useless_gap
     end
 
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)

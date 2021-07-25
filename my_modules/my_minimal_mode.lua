@@ -24,7 +24,7 @@ function disable_minimal_mode()
   end
 
   -- enable useless gaps
-  for _, t in pairs(root.tags()) do t.gap = 2 end
+  for _, t in pairs(root.tags()) do t.gap = beautiful.useless_gap end
 
   my_minimal_mode.is_enabled = false
 end

@@ -48,7 +48,7 @@ theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
-theme.useless_gap = 2
+theme.useless_gap = 10
 
 -- Maximized clients have no border
 theme.maximized_hide_border = true
