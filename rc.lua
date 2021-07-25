@@ -892,7 +892,9 @@ screen.connect_signal("arrange", function (s)
                               if only_one and not c.floating or c.maximized then
                                   c.border_width = 0
                               else
-                                  c.border_width = beautiful.border_width -- your border width
+                                  if c.instance ~= "conky" then
+                                      c.border_width = beautiful.border_width
+                                  end
                               end
                           end
 end)
