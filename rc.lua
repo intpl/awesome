@@ -360,7 +360,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
             wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-            battery_widget({show_current_level = true, display_notification = true, font = beautiful.font, margin_right = 10}),
+            battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10}),
             wibox.widget.systray(),
             docker_widget(),
             s.mylayoutbox,
