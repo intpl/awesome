@@ -252,10 +252,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(
-    '<span color="#aaaaaa">%d/%m/%Y %a</span> <span color="#ffffff">%H:%M</span>'
+    ' <span color="#888888">%d/%m</span> <span color="#ffffff">%H:%M</span> <span color="#888888">%a</span> '
 , 5)
 
-calendar({}):attach(mytextclock)
+calendar({position = "bottom_right"}):attach(mytextclock)
 
 view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-back.png", os.getenv("HOME"))})
 view_prev_tag_button:connect_signal("button::press", function() awful.tag.viewprev(awful.screen.focused()) end)
@@ -358,11 +358,16 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mytextclock,
-            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-            battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10}),
             wibox.widget.systray(),
-            docker_widget(),
+            -- docker_widget(),
+            battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10}),
+            --wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+            move_client_to_prev_tag_button,
+            move_client_to_next_tag_button,
+            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+            view_prev_tag_button,
+            view_next_tag_button,
+            mytextclock,
             s.mylayoutbox,
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
@@ -371,12 +376,6 @@ awful.screen.connect_for_each_screen(function(s)
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
             }),
-            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-            move_client_to_prev_tag_button,
-            move_client_to_next_tag_button,
-            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-            view_prev_tag_button,
-            view_next_tag_button,
             my_minimal_mode.widget
         },
     }
