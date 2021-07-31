@@ -904,8 +904,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Wallpaper
--- awful.spawn.with_shell("nitrogen --restore")
-gears.wallpaper.set("#202020")
+awful.spawn.with_shell("nitrogen --restore")
+-- gears.wallpaper.set("#202020")
 
 -- Autorun/autostart programs
 awful.spawn.with_shell("killall xss-lock; xss-lock slock") -- slock on lid close/sleep
