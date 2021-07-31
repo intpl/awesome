@@ -29,8 +29,9 @@ local calendar = require("calendar")
 -- Awesome Cyclefocus
 local cyclefocus = require('cyclefocus')
 
--- My Minimal Mode
+-- My Modules
 my_minimal_mode = require('my_modules.my_minimal_mode')
+my_transparency_mode = require('my_modules.my_transparency_mode')
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -376,6 +377,7 @@ awful.screen.connect_for_each_screen(function(s)
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
             }),
+            my_transparency_mode.widget,
             my_minimal_mode.widget
         },
     }
@@ -454,6 +456,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey_alt, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
     awful.key({ modkey, "Shift" }, "m", my_minimal_mode.toggle, {description = "toggle minimal mode", group = "layout"}),
+    awful.key({ modkey, "Shift" }, "y", my_transparency_mode.toggle, {description = "toggle transparency mode", group = "layout"}),
 
     awful.key({ modkey, "Shift" }, "n",
         function ()
@@ -898,8 +901,8 @@ screen.connect_signal("arrange", function (s)
                           end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", my_transparency_mode.focus)
+client.connect_signal("unfocus", my_transparency_mode.unfocus)
 -- }}}
 
 -- Wallpaper
