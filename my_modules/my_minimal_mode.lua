@@ -12,6 +12,8 @@ function enable_minimal_mode()
   -- disable useless gaps
   for _, t in pairs(root.tags()) do t.gap = 0 end
 
+  -- expand master_fill_policy
+  beautiful.master_fill_policy = 'expand'
   my_minimal_mode.is_enabled = true
 end
 
@@ -25,6 +27,9 @@ function disable_minimal_mode()
 
   -- enable useless gaps
   for _, t in pairs(root.tags()) do t.gap = beautiful.useless_gap end
+
+  -- reset master_fill_policy
+  beautiful.master_fill_policy = 'master_width_factor'
 
   my_minimal_mode.is_enabled = false
 end
