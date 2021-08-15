@@ -582,6 +582,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show combi -combi-modi 'ssh,drun,window,run' -modi combi ") end,
     {description = "show rofi run", group = "launcher"}),
 
+    -- Rofi calc
+    -- install this: https://github.com/svenstaro/rofi-calc
+    awful.key({ modkey,           }, "space", function () awful.spawn("rofi -show calc -modi calc -no-show-match -no-sort -calc-command \"echo -n '{result}' | xclip -selection clipboard\"")                end,
+              {description = "show rofi calc/converter", group = "launcher"}),
+
+
     awful.key({ modkey, }, "`", function () awful.spawn.with_shell("rofi -show window") end,
     {description = "show rofi window", group = "launcher"}),
 
@@ -915,7 +921,7 @@ awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("killall xss-lock; xss-lock slock") -- slock on lid close/sleep
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
 awful.spawn.with_shell("killall fusuma ; /usr/local/bin/fusuma")
-awful.spawn.with_shell("killall ulauncher; ulauncher --no-window-shadow --hide-window")
+-- awful.spawn.with_shell("killall ulauncher; ulauncher --no-window-shadow --hide-window")
 awful.spawn.with_shell("killall conky ; conky")
 
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
