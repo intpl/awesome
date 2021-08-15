@@ -578,8 +578,8 @@ globalkeys = gears.table.join(
    awful.key({ modkey }, "BackSpace", function () awful.spawn.with_shell('flameshot gui') end,
      {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
 
-    -- rofi
-    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show drun") end,
+    -- Rofi combi
+    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show combi -combi-modi 'ssh,drun,window,run' -modi combi ") end,
     {description = "show rofi run", group = "launcher"}),
 
     awful.key({ modkey, }, "`", function () awful.spawn.with_shell("rofi -show window") end,
