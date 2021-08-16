@@ -210,6 +210,7 @@ if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
                 menu_terminal,
+                {"Blueman manager", "blueman-manager"},
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
                 {"Tranmission GTK", "transmission-gtk" },
