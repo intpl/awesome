@@ -27,7 +27,7 @@ local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- i
 local calendar = require("calendar")
 
 -- Awesome Cyclefocus
-local cyclefocus = require('cyclefocus')
+-- local cyclefocus = require('cyclefocus')
 
 -- My Modules
 my_minimal_mode = require('my_modules.my_minimal_mode')
@@ -435,7 +435,7 @@ globalkeys = gears.table.join(
               {description = "toggle even split in current tag", group = "client"}),
     awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
               {description = "toggle master size fill policy", group = "client"}),
-    cyclefocus.key({ modkey_alt, }, "Tab", {}),
+--    cyclefocus.key({ modkey_alt, }, "Tab", {}),
 
     -- Standard program
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
