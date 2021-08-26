@@ -30,8 +30,8 @@ local calendar = require("calendar")
 -- local cyclefocus = require('cyclefocus')
 
 -- My Modules
-my_minimal_mode = require('my_modules.my_minimal_mode')
-my_transparency_mode = require('my_modules.my_transparency_mode')
+local my_minimal_mode = require('my_modules.my_minimal_mode')
+local my_transparency_mode = require('my_modules.my_transparency_mode')
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
