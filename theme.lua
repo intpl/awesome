@@ -54,8 +54,8 @@ theme.useless_gap = 10
 theme.maximized_hide_border = true
 
 -- Default master width
-theme.master_width_factor = 0.7
-theme.master_fill_policy = 'master_width_factor'
+theme.master_width_factor = 0.5
+-- theme.master_fill_policy = 'master_width_factor'
 
 -- Menu
 theme.menu_width = 200
