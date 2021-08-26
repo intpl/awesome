@@ -442,10 +442,20 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
+
+    -- Resize tag's master_width_factor
     awful.key({ modkey,           }, "[",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey,           }, "]",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
+
+    -- Resize client's master_width_factor
+    awful.key({ modkey, "Control"    }, "j", function () awful.client.incwfact(-0.15)    end,
+              {description = "decrease client's master width factor", group = "client"}),
+    awful.key({ modkey, "Control"    }, "k", function () awful.client.incwfact( 0.15)    end,
+              {description = "increase client's master width factor", group = "client"}),
+
+    -- Increase/Decrease master clients or master columns
     awful.key({ modkey, "Control"}, "[",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control"}, "]",     function () awful.tag.incnmaster(-1, nil, true) end,
@@ -454,10 +464,14 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Shift" }, "]",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey_alt,           }, "space", function () awful.layout.inc( 1)                end,
+
+    -- Layouts
+    awful.key({ modkey_alt,           }, "space", function () awful.layout.inc( 1) end,
               {description = "select next", group = "layout"}),
-    awful.key({ modkey_alt, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+    awful.key({ modkey_alt, "Shift"   }, "space", function () awful.layout.inc(-1) end,
               {description = "select previous", group = "layout"}),
+
+    -- My modes
     awful.key({ modkey, "Shift" }, "m", my_minimal_mode.toggle, {description = "toggle minimal mode", group = "layout"}),
     awful.key({ modkey, "Shift" }, "y", my_transparency_mode.toggle, {description = "toggle transparency mode", group = "layout"}),
 
