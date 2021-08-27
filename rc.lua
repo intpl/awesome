@@ -937,7 +937,6 @@ awful.spawn.with_shell("nitrogen --restore")
 -- Autorun/autostart programs
 awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
-awful.spawn.with_shell("killall fusuma ; /usr/local/bin/fusuma")
 -- awful.spawn.with_shell("killall ulauncher; ulauncher --no-window-shadow --hide-window")
 awful.spawn.with_shell("killall conky ; conky")
 

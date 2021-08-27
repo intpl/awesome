@@ -17,4 +17,5 @@ run "xfce4-volumed"
 run "dropbox start"
 run "redshift-gtk"
 run "flameshot"
+run "fusuma"
 run "alttab" # don't change that to multiple desktops !!!
