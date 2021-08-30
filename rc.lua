@@ -438,6 +438,22 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
               {description = "toggle master size fill policy", group = "client"}),
 --    cyclefocus.key({ modkey_alt, }, "Tab", {}),
+    -- TODO: use keygrabber
+    awful.key({ modkey_alt,           }, "Tab",
+        function ()
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
+        end),
+
+    awful.key({ modkey_alt, "Shift"   }, "Tab",
+        function ()
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
+        end),
 
     -- Standard program
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
