@@ -235,7 +235,7 @@ if has_fdo then
                 menu_awesome,
                 { "edit rc.lua", "emacs " .. awesome.conffile },
                 wibox.widget {widget = wibox.widget.separator},
-                {'lock', 'slock'},
+                {'lock', 'light-locker-command -l'},
                 {'suspend', 'sudo systemctl suspend'},
                 {'reboot', 'sudo reboot'},
                 {'poweroff', 'sudo poweroff'}
@@ -380,7 +380,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
-                    onlock = function() awful.spawn.with_shell('slock') end,
+                    onlock = function() awful.spawn.with_shell('light-locker-command -l') end,
                     onsuspend = function() awful.spawn.with_shell("sudo systemctl suspend") end,
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
@@ -559,7 +559,7 @@ globalkeys = gears.table.join(
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("sudo systemctl suspend") end,
               {description = "Suspend", group = "system"}),
-    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("slock") end,
+    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("light-locker-command -l") end,
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
