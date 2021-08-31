@@ -54,6 +54,11 @@ local toggle_useless_gaps = function()
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
+local remove_useless_gaps = function()
+    awful.screen.focused().selected_tag.gap = 0
+    awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
+end
+
 local toggle_even_split = function()
     local selected_tag = awful.screen.focused().selected_tag
 
@@ -433,6 +438,8 @@ globalkeys = gears.table.join(
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, ";", toggle_useless_gaps,
               {description = "toggle useless gaps in current tag", group = "client"}),
+    awful.key({ modkey, "Shift"   }, ";", remove_useless_gaps,
+              {description = "remove useless gaps in current tag", group = "client"}),
     awful.key({ modkey,           }, "'", toggle_even_split,
               {description = "toggle even split in current tag", group = "client"}),
     awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
