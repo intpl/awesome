@@ -218,6 +218,7 @@ if has_fdo then
             before = {
                 menu_terminal,
                 {"Blueman manager", "blueman-manager"},
+                {"arandr", "arandr"},
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
                 {"Tranmission GTK", "transmission-gtk" },
