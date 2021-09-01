@@ -951,6 +951,10 @@ end)
 
 client.connect_signal("focus", my_transparency_mode.focus)
 client.connect_signal("unfocus", my_transparency_mode.unfocus)
+
+-- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
+awful.ewmh.add_activate_filter(function() return false end, "ewmh")
+
 -- }}}
 
 -- Wallpaper
