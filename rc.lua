@@ -909,13 +909,13 @@ client.connect_signal("request::titlebars", function(c)
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index - 2) % 9 + 1]
                                               awful.client.movetotag(tag)
-                                              tag:view_only()
+                                              -- tag:view_only()
                                               end),
             awful.titlebar.widget.button (c, "move_to_next_tag", function () return "" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index % 9) + 1]
                                               awful.client.movetotag(tag)
-                                              tag:view_only()
+                                              -- tag:view_only()
                                               end),
             wibox.widget{markup = ' ', widget = wibox.widget.textbox},
             awful.titlebar.widget.minimizebutton (c),
