@@ -20,7 +20,7 @@ theme.bg_focus      = "#202020aa"
 theme.bg_urgent     = "#ff0000"
 
 theme.titlebar_fg_normal = "#444444"
-theme.titlebar_fg_focus = "#eeeeee"
+theme.titlebar_fg_focus = "#aaaaaa"
 theme.titlebar_bg_focus = "#404040"
 theme.titlebar_bg_normal = "#282828"
 
@@ -34,6 +34,7 @@ theme.taglist_fg_empty     = "#505050"
 -- Only modify empty tasklist fg, rest is inherited from theme.fg_*
 theme.tasklist_fg_minimize     = "#444444"
 theme.tasklist_fg_normal     = "#666666"
+theme.tasklist_fg_focus     = "#aaaaaa"
 
 theme.border_width  = 1
 theme.border_normal = "#444444"
