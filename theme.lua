@@ -9,7 +9,7 @@ local default_titlebar_path = default_theme_path .. "/titlebar/"
 -- Theme fonts and colors
 theme = {}
 
-theme.font                     = "Iosevka Term SS09 11"
+theme.font                     = "Iosevka Term SS09 14"
 theme.hotkeys_font             = "Iosevka Term SS09 17"
 theme.hotkeys_description_font = "Iosevka Term SS09 17"
 
@@ -61,7 +61,7 @@ theme.master_width_factor = 0.5
 theme.menu_width = 200
 
 -- Wibar
-theme.wibar_height = 16
+theme.wibar_height = 22
 
 -- Icons
 theme.awesome_icon = '/usr/share/awesome/themes/sky/awesome-icon.png'
