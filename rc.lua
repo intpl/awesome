@@ -137,6 +137,27 @@ local useless_gap_increase = function()
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
+local mymaximize = function (c)
+            -- Toggle titlebar
+            if c.maximized then
+                if not my_minimal_mode.is_enabled then awful.titlebar.show(c) end
+            else
+                awful.titlebar.hide(c)
+            end
+
+            -- Toggle rounded corners
+            if c.maximized then
+                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
+            else
+                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
+            end
+
+            -- Toggle maximize
+            c.maximized = not c.maximized
+
+            c:raise()
+        end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -698,27 +719,7 @@ clientkeys = gears.table.join(
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            -- Toggle titlebar
-            if c.maximized then
-                if not my_minimal_mode.is_enabled then awful.titlebar.show(c) end
-            else
-                awful.titlebar.hide(c)
-            end
-
-            -- Toggle rounded corners
-            if c.maximized then
-                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
-            else
-                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
-            end
-
-            -- Toggle maximize
-            c.maximized = not c.maximized
-
-            c:raise()
-        end, {description = "(un)maximize", group = "client"}),
+    awful.key({ modkey,           }, "m", mymaximize , {description = "(un)maximize", group = "client"}),
     awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
     awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
     awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
@@ -894,6 +895,15 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
+    function mymaximizedbutton(c)
+        local widget = awful.titlebar.widget.button(c, "maximized",
+                                              function(cl) return cl.maximized end,
+                                              function(cl, state) mymaximize(cl) end
+        )
+      c:connect_signal("property::maximized", widget.update)
+      return widget
+    end
+
     awful.titlebar(c, {size = 20}) : setup {
         { -- Left -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -920,7 +930,7 @@ client.connect_signal("request::titlebars", function(c)
             wibox.widget{markup = ' ', widget = wibox.widget.textbox},
             awful.titlebar.widget.minimizebutton (c),
             awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.maximizedbutton(c),
+            mymaximizedbutton(c),
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
