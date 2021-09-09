@@ -1,7 +1,7 @@
 /* ~/.config/rofi/config.rasi */
 
 configuration {
-  theme:                          "gruvbox-dark-hard";
+  theme:                          "gruvbox-dark";
   kb-row-up:                      "Up,Control+k,Control+p,Shift+Tab,Shift+ISO_Left_Tab";
   kb-row-down:                    "Down,Control+j,Control+n";
   kb-accept-entry:                "Control+m,Return,KP_Enter";
@@ -12,6 +12,9 @@ configuration {
   kb-remove-word-back:            "Alt+BackSpace,Control+BackSpace";
   me-select-entry:                "MouseSecondary";
   me-accept-entry:                "MousePrimary";
+  show-icons:                     true;
+  icon-theme:                     "Papirus";
+  font:                           "Iosevka Term SS09 17";
   }
 
 /*	modi: "window,run,ssh";*/

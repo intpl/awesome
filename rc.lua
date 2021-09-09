@@ -34,6 +34,7 @@ local calendar = require("calendar")
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_transparency_mode = require('my_modules.my_transparency_mode')
+local hotcorner = require("my_modules.hotcorner")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -641,7 +642,7 @@ globalkeys = gears.table.join(
      {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
 
     -- Rofi combi
-    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show combi -combi-modi 'ssh,drun,window,run' -modi combi ") end,
+    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show combi -combi-modi 'ssh,drun,window,run' -modi combi") end,
     {description = "show rofi run", group = "launcher"}),
 
     -- Rofi calc
@@ -962,6 +963,25 @@ end)
 
 client.connect_signal("focus", my_transparency_mode.focus)
 client.connect_signal("unfocus", my_transparency_mode.unfocus)
+
+-- hot corners
+awful.screen.connect_for_each_screen(function(s)
+  -- left
+  hotcorner.create({
+    screen = s,
+    placement = awful.placement.top_left,
+    action = function() awful.spawn("rofi -show window") end,
+    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
+  })
+
+  -- right
+  hotcorner.create({
+    screen = s,
+    placement = awful.placement.top_right,
+    action = function() awful.spawn("rofi -show window") end,
+    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
+  })
+end)
 
 -- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
 awful.ewmh.add_activate_filter(function() return false end, "ewmh")
