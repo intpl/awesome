@@ -244,6 +244,7 @@ if has_fdo then
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
                 {"Tranmission GTK", "transmission-gtk" },
+                {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
                 wibox.widget {widget = wibox.widget.separator},
                 {"Signal", "signal-desktop --disable-gpu" },
                 {"Messenger", "google-chrome --app=https://messenger.com/" },
