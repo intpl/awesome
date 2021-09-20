@@ -188,6 +188,12 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/theme.lua")
 
+-- Bling
+-- TODO: https://blingcorp.github.io/bling/#/widgets/tag_preview
+local bling = require("bling")
+bling.module.flash_focus.enable()
+
+
 terminal = "alacritty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
 
@@ -204,6 +210,12 @@ modkey_alt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    bling.layout.centered,
+    bling.layout.vertical,
+    bling.layout.horizontal,
+    bling.layout.equalarea,
+    bling.layout.mstab,
+    -- bling.layout.deck,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -988,11 +1000,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
   })
 end)
-
--- Bling
--- TODO: https://blingcorp.github.io/bling/#/widgets/tag_preview
-local bling = require("bling")
-bling.module.flash_focus.enable()
 
 -- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
 -- BUG? awful.ewmh.add_activate_filter(function() return false end, "ewmh")
