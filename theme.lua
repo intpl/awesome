@@ -68,6 +68,10 @@ theme.wibar_height = 22
 theme.awesome_icon = '/usr/share/awesome/themes/sky/awesome-icon.png'
 theme.icon_theme = 'Papirus-Dark'
 
+-- Bling
+theme.flash_focus_start_opacity = 0.8       -- the starting opacity
+theme.flash_focus_step = 0.01               -- the step of animation
+
 theme.layout_fairh      = default_theme_path.."layouts/fairhw.png"
 theme.layout_fairv      = default_theme_path.."layouts/fairvw.png"
 theme.layout_floating   = default_theme_path.."layouts/floatingw.png"

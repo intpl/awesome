@@ -7,3 +7,6 @@
 [submodule "cyclefocus"]
 	path = cyclefocus
 	url = https://github.com/blueyed/awesome-cyclefocus
+[submodule "bling"]
+	path = bling
+	url = https://github.com/Nooo37/bling.git

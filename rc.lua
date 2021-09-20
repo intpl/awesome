@@ -989,6 +989,11 @@ awful.screen.connect_for_each_screen(function(s)
   })
 end)
 
+-- Bling
+-- TODO: https://blingcorp.github.io/bling/#/widgets/tag_preview
+local bling = require("bling")
+bling.module.flash_focus.enable()
+
 -- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
 -- BUG? awful.ewmh.add_activate_filter(function() return false end, "ewmh")
 
