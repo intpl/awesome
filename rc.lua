@@ -990,7 +990,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 -- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
-awful.ewmh.add_activate_filter(function() return false end, "ewmh")
+-- BUG? awful.ewmh.add_activate_filter(function() return false end, "ewmh")
 
 -- }}}
 
