@@ -159,6 +159,10 @@ local mymaximize = function (c)
             c:raise()
         end
 
+local chrome_app_string = function(address)
+    return "google-chrome -app=" .. address
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -259,11 +263,11 @@ if has_fdo then
                 {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
                 wibox.widget {widget = wibox.widget.separator},
                 {"Signal", "signal-desktop --disable-gpu" },
-                {"Messenger", "google-chrome --app=https://messenger.com/" },
-                {"Tinder", "google-chrome --app=https://tinder.com/" },
-                {"Instagram", "google-chrome --app=https://instagram.com/" },
-                {"WhatsApp", "google-chrome --app=https://web.whatsapp.com/" },
-                {"Spotify", "google-chrome --app=https://open.spotify.com/" },
+                {"Messenger", chrome_app_string("https://messenger.com/") },
+                {"Tinder", chrome_app_string("https://tinder.com/") },
+                {"Instagram", chrome_app_string("https://instagram.com/") },
+                {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
+                {"Spotify", chrome_app_string("https://open.spotify.com/") },
                 wibox.widget {widget = wibox.widget.separator},
             },
             after =  {
