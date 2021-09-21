@@ -669,7 +669,7 @@ globalkeys = gears.table.join(
 
     -- Rofi calc
     -- install this: https://github.com/svenstaro/rofi-calc
-    awful.key({ modkey,           }, "space", function () awful.spawn("rofi -show calc -modi calc -no-show-match -no-sort -calc-command \"echo -n '{result}' | xclip -selection clipboard\"")                end,
+    awful.key({ modkey,           }, "space", function () awful.spawn("rofi -show calc -modi calc -no-show-match -no-sort -lines 1 -calc-command \"echo -n '{result}' | xclip -selection clipboard\"")                end,
               {description = "show rofi calc/converter", group = "launcher"}),
 
 
