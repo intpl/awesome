@@ -163,6 +163,19 @@ local chrome_app_string = function(address)
     return "google-chrome -app=" .. address
 end
 
+local first_empty_tag = function()
+    local t = awful.screen.focused().tags[1]
+
+    if t ~= nil then
+        repeat
+            t = awful.screen.focused().tags[(t.index % 9) + 1]
+        until #t:clients() == 0 or t.index == 1
+
+        t:view_only()
+    end
+end
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -432,6 +445,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
+    awful.button({modkey}, 1, first_empty_tag),
     awful.button({ }, 1, function ()
             if mouse.coords().x < (mouse.screen.geometry.width/2) then
                 awful.tag.viewprev()
@@ -570,17 +584,7 @@ globalkeys = gears.table.join(
 
 
     -- First empty tag
-    awful.key({ modkey, "Control" }, "Return", function()
-            local t = awful.screen.focused().tags[1]
-
-            if t ~= nil then
-                repeat
-                    t = awful.screen.focused().tags[(t.index % 9) + 1]
-                until #t:clients() == 0 or t.index == 1
-
-                t:view_only()
-            end
-    end, {description = "find first empty tag", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "Return", first_empty_tag, {description = "find first empty tag", group = "launcher"}),
 
     -- Useless gap increase/decrease
     awful.key({modkey, "Shift"}, "=", useless_gap_decrease, {description = "Decrease useless gap", group = "layout"}),
