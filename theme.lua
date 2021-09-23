@@ -29,6 +29,7 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ff0000"
 
 -- Only modify empty taglist fg, rest is inherited from theme.fg_*
+theme.taglist_bg_focus      = "#505050"
 theme.taglist_fg_empty     = "#505050"
 
 -- Only modify empty tasklist fg, rest is inherited from theme.fg_*
