@@ -448,9 +448,9 @@ root.buttons(gears.table.join(
     awful.button({modkey}, 1, first_empty_tag),
     awful.button({ }, 1, function ()
             if mouse.coords().x < (mouse.screen.geometry.width/2) then
-                awful.tag.viewprev()
+                myviewprev()
             else
-                awful.tag.viewnext()
+                myviewnext()
             end
     end),
     awful.button({ }, 3, function () mymainmenu:toggle() end),
