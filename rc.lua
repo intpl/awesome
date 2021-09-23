@@ -432,13 +432,13 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-                 awful.button({ }, 1, function ()
-                         if mouse.coords().x < (mouse.screen.geometry.width/2) then
-                             awful.tag.viewprev()
-                         else
-                             awful.tag.viewnext()
-                         end
-                 end),
+    awful.button({ }, 1, function ()
+            if mouse.coords().x < (mouse.screen.geometry.width/2) then
+                awful.tag.viewprev()
+            else
+                awful.tag.viewnext()
+            end
+    end),
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, function () useless_gap_decrease() end),
     awful.button({ }, 5, useless_gap_increase)
