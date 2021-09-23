@@ -1,7 +1,7 @@
 /* ~/.config/rofi/config.rasi */
 
 configuration {
-  theme:                          "gruvbox-dark";
+  theme:                          "nord";
   kb-row-up:                      "Up,Control+k,Control+p,Shift+Tab,Shift+ISO_Left_Tab";
   kb-row-down:                    "Down,Control+j,Control+n";
   kb-accept-entry:                "Control+m,Return,KP_Enter";
