@@ -273,6 +273,8 @@ if has_fdo then
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
                 {"Tranmission GTK", "transmission-gtk" },
+                wibox.widget {widget = wibox.widget.separator},
+                {"KMagnifier", "kmag"},
                 {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
                 wibox.widget {widget = wibox.widget.separator},
                 {"Signal", "signal-desktop --disable-gpu" },
@@ -872,7 +874,8 @@ awful.rules.rules = {
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
-          "Volume Control"
+          "Volume Control",
+          "KMagnifier"
         },
         role = {
           -- "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
