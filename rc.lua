@@ -641,10 +641,10 @@ globalkeys = gears.table.join(
      awful.spawn.with_shell("amixer -D pulse set Master 1+ toggle", false)
    end),
 
-   awful.key({modkey_alt, modkey, "Control" }, "-", function ()
+   awful.key({modkey_alt, modkey }, "-", function ()
      awful.spawn.with_shell("amixer -q -D pulse sset Master 5%-", false)
    end),
-   awful.key({modkey_alt, modkey, "Control" }, "=", function ()
+   awful.key({modkey_alt, modkey }, "=", function ()
      awful.spawn.with_shell("amixer -q -D pulse sset Master 5%+", false)
    end),
 
