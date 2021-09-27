@@ -333,7 +333,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = awful.widget.textclock(
+mytextclock = wibox.widget.textclock(
     ' <span color="#888888">%d/%m</span> <span color="#ffffff">%H:%M</span> <span color="#888888">%a</span> '
 , 5)
 

@@ -14,7 +14,7 @@ function hotcorner.create(args)
     minimum_width = 2,
     maximum_width = 2,
     maximum_height = 2,
-    widget = wibox.widget.background,
+    widget = wibox.container.background,
     bg = "red",
     opacity = 0
   })
