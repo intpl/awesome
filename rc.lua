@@ -964,13 +964,13 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.button (c, "move_to_prev_tag", function () return "" end, function ()
+            awful.titlebar.widget.button (c, "move_to_prev_tag", function () return awful.util.get_configuration_dir() .. "/arrow-back.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index - 2) % 9 + 1]
                                               awful.client.movetotag(tag)
                                               -- tag:view_only()
                                               end),
-            awful.titlebar.widget.button (c, "move_to_next_tag", function () return "" end, function ()
+            awful.titlebar.widget.button (c, "move_to_next_tag", function () return awful.util.get_configuration_dir() .. "/arrow-forward.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index % 9) + 1]
                                               awful.client.movetotag(tag)
