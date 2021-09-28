@@ -106,7 +106,7 @@ local move_client_to_next_tag = function()
     end
     -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
     local tag = client.focus.screen.tags[(t.index % 9) + 1]
-    awful.client.movetotag(tag)
+    awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
     tag:view_only()
 end
 
@@ -118,7 +118,7 @@ local move_client_to_prev_tag = function()
     end
     -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
     local tag = client.focus.screen.tags[(t.index - 2) % 9 + 1]
-    awful.client.movetotag(tag)
+    awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
     tag:view_only()
 end
 
@@ -245,12 +245,6 @@ modkey_alt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    bling.layout.centered,
-    bling.layout.vertical,
-    bling.layout.horizontal,
-    bling.layout.equalarea,
-    bling.layout.mstab,
-    -- bling.layout.deck,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
@@ -258,6 +252,12 @@ awful.layout.layouts = {
     awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
+    -- bling.layout.deck,
+    bling.layout.centered,
+    bling.layout.vertical,
+    bling.layout.horizontal,
+    bling.layout.equalarea,
+    bling.layout.mstab,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
@@ -841,13 +841,13 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 8, function(c)
          local t = c.first_tag
          local tag = c.screen.tags[(t.index % 9) + 1]
-         awful.client.movetotag(tag)
+         awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
          tag:view_only()
     end),
     awful.button({ modkey }, 9, function(c)
          local t = c.first_tag
          local tag = c.screen.tags[(t.index - 2) % 9 + 1]
-         awful.client.movetotag(tag)
+         awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
          tag:view_only()
     end)
 )
@@ -967,13 +967,13 @@ client.connect_signal("request::titlebars", function(c)
             awful.titlebar.widget.button (c, "move_to_prev_tag", function () return awful.util.get_configuration_dir() .. "/arrow-back.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index - 2) % 9 + 1]
-                                              awful.client.movetotag(tag)
+                                              awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
                                               -- tag:view_only()
                                               end),
             awful.titlebar.widget.button (c, "move_to_next_tag", function () return awful.util.get_configuration_dir() .. "/arrow-forward.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index % 9) + 1]
-                                              awful.client.movetotag(tag)
+                                              awful.client.movetotag(tag) -- TODO: use c:move_to_tag(target) instead
                                               -- tag:view_only()
                                               end),
             wibox.widget{markup = ' ', widget = wibox.widget.textbox},
