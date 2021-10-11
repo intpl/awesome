@@ -288,6 +288,7 @@ if has_fdo then
                 menu_terminal,
                 {"Blueman manager", "blueman-manager"},
                 {"arandr", "arandr"},
+                {"Emacs", "emacs"},
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
                 {"Tranmission GTK", "transmission-gtk" },
