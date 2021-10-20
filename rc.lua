@@ -1021,28 +1021,8 @@ client.connect_signal("unfocus", my_transparency_mode.unfocus)
 
 -- hot corners
 awful.screen.connect_for_each_screen(function(s)
-  -- left
-  -- DISABLED due to dual screen inconsistency
-  -- hotcorner.create({
-  --   screen = s,
-  --   placement = awful.placement.top_left,
-  --   action = my_revelation,
-  --   -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
-  -- })
-
-  -- right
-  hotcorner.create({
-    screen = s,
-    placement = awful.placement.top_right,
-    action = my_revelation,
-    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
-  })
+        hotcorner.create({screen = s, placement = awful.placement.top_right, action = my_revelation}) -- left corner disabled due to issues with multi monitor setup
 end)
-
--- Adds a filter that rejects any requests issued by already-open programs to "steal" the focus.
--- BUG? awful.ewmh.add_activate_filter(function() return false end, "ewmh")
-
--- }}}
 
 local my_right_desktop_buttons = wibox {
     visible = true,
