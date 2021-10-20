@@ -1019,12 +1019,13 @@ client.connect_signal("unfocus", my_transparency_mode.unfocus)
 -- hot corners
 awful.screen.connect_for_each_screen(function(s)
   -- left
-  hotcorner.create({
-    screen = s,
-    placement = awful.placement.top_left,
-    action = my_revelation,
-    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
-  })
+  -- DISABLED due to dual screen inconsistency
+  -- hotcorner.create({
+  --   screen = s,
+  --   placement = awful.placement.top_left,
+  --   action = my_revelation,
+  --   -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
+  -- })
 
   -- right
   hotcorner.create({
