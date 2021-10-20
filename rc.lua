@@ -1083,6 +1083,9 @@ my_right_desktop_buttons:setup {
     widget = wibox.container.margin
 }
 
+my_right_desktop_buttons:connect_signal("mouse::enter", function(c) c.ontop = true end)
+my_right_desktop_buttons:connect_signal("mouse::leave", function(c) c.ontop = false end)
+
 -- TODO: display on every screen
 awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = awful.screen.focused()})
 
