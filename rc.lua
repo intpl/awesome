@@ -21,7 +21,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- awesome-wm-widgets
-local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
+-- local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 
