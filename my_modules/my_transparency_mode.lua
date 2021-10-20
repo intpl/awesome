@@ -3,10 +3,14 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 
+local bling = require("bling")
+
 local my_transparency_mode = {is_enabled = false}
 local opacity_value = 0.8
 
 function enable_transparency_mode()
+  bling.module.flash_focus.disable()
+
   for _, c in pairs(client.get()) do
     if c.focused then
       c.opacity=1
@@ -21,6 +25,8 @@ function enable_transparency_mode()
 end
 
 function disable_transparency_mode()
+  bling.module.flash_focus.enable()
+
   for _, c in pairs(client.get()) do
     c.opacity=1
   end
