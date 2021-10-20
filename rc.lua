@@ -1044,34 +1044,35 @@ end)
 
 -- }}}
 
-local buttons_example = wibox {
+local my_right_desktop_buttons = wibox {
     visible = true,
     max_widget_size = 500,
     height = 40,
-    width = 368,
+    width = 370,
     shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, 3) end
 }
 
-buttons_example:setup {
+my_right_desktop_buttons:setup {
     {
         {
             {
-                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'plus', text = '<span color="#fff">incmaster</span>', color = '#040', icon_size = 16, onclick = function()
+                awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">clients</span>', color = '#040', icon_size = 16, onclick = function()
                                                        awful.tag.incnmaster( 1, nil, true)
                                                        end},
-                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'minus', text = '<span color="#fff">incmaster</span>', color = '#400', icon_size = 16, onclick = function()
+                awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">clients</span>', color = '#400', icon_size = 16, onclick = function()
                                                        awful.tag.incnmaster(-1, nil, true)
                                                        end},
-                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'plus', text = '<span color="#fff">incncol</span>', color = '#040', icon_size = 16, onclick = function()
+                wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+                awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">columns</span>', color = '#040', icon_size = 16, onclick = function()
                                                        awful.tag.incncol(1, nil, true)
                                                        end},
-                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'minus', text = '<span color="#fff">incncol</span>', color = '#400', icon_size = 16, onclick = function()
+                awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">columns</span>', color = '#400', icon_size = 16, onclick = function()
                                                        awful.tag.incncol(-1, nil, true)
                                                        end},
                 spacing = 0,
                 layout = wibox.layout.fixed.horizontal
             },
-            spacing = 0,
+            spacing = 2,
             layout = wibox.layout.fixed.vertical,
         },
         shape_border_width = 1,
@@ -1083,7 +1084,7 @@ buttons_example:setup {
 }
 
 -- TODO: display on every screen
-awful.placement.top_right(buttons_example, { margins = {top = 2, right = 2}, parent = awful.screen.focused()})
+awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = awful.screen.focused()})
 
 -- Wallpaper
 awful.spawn.with_shell("nitrogen --restore")
