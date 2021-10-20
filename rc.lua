@@ -25,6 +25,9 @@ require("awful.hotkeys_popup.keys")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 
+-- awesome buttons
+local awesomebuttons = require("awesome-buttons.awesome-buttons")
+
 -- calendar from https://github.com/deficient/calendar
 local calendar = require("calendar")
 
@@ -1040,6 +1043,48 @@ end)
 -- BUG? awful.ewmh.add_activate_filter(function() return false end, "ewmh")
 
 -- }}}
+
+local buttons_example = wibox {
+    visible = true,
+    max_widget_size = 500,
+    height = 40,
+    width = 368,
+    shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, 3) end
+}
+
+buttons_example:setup {
+    {
+        {
+            {
+                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'plus', text = '<span color="#fff">incmaster</span>', color = '#040', icon_size = 16, onclick = function()
+                                                       awful.tag.incnmaster( 1, nil, true)
+                                                       end},
+                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'minus', text = '<span color="#fff">incmaster</span>', color = '#400', icon_size = 16, onclick = function()
+                                                       awful.tag.incnmaster(-1, nil, true)
+                                                       end},
+                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'plus', text = '<span color="#fff">incncol</span>', color = '#040', icon_size = 16, onclick = function()
+                                                       awful.tag.incncol(1, nil, true)
+                                                       end},
+                awesomebuttons.with_icon_and_text{ type = 'flat', icon = 'minus', text = '<span color="#fff">incncol</span>', color = '#400', icon_size = 16, onclick = function()
+                                                       awful.tag.incncol(-1, nil, true)
+                                                       end},
+                spacing = 0,
+                layout = wibox.layout.fixed.horizontal
+            },
+            spacing = 0,
+            layout = wibox.layout.fixed.vertical,
+        },
+        shape_border_width = 1,
+        valigh = 'center',
+        layout = wibox.container.place
+    },
+    margins = 0,
+    widget = wibox.container.margin
+}
+
+awful.screen.connect_for_each_screen(function(s)
+  awful.placement.top_right(buttons_example, { margins = {top = 2, right = 2}, parent = s})
+end)
 
 -- Wallpaper
 awful.spawn.with_shell("nitrogen --restore")
