@@ -1082,9 +1082,8 @@ buttons_example:setup {
     widget = wibox.container.margin
 }
 
-awful.screen.connect_for_each_screen(function(s)
-  awful.placement.top_right(buttons_example, { margins = {top = 2, right = 2}, parent = s})
-end)
+-- TODO: display on every screen
+awful.placement.top_right(buttons_example, { margins = {top = 2, right = 2}, parent = awful.screen.focused()})
 
 -- Wallpaper
 awful.spawn.with_shell("nitrogen --restore")
