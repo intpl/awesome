@@ -1029,7 +1029,7 @@ awful.screen.connect_for_each_screen(function(s)
         visible = true,
         max_widget_size = 500,
         height = 40,
-        width = 370,
+        width = 400,
         shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, 3) end
     }
 
@@ -1050,6 +1050,7 @@ awful.screen.connect_for_each_screen(function(s)
                     awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">columns</span>', color = '#400', icon_size = 16, onclick = function()
                                                         awful.tag.incncol(-1, nil, true)
                                                         end},
+                    s.mylayoutbox,
                     spacing = 0,
                     layout = wibox.layout.fixed.horizontal
                 },
