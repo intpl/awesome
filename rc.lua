@@ -221,7 +221,7 @@ revelation.init()
 -- Bling
 -- TODO: https://blingcorp.github.io/bling/#/widgets/tag_preview
 local bling = require("bling")
-bling.module.flash_focus.enable()
+-- bling.module.flash_focus.enable()
 
 bling.widget.window_switcher.enable {
     type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
