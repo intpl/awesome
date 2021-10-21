@@ -297,6 +297,7 @@ if has_fdo then
                 menu_terminal,
                 {"Blueman manager", "blueman-manager"},
                 {"arandr", "arandr"},
+                {"Slack", "slack"},
                 {"Emacs", "emacs"},
                 {"Google Chrome", "google-chrome" },
                 {"Thunar", "thunar" },
