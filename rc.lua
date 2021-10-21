@@ -149,13 +149,6 @@ local mymaximize = function (c)
                 awful.titlebar.hide(c)
             end
 
-            -- Toggle rounded corners
-            if c.maximized then
-                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
-            else
-                c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
-            end
-
             -- Toggle maximize
             c.maximized = not c.maximized
 
@@ -928,12 +921,6 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-
-    if c.maximized then
-        c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,0) end
-    else
-        c.shape = function(cr,w,h) gears.shape.rounded_rect(cr,w,h,5) end
-    end
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -1045,7 +1032,6 @@ awful.screen.connect_for_each_screen(function(s)
         max_widget_size = 500,
         height = 40,
         width = 400,
-        shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, 3) end
     }
 
     my_right_desktop_buttons:setup {
