@@ -288,11 +288,12 @@ myawesomemenu = {
 }
 
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "Terminal", terminal }
+local menu_terminal = { "Terminal (w/o tmux)", terminal }
 
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
             before = {
+                { "Terminal (tmux)", terminal_with_tmux },
                 menu_terminal,
                 {"Blueman manager", "blueman-manager"},
                 {"arandr", "arandr"},
