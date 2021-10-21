@@ -960,12 +960,16 @@ client.connect_signal("request::titlebars", function(c)
     end
 
     awful.titlebar(c, {size = 20}) : setup {
-        { -- Left -- awful.titlebar.widget.iconwidget(c),
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Middle
-            { align  = "center", widget = awful.titlebar.widget.titlewidget(c)},
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
