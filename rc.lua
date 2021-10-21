@@ -34,10 +34,6 @@ local calendar = require("calendar")
 -- Awesome Cyclefocus
 -- local cyclefocus = require('cyclefocus')
 
--- Revelation
-local revelation = require("revelation")
-local my_revelation = function() revelation({rule={class="conky"}, is_excluded=true}) end
-
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_transparency_mode = require('my_modules.my_transparency_mode')
@@ -216,7 +212,6 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/theme.lua")
-revelation.init()
 
 -- Bling
 -- TODO: https://blingcorp.github.io/bling/#/widgets/tag_preview
@@ -709,7 +704,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "space", function () awful.spawn("rofi -theme nord-two-lines -show calc -modi calc -no-show-match -no-sort -lines 1 -calc-command \"echo -n '{result}' | xclip -selection clipboard\"")                end,
               {description = "show rofi calc/converter", group = "launcher"}),
 
-    awful.key({ modkey, }, "`", my_revelation,
+    awful.key({ modkey, }, "`", function () awful.spawn.with_shell("rofi -show window") end,
     {description = "show rofi window", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "\\", function () awful.spawn.with_shell("rofi -show ssh") end,
@@ -1023,7 +1018,21 @@ client.connect_signal("unfocus", my_transparency_mode.unfocus)
 
 -- hot corners
 awful.screen.connect_for_each_screen(function(s)
-        hotcorner.create({screen = s, placement = awful.placement.top_right, action = my_revelation}) -- left corner disabled due to issues with multi monitor setup
+  -- left
+  hotcorner.create({
+    screen = s,
+    placement = awful.placement.top_left,
+    action = function() awful.spawn("rofi -show window") end,
+    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
+  })
+
+  -- right
+  hotcorner.create({
+    screen = s,
+    placement = awful.placement.top_right,
+    action = function() awful.spawn("rofi -show window") end,
+    -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
+  })
 end)
 
 awful.screen.connect_for_each_screen(function(s)

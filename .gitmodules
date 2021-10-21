@@ -10,9 +10,6 @@
 [submodule "bling"]
 	path = bling
 	url = https://github.com/Nooo37/bling.git
-[submodule "revelation"]
-	path = revelation
-	url = https://github.com/guotsuan/awesome-revelation
 [submodule "awesome-buttons"]
 	path = awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons
