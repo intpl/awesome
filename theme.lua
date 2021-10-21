@@ -37,6 +37,7 @@ theme.tasklist_fg_minimize     = "#444444"
 theme.tasklist_maximized     = "<span bgcolor=\"#00DD00\"> + </span> "
 theme.tasklist_fg_normal     = "#666666"
 theme.tasklist_fg_focus     = "#aaaaaa"
+theme.tasklist_bg_focus     = "#404040aa"
 
 theme.border_width  = 1
 theme.border_normal = "#444444"
@@ -47,7 +48,7 @@ theme.border_marked = "#91231c"
 theme.taglist_squares = true
 
 -- Don't show app icons in wibar
-theme.tasklist_disable_icon = true
+-- theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
