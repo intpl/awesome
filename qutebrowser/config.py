@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-c.editor.command = ['alacritty', '-e', 'nvim', '{file}']
+c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
