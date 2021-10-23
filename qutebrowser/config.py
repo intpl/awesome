@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
+c.auto_save.session = True
 
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
