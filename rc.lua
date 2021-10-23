@@ -600,8 +600,8 @@ globalkeys = gears.table.join(
     awful.key({modkey, "Shift"}, "-", useless_gap_increase, {description = "Increase useless gap", group = "layout"}),
 
     -- My apps / shortcuts
-    awful.key({ modkey }, "w", function () awful.spawn("google-chrome") end,
-              {description = "open google chrome", group = "launcher"}),
+    awful.key({ modkey }, "w", function () awful.spawn("qutebrowser") end,
+              {description = "qutebrowser", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("brave-browser") end,
               {description = "open brave browser", group = "launcher"}),
     awful.key({ modkey}, "q", function () awful.spawn("qutebrowser") end,
