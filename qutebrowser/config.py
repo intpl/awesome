@@ -3,6 +3,10 @@
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 c.auto_save.session = True
 
+# Binds for moving through completion items
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
+
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('x', 'tab-close')
