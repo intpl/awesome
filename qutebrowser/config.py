@@ -2,6 +2,7 @@
 
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 c.auto_save.session = True
+c.content.notifications = False
 
 config.load_autoconfig(True)
 
