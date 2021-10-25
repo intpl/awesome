@@ -600,8 +600,8 @@ globalkeys = gears.table.join(
     awful.key({modkey, "Shift"}, "-", useless_gap_increase, {description = "Increase useless gap", group = "layout"}),
 
     -- My apps / shortcuts
-    awful.key({ modkey }, "w", function () awful.spawn("qutebrowser") end,
-              {description = "qutebrowser", group = "launcher"}),
+    awful.key({ modkey }, "w", function () awful.spawn("google-chrome") end,
+              {description = "google-chrome", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("brave-browser") end,
               {description = "open brave browser", group = "launcher"}),
     awful.key({ modkey}, "q", function () awful.spawn("qutebrowser") end,
@@ -1079,7 +1079,7 @@ awful.spawn.with_shell("nitrogen --restore")
 -- Autorun/autostart programs
 awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
-awful.spawn.with_shell("killall conky ; conky")
+-- awful.spawn.with_shell("killall conky ; conky")
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
 awful.spawn.with_shell("xset -dpms") -- disable monitor turning off
 awful.spawn.with_shell("xset s 3600 3600") -- 1 hour before screen blackens
