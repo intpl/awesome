@@ -3,6 +3,8 @@
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 c.auto_save.session = True
 c.content.notifications = False
+c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
+c.url.start_pages = ["https://www.google.com/"]
 
 config.load_autoconfig(True)
 
