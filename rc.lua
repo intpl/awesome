@@ -39,10 +39,6 @@ local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_transparency_mode = require('my_modules.my_transparency_mode')
 local hotcorner = require("my_modules.hotcorner")
 
--- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
-
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
