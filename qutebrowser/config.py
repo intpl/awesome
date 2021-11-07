@@ -2,7 +2,7 @@
 
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 c.auto_save.session = True
-c.content.notifications = False
+c.content.notifications.enabled = False
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 c.url.start_pages = ["https://www.google.com/"]
 c.fonts.hints = 'bold 22px'
