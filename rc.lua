@@ -299,7 +299,7 @@ mymainmenu = awful.menu({
             menu_awesome,
             { "edit rc.lua", "emacs " .. awesome.conffile },
             wibox.widget {widget = wibox.widget.separator},
-            {'lock', 'light-locker-command -l'},
+            {'lock', 'i3lock'},
             {'suspend', 'sudo zzz'},
             {'reboot', 'sudo reboot'},
             {'poweroff', 'sudo poweroff'}
@@ -432,7 +432,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
-                    onlock = function() awful.spawn.with_shell('light-locker-command -l') end,
+                    onlock = function() awful.spawn.with_shell('i3lock') end,
                     onsuspend = function() awful.spawn.with_shell("sudo zzz") end,
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
@@ -606,7 +606,7 @@ globalkeys = gears.table.join(
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("sudo zzz") end,
               {description = "Suspend", group = "system"}),
-    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("light-locker-command -l") end,
+    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("i3lock") end,
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
@@ -1061,8 +1061,10 @@ awful.spawn.with_shell("nitrogen --restore")
 -- Autorun/autostart programs
 -- dropped in favor of xfce4-power-manager awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
 -- awful.spawn.with_shell("killall conky ; conky")
+awful.spawn.with_shell("killall xss-lock; xss-lock i3lock") -- slock on lid close/sleep
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
 awful.spawn.with_shell("xset -dpms") -- disable monitor turning off
 awful.spawn.with_shell("setxkbmap pl") -- disable monitor turning off
-awful.spawn.with_shell("xset s 3600 3600") -- 1 hour before screen blackens
+awful.spawn.with_shell("xset s 3600") -- 1 hour before screen blackens
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+
