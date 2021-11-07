@@ -152,7 +152,7 @@ local mymaximize = function (c)
         end
 
 local chrome_app_string = function(address)
-    return "google-chrome -app=" .. address
+    return "chromium -app=" .. address
 end
 
 local first_empty_tag = function()
@@ -280,22 +280,21 @@ mymainmenu = awful.menu({
             menu_terminal,
             {"Blueman manager", "blueman-manager"},
             {"arandr", "arandr"},
-            {"Slack", "slack"},
+            {"Slack", "flatpak run com.slack.Slack"},
             {"Emacs", "emacs"},
             {"Qutebrowser", "qutebrowser" },
             {"Google Chrome", "google-chrome" },
             {"Thunar", "thunar" },
             {"Tranmission GTK", "transmission-gtk" },
             wibox.widget {widget = wibox.widget.separator},
-            {"KMagnifier", "kmag"},
-            {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
+            {"Blanket", "blanket" },
             wibox.widget {widget = wibox.widget.separator},
-            {"Signal", "signal-desktop --disable-gpu" },
+            {"Signal", "flatopak run org.signal.Signal" },
             {"Messenger", chrome_app_string("https://messenger.com/") },
             {"Tinder", chrome_app_string("https://tinder.com/") },
             {"Instagram", chrome_app_string("https://instagram.com/") },
             {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
-            {"Spotify", chrome_app_string("https://open.spotify.com/") },
+            {"Spotify", "flatpak run com.spotify.Client" },
             wibox.widget {widget = wibox.widget.separator},
             menu_awesome,
             { "edit rc.lua", "emacs " .. awesome.conffile },
@@ -597,8 +596,8 @@ globalkeys = gears.table.join(
         {description = "open ranger", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "f", function () awful.spawn("thunar") end,
               {description = "thunar", group = "launcher"}),
-    awful.key({ modkey }, "z", function () awful.spawn(chrome_app_string("https://open.spotify.com/")) end,
-              {description = "open spotify in google chrome", group = "launcher"}),
+    awful.key({ modkey }, "z", function () awful.spawn("flatpak run com.spotify.Client") end,
+              {description = "open spotify (flatpak version)", group = "launcher"}),
     awful.key({ modkey, }, "c", function () awful.spawn(chrome_app_string("https://messenger.com/")) end,
         {description = "open messenger in google chrome", group = "launcher"}),
     awful.key({ modkey }, "r", function () awful.spawn.with_shell("toggle_redshift") end,
