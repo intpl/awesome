@@ -278,51 +278,37 @@ myawesomemenu = {
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "Terminal (w/o tmux)", terminal }
 
-if has_fdo then
-    mymainmenu = freedesktop.menu.build({
-            before = {
-                { "Terminal (tmux)", terminal_with_tmux },
-                menu_terminal,
-                {"Blueman manager", "blueman-manager"},
-                {"arandr", "arandr"},
-                {"Slack", "slack"},
-                {"Emacs", "emacs"},
-                {"Qutebrowser", "qutebrowser" },
-                {"Google Chrome", "google-chrome" },
-                {"Thunar", "thunar" },
-                {"Tranmission GTK", "transmission-gtk" },
-                wibox.widget {widget = wibox.widget.separator},
-                {"KMagnifier", "kmag"},
-                {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
-                wibox.widget {widget = wibox.widget.separator},
-                {"Signal", "signal-desktop --disable-gpu" },
-                {"Messenger", chrome_app_string("https://messenger.com/") },
-                {"Tinder", chrome_app_string("https://tinder.com/") },
-                {"Instagram", chrome_app_string("https://instagram.com/") },
-                {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
-                {"Spotify", chrome_app_string("https://open.spotify.com/") },
-                wibox.widget {widget = wibox.widget.separator},
-            },
-            after =  {
-                wibox.widget {widget = wibox.widget.separator},
-                menu_awesome,
-                { "edit rc.lua", "emacs " .. awesome.conffile },
-                wibox.widget {widget = wibox.widget.separator},
-                {'lock', 'light-locker-command -l'},
-                {'suspend', 'sudo systemctl suspend'},
-                {'reboot', 'sudo reboot'},
-                {'poweroff', 'sudo poweroff'}
-            }
-    })
-else
-    mymainmenu = awful.menu({
-        items = {
-                  menu_awesome,
-                  { "Debian", debian.menu.Debian_menu.Debian },
-                  menu_terminal,
-                }
-    })
-end
+mymainmenu = awful.menu({
+    items = {
+            { "Terminal (tmux)", terminal_with_tmux },
+            menu_terminal,
+            {"Blueman manager", "blueman-manager"},
+            {"arandr", "arandr"},
+            {"Slack", "slack"},
+            {"Emacs", "emacs"},
+            {"Qutebrowser", "qutebrowser" },
+            {"Google Chrome", "google-chrome" },
+            {"Thunar", "thunar" },
+            {"Tranmission GTK", "transmission-gtk" },
+            wibox.widget {widget = wibox.widget.separator},
+            {"KMagnifier", "kmag"},
+            {"Blanket", "blanket" }, -- https://github.com/rafaelmardojai/blanket
+            wibox.widget {widget = wibox.widget.separator},
+            {"Signal", "signal-desktop --disable-gpu" },
+            {"Messenger", chrome_app_string("https://messenger.com/") },
+            {"Tinder", chrome_app_string("https://tinder.com/") },
+            {"Instagram", chrome_app_string("https://instagram.com/") },
+            {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
+            {"Spotify", chrome_app_string("https://open.spotify.com/") },
+            wibox.widget {widget = wibox.widget.separator},
+            menu_awesome,
+            { "edit rc.lua", "emacs " .. awesome.conffile },
+            wibox.widget {widget = wibox.widget.separator},
+            {'lock', 'light-locker-command -l'},
+            {'suspend', 'sudo systemctl suspend'},
+            {'reboot', 'sudo reboot'},
+            {'poweroff', 'sudo poweroff'}
+}})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
