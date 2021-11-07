@@ -283,7 +283,7 @@ mymainmenu = awful.menu({
             {"Slack", "flatpak run com.slack.Slack"},
             {"Emacs", "emacs"},
             {"Qutebrowser", "qutebrowser" },
-            {"Google Chrome", "google-chrome" },
+            {"Chromium", "chromium" },
             {"Thunar", "thunar" },
             {"Tranmission GTK", "transmission-gtk" },
             wibox.widget {widget = wibox.widget.separator},
