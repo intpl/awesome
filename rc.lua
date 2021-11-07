@@ -1064,5 +1064,6 @@ awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSIO
 -- awful.spawn.with_shell("killall conky ; conky")
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
 awful.spawn.with_shell("xset -dpms") -- disable monitor turning off
+awful.spawn.with_shell("setxkbmap pl") -- disable monitor turning off
 awful.spawn.with_shell("xset s 3600 3600") -- 1 hour before screen blackens
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
