@@ -1064,7 +1064,7 @@ awful.spawn.with_shell("nitrogen --restore")
 -- gears.wallpaper.set("#202020")
 
 -- Autorun/autostart programs
-awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
+-- dropped in favor of xfce4-power-manager awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
 awful.spawn.with_shell("dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY")  -- gtk apps take ages to load without that
 -- awful.spawn.with_shell("killall conky ; conky")
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
