@@ -5,6 +5,7 @@ c.auto_save.session = True
 c.content.notifications = False
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 c.url.start_pages = ["https://www.google.com/"]
+c.fonts.hints = 'bold 22px'
 
 config.load_autoconfig(True)
 
@@ -13,6 +14,7 @@ config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
 config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 
 config.bind('d', 'scroll-page 0 0.5')
+config.bind('W', 'tab-give')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('x', 'tab-close')
 config.bind(',u', 'undo')
@@ -20,3 +22,5 @@ config.bind(',U', 'undo -w')
 config.bind(',xo', 'set-cmd-text -s :open -b')
 config.bind(',xO', 'set-cmd-text :open -b -r {url:pretty}')
 config.bind(',e', 'edit-url')
+config.bind(',E', 'config-edit')
+config.bind(',p', 'open -p')
