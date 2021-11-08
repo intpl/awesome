@@ -280,7 +280,7 @@ mymainmenu = awful.menu({
             menu_terminal,
             {"Blueman manager", "blueman-manager"},
             {"arandr", "arandr"},
-            {"Slack", "flatpak run com.slack.Slack"},
+            {"Slack", chrome_app_string("https://app.slack.com/client/")},
             {"Emacs", "emacs"},
             {"Qutebrowser", "qutebrowser" },
             {"Chromium", "chromium" },
