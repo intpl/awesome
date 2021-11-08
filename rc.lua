@@ -278,7 +278,7 @@ mymainmenu = awful.menu({
     items = {
             { "Terminal (tmux)", terminal_with_tmux },
             menu_terminal,
-            {"Blueman manager", "blueman-manager"},
+            {"rofi-bluetooth", "rofi-bluetooth"}, -- https://github.com/nickclyde/rofi-bluetooth
             {"arandr", "arandr"},
             {"Slack", chrome_app_string("https://app.slack.com/client/")},
             {"Emacs", "emacs"},
@@ -682,6 +682,10 @@ globalkeys = gears.table.join(
     {description = "show rofi window", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "\\", function () awful.spawn.with_shell("rofi -show ssh") end,
+    {description = "show rofi ssh", group = "launcher"}),
+
+    -- Rofi bluetooth
+    awful.key({ modkey, "Control" }, "b", function () awful.spawn.with_shell("rofi-bluetooth") end,
     {description = "show rofi ssh", group = "launcher"}),
 
     -- terminal
