@@ -3,6 +3,7 @@
 c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
 c.auto_save.session = True
 c.content.notifications.enabled = False
+c.content.autoplay = False
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 c.url.start_pages = ["https://www.google.com/"]
 c.fonts.hints = 'bold 22px'
@@ -24,3 +25,6 @@ config.bind(',xO', 'set-cmd-text :open -b -r {url:pretty}')
 config.bind(',e', 'edit-url')
 config.bind(',E', 'config-edit')
 config.bind(',p', 'open -p')
+
+config.bind(',mf', 'hint links spawn --detach mpv {hint-url}')
+config.bind(',mm', 'spawn --detach mpv {url}')
