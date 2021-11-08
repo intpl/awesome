@@ -168,7 +168,7 @@ local first_empty_tag = function()
 end
 
 local show_volume_notification = function()
-    local command = "pacmd list-sinks | grep -zo --color=never '* index:.*base volume' | grep -oaE '[0-9]+\\%' | awk -v RS= '{$1= $1}1'"
+    local command = "sleep 0.09 ; pacmd list-sinks | grep -zo --color=never '* index:.*base volume' | grep -oaE '[0-9]+\\%' | awk -v RS= '{$1= $1}1'"
     awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = out, timeout = 1 }) end)
 end
 
@@ -617,24 +617,24 @@ globalkeys = gears.table.join(
 
    -- Volume Keys
    awful.key({}, "XF86AudioLowerVolume", function ()
-           awful.spawn.with_shell("amixer -q -D pulse sset Master 5%-", false)
+           awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%", false)
            show_volume_notification()
    end),
    awful.key({}, "XF86AudioRaiseVolume", function ()
-           awful.spawn.with_shell("amixer -q -D pulse sset Master 5%+", false)
+           awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%", false)
            show_volume_notification()
    end),
    awful.key({}, "XF86AudioMute", function ()
-           awful.spawn.with_shell("amixer -D pulse set Master 1+ toggle", false)
+           awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle", false)
            show_volume_notification()
    end),
 
    awful.key({modkey_alt, modkey }, "-", function ()
-           awful.spawn.with_shell("amixer -q -D pulse sset Master 5%-", false)
+           awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%", false)
            show_volume_notification()
    end),
    awful.key({modkey_alt, modkey }, "=", function ()
-           awful.spawn.with_shell("amixer -q -D pulse sset Master 5%+", false)
+           awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%", false)
            show_volume_notification()
    end),
 
