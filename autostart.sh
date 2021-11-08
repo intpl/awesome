@@ -8,6 +8,7 @@ function run {
   fi
 }
 
+run "unclutter"
 run "blueman-applet"
 run "xbindkeys"
 run "compton"
