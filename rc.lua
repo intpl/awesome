@@ -1067,7 +1067,7 @@ awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xss-lock -- i3lock -c 111111") -- i3lock on lid close/sleep
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
 awful.spawn.with_shell("xset -dpms") -- disable monitor turning off
-awful.spawn.with_shell("setxkbmap pl") -- disable monitor turning off
+awful.spawn.with_shell("setxkbmap -layout pl")
 awful.spawn.with_shell("xset s 3600") -- 1 hour before screen blackens
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 

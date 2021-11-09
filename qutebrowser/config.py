@@ -6,7 +6,7 @@ c.content.notifications.enabled = False
 c.content.autoplay = False
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 c.url.start_pages = ["https://www.google.com/"]
-c.fonts.hints = 'bold 22px'
+# c.fonts.hints = 'bold 22px' -- commented out due to too big size
 
 config.load_autoconfig(True)
 
