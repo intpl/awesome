@@ -493,6 +493,13 @@ globalkeys = gears.table.join(
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey }, "o", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
+    awful.key({ modkey, "Control" }, "o",      function ()
+            local t = awful.screen.focused().selected_tag
+
+            for _, c in ipairs(t:clients()) do
+                c:move_to_screen()
+            end
+    end, {description = "move all clients to screen", group = "client"}),
     awful.key({ modkey, }, ".", function () awful.screen.focus_relative(1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey }, ",", function () awful.screen.focus_relative(-1) end,
