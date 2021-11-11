@@ -9,7 +9,7 @@ local default_titlebar_path = default_theme_path .. "/titlebar/"
 -- Theme fonts and colors
 theme = {}
 
-theme.font                     = "Iosevka Term SS09 14"
+theme.font                     = "Iosevka Term SS09 11"
 theme.hotkeys_font             = "Iosevka Term SS09 17"
 theme.hotkeys_description_font = "Iosevka Term SS09 17"
 
@@ -36,11 +36,11 @@ theme.taglist_fg_empty     = "#505050"
 theme.tasklist_fg_minimize     = "#444444"
 theme.tasklist_maximized     = "<span bgcolor=\"#00DD00\"> + </span> "
 theme.tasklist_fg_normal     = "#666666"
-theme.tasklist_fg_focus     = "#aaaaaa"
+theme.tasklist_fg_focus     = "#ffffff"
 theme.tasklist_bg_focus     = "#404040aa"
 
 theme.border_width  = 1
-theme.border_normal = "#444444"
+theme.border_normal = "#222222"
 theme.border_focus  = "#888888"
 theme.border_marked = "#91231c"
 
@@ -58,7 +58,7 @@ theme.useless_gap = 2
 theme.maximized_hide_border = true
 
 -- Default master width
-theme.master_width_factor = 0.5
+theme.master_width_factor = 0.7
 -- theme.master_fill_policy = 'master_width_factor'
 
 -- Menu
