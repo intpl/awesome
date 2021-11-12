@@ -265,41 +265,44 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
+   { "edit rc.lua", "emacs " .. awesome.conffile },
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
 
-local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
-local menu_terminal = { "Terminal (w/o tmux)", terminal }
-
 mymainmenu = awful.menu({
     items = {
+        -- Essentials
+            { "Qutebrowser", "qutebrowser" },
             { "Terminal (tmux)", terminal_with_tmux },
-            menu_terminal,
-            {"rofi-bluetooth", "rofi-bluetooth"}, -- https://github.com/nickclyde/rofi-bluetooth
-            {"arandr", "arandr"},
-            {"Slack", chrome_app_string("https://app.slack.com/client/")},
-            {"Emacs", "emacs"},
-            {"Qutebrowser", "qutebrowser" },
-            {"Chromium", "chromium" },
-            {"Thunar", "thunar" },
-            {"Tranmission GTK", "transmission-gtk" },
+            { "Terminal (w/o tmux)", terminal },
+            { "Emacs", "emacs" },
             wibox.widget {widget = wibox.widget.separator},
-            {"Blanket", "blanket" },
+        -- Accessories
+            { "Thunar", "thunar" },
+            { "Chromium", "chromium" },
+            { "Tranmission GTK", "transmission-gtk" },
+            { "rofi-bluetooth", "rofi-bluetooth"}, -- https://github.com/nickclyde/rofi-bluetooth
+            { "arandr", "arandr" },
             wibox.widget {widget = wibox.widget.separator},
-            {"Signal", "flatopak run org.signal.Signal" },
-            {"Messenger", chrome_app_string("https://messenger.com/") },
-            {"Tinder", chrome_app_string("https://tinder.com/") },
-            {"Instagram", chrome_app_string("https://instagram.com/") },
-            {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
-            {"Spotify", "flatpak run com.spotify.Client" },
+        -- Music
+            { "Spotify", "flatpak run com.spotify.Client" },
+            { "Blanket", "blanket" },
             wibox.widget {widget = wibox.widget.separator},
-            menu_awesome,
-            { "edit rc.lua", "emacs " .. awesome.conffile },
+        -- Chat
+            { "Messenger", chrome_app_string("https://messenger.com/") },
+            { "Instagram", chrome_app_string("https://instagram.com/") },
+            { "Tinder", chrome_app_string("https://tinder.com/") },
+            { "Slack", chrome_app_string("https://app.slack.com/client/") },
+--          {"Signal", "flatopak run org.signal.Signal" },
+--          {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
             wibox.widget {widget = wibox.widget.separator},
-            {'lock', 'i3lock'},
+        -- System
+            { "awesome", myawesomemenu, beautiful.awesome_icon },
+            wibox.widget {widget = wibox.widget.separator},
+            {'lock', 'i3lock -c 111111'},
             {'suspend', 'sudo zzz'},
             {'reboot', 'sudo reboot'},
             {'poweroff', 'sudo poweroff'}
@@ -432,7 +435,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
             logout_menu_widget({
                     onlogout = function() awesome.quit() end,
-                    onlock = function() awful.spawn.with_shell('i3lock') end,
+                    onlock = function() awful.spawn.with_shell('i3lock -c 111111') end,
                     onsuspend = function() awful.spawn.with_shell("sudo zzz") end,
                     onreboot = function() awful.spawn.with_shell("sudo reboot") end,
                     onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
@@ -612,7 +615,7 @@ globalkeys = gears.table.join(
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("sudo zzz") end,
               {description = "Suspend", group = "system"}),
-    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("i3lock") end,
+    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("i3lock -c 111111") end,
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
