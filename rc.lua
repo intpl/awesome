@@ -619,7 +619,7 @@ globalkeys = gears.table.join(
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("lxrandr") end,
+    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("autorandr -c") end,
               {description = "arandr", group = "launcher"}),
     awful.key({ modkey, }, "v", function () awful.spawn("pavucontrol") end,
               {description = "pavucontrol", group = "launcher"}),
