@@ -36,7 +36,7 @@ theme.taglist_fg_empty     = "#505050"
 theme.tasklist_fg_minimize     = "#444444"
 theme.tasklist_maximized     = "<span bgcolor=\"#00DD00\"> + </span> "
 theme.tasklist_fg_normal     = "#666666"
-theme.tasklist_fg_focus     = "#aaaaaa"
+theme.tasklist_fg_focus     = "#ffffff"
 theme.tasklist_bg_focus     = "#404040aa"
 
 theme.border_width  = 1
