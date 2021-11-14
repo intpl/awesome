@@ -24,6 +24,7 @@ require("awful.hotkeys_popup.keys")
 -- local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify") -- install `sp` tool: https://gist.github.com/fa6258f3ff7b17747ee3.git
 
 -- awesome buttons
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
@@ -422,6 +423,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spotify_widget({font = "Iosevka Term SS09 10", show_tooltip = false}),
             wibox.widget.systray(),
             -- docker_widget(),
             battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10}),
