@@ -703,8 +703,8 @@ globalkeys = gears.table.join(
     -- terminal
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal_with_tmux) end,
         {description = "open a terminal (with tmux)", group = "launcher"}),
-    awful.key({ modkey, }, "t", function () awful.spawn(terminal_with_tmux) end,
-        {description = "open a terminal (with tmux)", group = "launcher"}),
+    -- awful.key({ modkey, }, "t", function () awful.spawn(terminal_with_tmux) end,
+    --     {description = "open a terminal (with tmux)", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "t", function () awful.spawn(terminal) end,
         {description = "open a terminal (without tmux)", group = "launcher"}),
     awful.key({ modkey, }, "g", function () awful.spawn(terminal .. " -e glances") end,
@@ -748,8 +748,8 @@ clientkeys = gears.table.join(
               {description = "move to next screen", group = "client"}),
     awful.key({ modkey,           }, "s",      function (c) c.sticky = not c.sticky            end,
               {description = "toggle sticky", group = "client"}),
-    -- awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-    --           {description = "toggle keep on top", group = "client"}),
+    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+              {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "b", function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
 
     -- Opacity changes
@@ -973,6 +973,7 @@ client.connect_signal("request::titlebars", function(c)
             wibox.widget{markup = ' ', widget = wibox.widget.textbox},
             awful.titlebar.widget.minimizebutton (c),
             awful.titlebar.widget.stickybutton   (c),
+            awful.titlebar.widget.ontopbutton    (c),
             mymaximizedbutton(c),
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.closebutton    (c),
