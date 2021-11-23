@@ -173,6 +173,16 @@ local show_volume_notification = function()
     awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = out, timeout = 1 }) end)
 end
 
+local no_fullscreen_clients_on_selected_tag = function()
+    local clients = awful.screen.focused().selected_tag:clients()
+    for _, c in pairs(clients) do
+        if c.fullscreen then
+            return false
+        end
+    end
+
+    return true
+end
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -1011,7 +1021,9 @@ awful.screen.connect_for_each_screen(function(s)
   hotcorner.create({
     screen = s,
     placement = awful.placement.top_left,
-    action = function() awful.spawn("rofi -show window") end,
+    action = function()
+        if no_fullscreen_clients_on_selected_tag() then awful.spawn("rofi -show window") end
+    end,
     -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
   })
 
@@ -1019,7 +1031,9 @@ awful.screen.connect_for_each_screen(function(s)
   hotcorner.create({
     screen = s,
     placement = awful.placement.top_right,
-    action = function() awful.spawn("rofi -show window") end,
+    action = function()
+        if no_fullscreen_clients_on_selected_tag() then awful.spawn("rofi -show window") end
+    end,
     -- action_2 = function() awful.spawn("pkill rofi") end -- does not work as rofi takes full screen
   })
 end)
