@@ -26,5 +26,7 @@ config.bind(',e', 'edit-url')
 config.bind(',E', 'config-edit')
 config.bind(',p', 'open -p')
 
+config.bind(',f', 'open --tab {primary}', mode='normal')
+
 config.bind(',mf', 'hint links spawn --detach mpv {hint-url}')
 config.bind(',mm', 'spawn --detach mpv {url}')
