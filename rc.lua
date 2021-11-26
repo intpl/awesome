@@ -232,7 +232,7 @@ bling.widget.window_switcher.enable {
     vim_next_key = "l",     -- Alternative key on which to select the next client
 }
 
-terminal = "alacritty"
+terminal = "kitty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
 
 -- Use Bash for all of shell calls
