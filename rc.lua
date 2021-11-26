@@ -170,7 +170,7 @@ end
 
 local show_volume_notification = function()
     local command = "sleep 0.09 ; pacmd list-sinks | grep -zo --color=never '* index:.*base volume' | grep -oaE '[0-9]+\\%' | awk -v RS= '{$1= $1}1'"
-    awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = out, timeout = 1 }) end)
+    awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = out, timeout = 1, replaces_id = -1}) end)
 end
 
 local no_fullscreen_clients_on_selected_tag = function()
