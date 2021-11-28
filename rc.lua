@@ -761,8 +761,8 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "b", function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
 
     -- Opacity changes
-    awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.1 end, {description = "Decrease opacity", group = "layout"}),
-    awful.key({modkey}, "=", function(c) c.opacity = c.opacity + 0.1 end, {description = "Increase opacity", group = "layout"}),
+    awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.02 end, {description = "Decrease opacity", group = "layout"}),
+    awful.key({modkey}, "=", function(c) c.opacity = c.opacity + 0.02 end, {description = "Increase opacity", group = "layout"}),
 
     awful.key({ modkey,           }, "n",
         function (c)
@@ -876,8 +876,8 @@ clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end),
-    awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.1 end),
-    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.1 end),
+    awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.02 end),
+    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.02 end),
     awful.button({ modkey }, 8, function(c)
          local t = c.first_tag
          local tag = c.screen.tags[(t.index % 9) + 1]
