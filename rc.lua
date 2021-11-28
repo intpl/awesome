@@ -744,8 +744,6 @@ clientkeys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Shift" }, "p", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey, }, "p",  function() client.focus = awful.client.getmaster(); client.focus:raise() end,
@@ -777,7 +775,43 @@ clientkeys = gears.table.join(
     awful.key({ modkey,  }, "Up", function(c) c.opacity = 1 end, {description = "full opacity", group = "client"}),
     awful.key({ modkey,  }, "Down", function(c) c.opacity = 0.2 end, {description = "dim opacity", group = "client"}),
     awful.key({ modkey,  }, "Left", function(c) c.opacity = c.opacity - 0.1 end, {description = "decrease opacity", group = "client"}),
-    awful.key({ modkey,  }, "Right", function(c) c.opacity = c.opacity + 0.1 end, {description = "increase opacity", group = "client"})
+    awful.key({ modkey,  }, "Right", function(c) c.opacity = c.opacity + 0.1 end, {description = "increase opacity", group = "client"}),
+
+    -- Toggle to floating and align to window edges
+    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle, {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, modkey_alt }, "space",  awful.client.floating.toggle, {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, modkey_alt }, "h", function(c)
+        c.floating = true;
+        local axis = 'vertically'
+        local f = awful.placement.scale
+            + awful.placement.left
+            + (axis and awful.placement['maximize_'..axis] or nil)
+        f(client.focus, {honor_workarea=true, to_percent = 0.5, margins = 2})
+    end),
+    awful.key({ modkey, modkey_alt }, "j", function(c)
+        c.floating = true;
+        local axis = 'horizontally'
+        local f = awful.placement.scale
+            + awful.placement.bottom
+            + (axis and awful.placement['maximize_'..axis] or nil)
+        f(client.focus, {honor_workarea=true, to_percent = 0.5, margins = 2})
+    end),
+    awful.key({ modkey, modkey_alt }, "k", function(c)
+        c.floating = true;
+        local axis = 'horizontally'
+        local f = awful.placement.scale
+            + awful.placement.top
+            + (axis and awful.placement['maximize_'..axis] or nil)
+        f(client.focus, {honor_workarea=true, to_percent = 0.5, margins = 2})
+    end),
+    awful.key({ modkey, modkey_alt }, "l", function(c)
+        c.floating = true;
+        local axis = 'vertically'
+        local f = awful.placement.scale
+            + awful.placement.right
+            + (axis and awful.placement['maximize_'..axis] or nil)
+        f(client.focus, {honor_workarea=true, to_percent = 0.5, margins = 2})
+    end)
 )
 
 
