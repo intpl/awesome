@@ -46,10 +46,10 @@ local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 local toggle_useless_gaps = function()
     local selected_tag = awful.screen.focused().selected_tag
 
-    if selected_tag.gap ~= 2 then
-        selected_tag.gap = 2
-    else
+    if selected_tag.gap ~= 30 then
         selected_tag.gap = 30
+    else
+        selected_tag.gap = 2
     end
 
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
