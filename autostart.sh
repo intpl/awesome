@@ -11,7 +11,6 @@ function run {
 run "unclutter"
 run "blueman-applet"
 run "xbindkeys"
-run "compton"
 run "pasystray"
 run "nm-applet"
 # run "libinput-gestures" freezes in Void
