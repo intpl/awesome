@@ -14,6 +14,9 @@ config.load_autoconfig(True)
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
 config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 
+# The most useful keybinding here
+config.bind('<Ctrl-l>', 'set-cmd-text :open {url:pretty}')
+
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('W', 'tab-give')
 config.bind('u', 'scroll-page 0 -0.5')
