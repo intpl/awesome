@@ -613,6 +613,8 @@ globalkeys = gears.table.join(
               {description = "open qutebrowser help", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
               {description = "emacs", group = "launcher"}),
+    awful.key({ modkey, "Shift"}, "e", function () awful.spawn(terminal .. " -e nvim") end,
+              {description = "nvim in default teraminal", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn(terminal .. " -e ranger") end,
         {description = "open ranger", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "f", function () awful.spawn("thunar") end,

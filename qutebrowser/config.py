@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-c.editor.command = ['nvim-qt', '--nofork', '{file}', '--', '+normal $']
+c.editor.command = ['emacsclient', '{file}', '--alternate-editor', 'kitty -e nvim']
 c.auto_save.session = True
 c.content.notifications.enabled = False
 c.content.autoplay = False
