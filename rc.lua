@@ -550,12 +550,6 @@ globalkeys = gears.table.join(
               {description = "increase client's master width factor", group = "client"}),
 
 
-    -- Resize client's master_width_factor DEPRECATED (lol)
-    awful.key({ modkey, "Control"    }, "j", function () naughty.notify({preset = naughty.config.presets.critical, text = "DEPCRECATED: use modkey-alt-[" }); awful.client.incwfact(-0.15)    end,
-              {description = "decrease client's master width factor", group = "client"}),
-    awful.key({ modkey, "Control"    }, "k", function () naughty.notify({preset = naughty.config.presets.critical, text = "DEPCRECATED: use modkey-alt-]" }); awful.client.incwfact( 0.15)    end,
-              {description = "increase client's master width factor", group = "client"}),
-
     -- Increase/Decrease master clients or master columns
     awful.key({ modkey, "Control"}, "[",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
@@ -813,7 +807,25 @@ clientkeys = gears.table.join(
             + awful.placement.right
             + (axis and awful.placement['maximize_'..axis] or nil)
         f(client.focus, {honor_workarea=true, to_percent = 0.5, margins = 2})
-    end)
+    end),
+
+    awful.key({ modkey, "Control"}, "j", function (c)
+            awful.client.swap.byidx("1", c)
+            client.focus = awful.client.next(-1, c)
+            client.focus:raise()
+    end, {description = "swap client down and change focus", group = "client"}),
+    awful.key({ modkey, "Control"}, "k", function (c)
+            awful.client.swap.byidx("-1", c)
+            client.focus = awful.client.next(1, c)
+            client.focus:raise()
+    end, {description = "swap client up and change focus", group = "client"}),
+    awful.key({ modkey, "Control"}, "p",  function(c)
+            local prev_master = awful.client.getmaster()
+
+            c:swap(prev_master)
+            client.focus = prev_master
+            client.focus:raise()
+    end, {description = "swap with master and change focus", group = "client"})
 )
 
 
