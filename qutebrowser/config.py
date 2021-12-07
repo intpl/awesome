@@ -10,41 +10,6 @@ c.fonts.hints = 'bold 16px'
 
 config.load_autoconfig(True)
 
-# Emacs keybiindings
-c.bindings.commands['normal'] = {
-    '<ctrl-f>': 'fake-key <Right>',
-    '<ctrl-b>': 'fake-key <Left>',
-    # '<ctrl-a>': 'fake-key <Home>',
-    '<ctrl-e>': 'fake-key <End>',
-    '<ctrl-n>': 'fake-key <Down>',
-    '<ctrl-p>': 'fake-key <Up>',
-    '<alt-f>': 'fake-key <Ctrl-Right>',
-    '<alt-b>': 'fake-key <Ctrl-Left>',
-    '<ctrl-d>': 'fake-key <Delete>',
-    '<alt-d>': 'fake-key <Ctrl-Delete>',
-    '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
-    # '<ctrl-w>': 'fake-key <Ctrl-backspace>',
-    '<ctrl-y>': 'insert-text {primary}',
-}
-
-c.bindings.commands['insert'] = {
-    # editing
-    '<ctrl-f>': 'fake-key <Right>',
-    '<ctrl-b>': 'fake-key <Left>',
-    # '<ctrl-a>': 'fake-key <Home>',
-    '<ctrl-e>': 'fake-key <End>',
-    '<ctrl-n>': 'fake-key <Down>',
-    '<ctrl-p>': 'fake-key <Up>',
-    '<alt-f>': 'fake-key <Ctrl-Right>',
-    '<alt-b>': 'fake-key <Ctrl-Left>',
-    '<ctrl-d>': 'fake-key <Delete>',
-    '<alt-d>': 'fake-key <Ctrl-Delete>',
-    '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
-    '<ctrl-w>': 'fake-key <Ctrl-backspace>',
-    '<ctrl-y>': 'insert-text {primary}',
-    '<ctrl-g>': 'leave-mode'
-}
-
 # Binds for moving through completion items
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
 config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
@@ -68,3 +33,31 @@ config.bind(',f', 'open --tab {primary}', mode='normal')
 
 config.bind(',mf', 'hint links spawn --detach mpv {hint-url}')
 config.bind(',mm', 'spawn --detach mpv {url}')
+
+# Emacs keybiindings
+config.bind('<ctrl-f>', 'fake-key <Right>', mode='normal')
+config.bind('<ctrl-b>', 'fake-key <Left>', mode='normal')
+config.bind('<ctrl-e>', 'fake-key <End>', mode='normal')
+config.bind('<ctrl-n>', 'fake-key <Down>', mode='normal')
+config.bind('<ctrl-p>', 'fake-key <Up>', mode='normal')
+config.bind('<alt-f>', 'fake-key <Ctrl-Right>', mode='normal')
+config.bind('<alt-b>', 'fake-key <Ctrl-Left>', mode='normal')
+config.bind('<ctrl-d>', 'fake-key <Delete>', mode='normal')
+config.bind('<alt-d>', 'fake-key <Ctrl-Delete>', mode='normal')
+config.bind('<alt-backspace>', 'fake-key <Ctrl-Backspace>', mode='normal')
+config.bind('<ctrl-y>', 'insert-text {primary}', mode='normal')
+
+# Emacs keybediting for insert
+config.bind('<ctrl-f>', 'fake-key <Right>', mode='insert')
+config.bind('<ctrl-b>', 'fake-key <Left>', mode='insert')
+config.bind('<ctrl-e>', 'fake-key <End>', mode='insert')
+config.bind('<ctrl-n>', 'fake-key <Down>', mode='insert')
+config.bind('<ctrl-p>', 'fake-key <Up>', mode='insert')
+config.bind('<alt-f>', 'fake-key <Ctrl-Right>', mode='insert')
+config.bind('<alt-b>', 'fake-key <Ctrl-Left>', mode='insert')
+config.bind('<ctrl-d>', 'fake-key <Delete>', mode='insert')
+config.bind('<alt-d>', 'fake-key <Ctrl-Delete>', mode='insert')
+config.bind('<alt-backspace>', 'fake-key <Ctrl-Backspace>', mode='insert')
+config.bind('<ctrl-w>', 'fake-key <Ctrl-backspace>', mode='insert')
+config.bind('<ctrl-y>', 'insert-text {primary}', mode='insert')
+config.bind('<ctrl-g>', 'leave-mode', mode='insert')
