@@ -10,6 +10,41 @@ c.fonts.hints = 'bold 16px'
 
 config.load_autoconfig(True)
 
+# Emacs keybiindings
+c.bindings.commands['normal'] = {
+    '<ctrl-f>': 'fake-key <Right>',
+    '<ctrl-b>': 'fake-key <Left>',
+    # '<ctrl-a>': 'fake-key <Home>',
+    '<ctrl-e>': 'fake-key <End>',
+    '<ctrl-n>': 'fake-key <Down>',
+    '<ctrl-p>': 'fake-key <Up>',
+    '<alt-f>': 'fake-key <Ctrl-Right>',
+    '<alt-b>': 'fake-key <Ctrl-Left>',
+    '<ctrl-d>': 'fake-key <Delete>',
+    '<alt-d>': 'fake-key <Ctrl-Delete>',
+    '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
+    # '<ctrl-w>': 'fake-key <Ctrl-backspace>',
+    '<ctrl-y>': 'insert-text {primary}',
+}
+
+c.bindings.commands['insert'] = {
+    # editing
+    '<ctrl-f>': 'fake-key <Right>',
+    '<ctrl-b>': 'fake-key <Left>',
+    # '<ctrl-a>': 'fake-key <Home>',
+    '<ctrl-e>': 'fake-key <End>',
+    '<ctrl-n>': 'fake-key <Down>',
+    '<ctrl-p>': 'fake-key <Up>',
+    '<alt-f>': 'fake-key <Ctrl-Right>',
+    '<alt-b>': 'fake-key <Ctrl-Left>',
+    '<ctrl-d>': 'fake-key <Delete>',
+    '<alt-d>': 'fake-key <Ctrl-Delete>',
+    '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
+    '<ctrl-w>': 'fake-key <Ctrl-backspace>',
+    '<ctrl-y>': 'insert-text {primary}',
+    '<ctrl-g>': 'leave-mode'
+}
+
 # Binds for moving through completion items
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
 config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
