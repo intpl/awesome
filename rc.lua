@@ -554,12 +554,6 @@ globalkeys = gears.table.join(
               {description = "increase client's master width factor", group = "client"}),
 
 
-    -- Resize client's master_width_factor DEPRECATED (lol)
-    awful.key({ modkey, "Control"    }, "j", function () naughty.notify({preset = naughty.config.presets.critical, text = "DEPCRECATED: use modkey-alt-[" }); awful.client.incwfact(-0.15)    end,
-              {description = "decrease client's master width factor", group = "client"}),
-    awful.key({ modkey, "Control"    }, "k", function () naughty.notify({preset = naughty.config.presets.critical, text = "DEPCRECATED: use modkey-alt-]" }); awful.client.incwfact( 0.15)    end,
-              {description = "increase client's master width factor", group = "client"}),
-
     -- Increase/Decrease master clients or master columns
     awful.key({ modkey, "Control"}, "[",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
