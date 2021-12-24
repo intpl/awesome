@@ -1079,6 +1079,8 @@ client.connect_signal("focus", my_transparency_mode.focus)
 client.connect_signal("unfocus", my_transparency_mode.unfocus)
 
 awful.screen.connect_for_each_screen(function(s)
+    if mouse.screen.geometry.width <= 1920 then return end;
+
     local my_right_desktop_buttons = wibox {
         visible = true,
         max_widget_size = 500,
