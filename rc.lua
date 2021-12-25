@@ -35,6 +35,7 @@ local calendar = require("calendar")
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_transparency_mode = require('my_modules.my_transparency_mode')
+local my_tag_expander = require('my_modules.my_tag_expander')
 
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
@@ -178,19 +179,6 @@ local no_fullscreen_clients_on_selected_tag = function()
     end
 
     return true
-end
-
-local my_selected_tags_expander = function()
-    local tags = awful.screen.focused().selected_tags
-    table.sort(tags, function(a,b) return a.index < b.index end)
-
-    if tags[1].index == 1 or #tags % 2 == 0 then
-        local idx = tags[#tags].index + 1
-        if idx <= 9 then awful.tag.viewtoggle(awful.screen.focused().tags[idx]) end
-    elseif tags[#tags].index == 9 or #tags % 2 ~= 0 then
-        local idx = tags[1].index - 1
-        if idx >= 1 then awful.tag.viewtoggle(awful.screen.focused().tags[idx]) end
-    end
 end
 
 -- {{{ Error handling
@@ -611,8 +599,6 @@ globalkeys = gears.table.join(
               {description = "qutebrowser", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("brave-browser") end,
               {description = "open brave browser", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "q", function () awful.spawn("qutebrowser --target window ~/Pictures/cheatsheet-qutebrowser.png") end,
-              {description = "open qutebrowser help", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "e", function () awful.spawn(terminal .. " -e nvim") end,
@@ -738,10 +724,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "h", move_client_to_prev_tag, {description = "move client to previous tag", group = "layout"}),
     awful.key({ modkey, "Shift" }, "l", move_client_to_next_tag, {description = "move client to next tag", group = "layout"}),
 
-    -- my_selected_tags_expander
-    awful.key({ modkey }, "q", my_selected_tags_expander, {description = "expand selected tags", group = "layout"}),
-    -- TODO add modkey+shift+q to select also last visited tag
-    awful.key({ modkey }, "/", my_selected_tags_expander, {description = "expand selected tags", group = "layout"})
+    -- my_tag_expander
+    awful.key({ modkey }, "q", my_tag_expander.from_left, {description = "expand selected tags from left", group = "layout"}),
+    awful.key({ modkey, "Shift"}, "q", my_tag_expander.from_right, {description = "expand selected tags from right", group = "layout"})
 )
 
 clientkeys = gears.table.join(
