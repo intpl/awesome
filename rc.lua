@@ -32,9 +32,6 @@ local awesomebuttons = require("awesome-buttons.awesome-buttons")
 -- calendar from https://github.com/deficient/calendar
 local calendar = require("calendar")
 
--- Awesome Cyclefocus
--- local cyclefocus = require('cyclefocus')
-
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_transparency_mode = require('my_modules.my_transparency_mode')
@@ -541,9 +538,10 @@ globalkeys = gears.table.join(
               {description = "toggle even split in current tag", group = "client"}),
     awful.key({ modkey,           }, "y", awful.tag.togglemfpol,
               {description = "toggle master size fill policy", group = "client"}),
---    cyclefocus.key({ modkey_alt, }, "Tab", {}),
-    awful.key({ modkey_alt,           }, "Tab",
-        function() awesome.emit_signal("bling::window_switcher::turn_on") end),
+    awful.key({ modkey_alt,           }, "Tab", function ()
+            awful.client.focus.history.previous()
+            if client.focus then client.focus:raise() end
+        end),
 
     -- Standard program
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
