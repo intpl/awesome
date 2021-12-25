@@ -840,7 +840,13 @@ clientkeys = gears.table.join(
             c:swap(prev_master)
             client.focus = prev_master
             client.focus:raise()
-    end, {description = "swap with master and change focus", group = "client"})
+    end, {description = "swap with master and change focus", group = "client"}),
+
+    awful.key({ modkey, "Shift" }, "Tab", function (c)
+            awful.tag.history.restore()
+            c:move_to_tag(awful.screen.focused().selected_tag)
+            awful.tag.history.restore()
+    end, {description = "move client to previously selected tag", group = "client"})
 )
 
 
