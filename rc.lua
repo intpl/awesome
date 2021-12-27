@@ -597,8 +597,8 @@ globalkeys = gears.table.join(
     -- My apps / shortcuts
     awful.key({ modkey }, "w", function () awful.spawn("qutebrowser") end,
               {description = "qutebrowser", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "w", function () awful.spawn("brave-browser") end,
-              {description = "open brave browser", group = "launcher"}),
+    awful.key({ modkey, "Shift"}, "w", function () awful.spawn("google-chrome-stable") end,
+              {description = "open google-chrome-stable browser", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
               {description = "emacs", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "e", function () awful.spawn(terminal .. " -e nvim") end,
