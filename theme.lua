@@ -69,7 +69,7 @@ theme.wibar_height = 22
 
 -- Icons
 theme.awesome_icon = '/usr/share/awesome/themes/sky/awesome-icon.png'
-theme.icon_theme = 'Papirus-Dark'
+theme.icon_theme = 'Papirus-Light'
 
 -- Bling
 theme.flash_focus_start_opacity = 0.8       -- the starting opacity
