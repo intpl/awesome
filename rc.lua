@@ -1119,8 +1119,8 @@ awful.spawn.with_shell("nitrogen --restore")
 -- dropped in favor of xfce4-power-manager awful.spawn.with_shell("killall light-locker; light-locker --lock-on-lid --lock-on-suspend --no-late-locking") -- slock is introducing errors?
 awful.spawn.with_shell("xss-lock -- i3lock -c 111111") -- i3lock on lid close/sleep -- also: add symlink to zzz.d/resume
 awful.spawn.with_shell("dropbox start") -- will not interfere if it's already running
-awful.spawn.with_shell("pkill conky; conky") -- conky gets weird on primary screen change and not killing and starting
-awful.spawn.with_shell("pkill picom; picom --experimental-backends") -- picom gets weird on additional screen
+awful.spawn.with_shell("pkill conky; sleep 0.3; conky") -- conky gets weird on primary screen change and not killing and starting
+awful.spawn.with_shell("pkill picom; sleep 0.3; picom --experimental-backends") -- picom gets weird on additional screen
 awful.spawn.with_shell("xset -dpms") -- disable monitor turning off
 awful.spawn.with_shell("xset s 3600") -- 1 hour before screen blackens
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
