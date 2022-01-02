@@ -13,6 +13,6 @@ run "blueman-applet"
 run "xbindkeys"
 run "pasystray"
 run "nm-applet"
-# run "libinput-gestures" freezes in Void
+run "libinput-gestures" # freezes in Void?
 run "redshift-gtk"
 run "flameshot"
