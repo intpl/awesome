@@ -429,7 +429,7 @@ awful.screen.connect_for_each_screen(function(s)
             spotify_widget({font = "Iosevka Term SS09 10", show_tooltip = false}),
             wibox.widget.systray(),
             -- docker_widget(),
-            battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10}),
+            battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10, notification_position = "bottom_right"}),
             --wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
             move_client_to_prev_tag_button,
             move_client_to_next_tag_button,
