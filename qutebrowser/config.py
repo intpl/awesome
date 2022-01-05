@@ -40,6 +40,10 @@ config.bind(',e', 'edit-url')
 config.bind(',E', 'config-edit')
 config.bind(',p', 'open -p')
 
+# Zoom
+config.bind('<ctrl-->', 'zoom-out')
+config.bind('<ctrl-=>', 'zoom-in')
+
 config.bind(',f', 'open --tab {primary}', mode='normal')
 
 config.bind(',mf', 'hint links spawn --detach mpv {hint-url}')
