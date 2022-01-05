@@ -4,11 +4,22 @@ c.editor.command = ['emacsclient', '{file}', '--alternate-editor', 'kitty -e nvi
 c.auto_save.session = True
 c.content.notifications.enabled = False
 c.content.autoplay = False
-c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 c.url.start_pages = ["https://www.google.com/"]
 c.fonts.hints = 'bold 16px'
 
 config.load_autoconfig(True)
+
+# Search engines
+c.url.searchengines["DEFAULT"] = 'https://www.google.com/search?q={}'
+c.url.searchengines["g"] = 'https://www.google.com/search?q={}'
+c.url.searchengines["aw"] = "https://wiki.archlinux.org/index.php?search={}"
+c.url.searchengines["ddg"] = "https://duckduckgo.com/?q={}"
+c.url.searchengines["e"] = "https://hexdocs.pm/elixir/search.html?q={}"
+c.url.searchengines["ec"] = "https://hexdocs.pm/ecto/search.html?q={}"
+c.url.searchengines["exu"] = "https://hexdocs.pm/ex_unit/search.html?q={}"
+c.url.searchengines["m"] = "https://www.google.pl/maps/search/{}"
+c.url.searchengines["p"] = "https://hexdocs.pm/phoenix/search.html?q={}"
+c.url.searchengines["yt"] = "https://www.youtube.com/results?search_query={}"
 
 # Binds for moving through completion items
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
