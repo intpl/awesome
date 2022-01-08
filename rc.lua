@@ -511,9 +511,9 @@ globalkeys = gears.table.join(
                 c:move_to_screen()
             end
     end, {description = "move all clients to screen", group = "client"}),
-    awful.key({ modkey, }, ".", function () awful.screen.focus_relative(1) end,
+    awful.key({ modkey, }, ",", function () awful.screen.focus_relative(1) end,
               {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey }, ",", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey }, ".", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
@@ -743,9 +743,9 @@ clientkeys = gears.table.join(
               {description = "focus master", group = "client"}),
     awful.key({ modkey, "Shift" }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
-    awful.key({ modkey, "Shift" },  ",",      function (c) c:move_to_screen (c.screen.index-1)               end,
+    awful.key({ modkey, "Shift" },  ".",      function (c) c:move_to_screen (c.screen.index-1)               end,
               {description = "move to previous screen", group = "client"}),
-    awful.key({ modkey, "Shift" },  ".",      function (c) c:move_to_screen (c.screen.index+1)               end,
+    awful.key({ modkey, "Shift" },  ",",      function (c) c:move_to_screen (c.screen.index+1)               end,
               {description = "move to next screen", group = "client"}),
     awful.key({ modkey,           }, "s",      function (c) c.sticky = not c.sticky            end,
               {description = "toggle sticky", group = "client"}),
