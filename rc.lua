@@ -303,6 +303,9 @@ mymainmenu = awful.menu({
 --          {"Signal", "flatopak run org.signal.Signal" },
 --          {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
             wibox.widget {widget = wibox.widget.separator},
+            { "Simple Scan", "simple-scan" },
+            { "Print Settings", "system-config-printer" },
+            wibox.widget {widget = wibox.widget.separator},
         -- System
             { "awesome", myawesomemenu, beautiful.awesome_icon },
             wibox.widget {widget = wibox.widget.separator},
