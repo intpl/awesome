@@ -20,6 +20,7 @@ c.url.searchengines["exu"] = "https://hexdocs.pm/ex_unit/search.html?q={}"
 c.url.searchengines["m"] = "https://www.google.pl/maps/search/{}"
 c.url.searchengines["p"] = "https://hexdocs.pm/phoenix/search.html?q={}"
 c.url.searchengines["yt"] = "https://www.youtube.com/results?search_query={}"
+c.url.searchengines["gh"] = "https://github.com/search?q={}"
 
 # Binds for moving through completion items
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
