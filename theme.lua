@@ -9,9 +9,9 @@ local default_titlebar_path = default_theme_path .. "/titlebar/"
 -- Theme fonts and colors
 theme = {}
 
-theme.font                     = "Iosevka Term SS09 11"
-theme.hotkeys_font             = "Iosevka Term SS09 17"
-theme.hotkeys_description_font = "Iosevka Term SS09 17"
+theme.font                     = "Iosevka Term SS09 Semibold 11"
+theme.hotkeys_font             = "Iosevka Term SS09 Semibold 17"
+theme.hotkeys_description_font = "Iosevka Term SS09 Semibold 17"
 
 theme.hotkeys_bg               = "#dddddd"
 

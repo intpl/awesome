@@ -304,7 +304,7 @@ mymainmenu = awful.menu({
 --          {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
             wibox.widget {widget = wibox.widget.separator},
             { "Simple Scan", "simple-scan" },
-            { "Print Settings", "system-config-printer" },
+            { "Print Settings", "system-config-printer" }, -- https://blog.christophersmart.com/2014/01/06/policykit-javascript-rules-with-catchall/
             wibox.widget {widget = wibox.widget.separator},
         -- System
             { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -387,7 +387,7 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -620,7 +620,7 @@ globalkeys = gears.table.join(
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
-    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("autorandr -c") end,
+    awful.key({ modkey, "Shift" }, "a", function () awful.spawn("autorandr -c --default laptop") end,
               {description = "arandr", group = "launcher"}),
     awful.key({ modkey, }, "v", function () awful.spawn("pavucontrol") end,
               {description = "pavucontrol", group = "launcher"}),
@@ -1112,6 +1112,7 @@ awful.screen.connect_for_each_screen(function(s)
         my_right_desktop_buttons:connect_signal("mouse::leave", function(c) c.ontop = false end)
 
         awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = s})
+        -- https://awesomewm.org/doc/api/classes/awful.widget.only_on_screen.html
 end)
 
 -- Autorun/autostart programs
