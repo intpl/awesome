@@ -30,7 +30,7 @@ theme.fg_urgent     = "#ff0000"
 
 -- Only modify empty taglist fg, rest is inherited from theme.fg_*
 theme.taglist_bg_focus      = "#505050"
-theme.taglist_fg_empty     = "#505050"
+theme.taglist_fg_empty     = "#252525"
 
 -- Only modify empty tasklist fg, rest is inherited from theme.fg_*
 theme.tasklist_fg_minimize     = "#444444"
@@ -58,7 +58,7 @@ theme.useless_gap = 2
 theme.maximized_hide_border = true
 
 -- Default master width
-theme.master_width_factor = 0.7
+theme.master_width_factor = 0.5
 -- theme.master_fill_policy = 'master_width_factor'
 
 -- Menu

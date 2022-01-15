@@ -402,7 +402,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.noempty,
+        filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
 
