@@ -296,7 +296,7 @@ mymainmenu = awful.menu({
             { "Blanket", "blanket" },
             wibox.widget {widget = wibox.widget.separator},
         -- Chat
-            { "Messenger", chrome_app_string("https://messenger.com/") },
+            { "Messenger/Caprine", "flatpak run com.sindresorhus.Caprine"},
             { "Instagram", chrome_app_string("https://instagram.com/") },
             { "Tinder", chrome_app_string("https://tinder.com/") },
             { "Slack", chrome_app_string("https://app.slack.com/client/") },
@@ -608,8 +608,8 @@ globalkeys = gears.table.join(
               {description = "thunar", group = "launcher"}),
     awful.key({ modkey }, "z", function () awful.spawn("flatpak run com.spotify.Client") end,
               {description = "open spotify (flatpak version)", group = "launcher"}),
-    awful.key({ modkey, }, "c", function () awful.spawn(chrome_app_string("https://messenger.com/")) end,
-        {description = "open messenger in google chrome", group = "launcher"}),
+    awful.key({ modkey, }, "c", function () awful.spawn("flatpak run com.sindresorhus.Caprine") end,
+        {description = "open messenger/caprine", group = "launcher"}),
     awful.key({ modkey }, "r", function () awful.spawn.with_shell("toggle_redshift") end,
               {description = "toggle redshift", group = "launcher"}),
 
