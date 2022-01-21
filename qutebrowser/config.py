@@ -40,6 +40,7 @@ config.bind(',xO', 'set-cmd-text :open -b -r {url:pretty}')
 config.bind(',e', 'edit-url')
 config.bind(',E', 'config-edit')
 config.bind(',p', 'open -p')
+config.bind(',b', 'config-cycle statusbar.show always never ;; config-cycle tabs.show always never') # Minimal mode
 
 # Zoom
 config.bind('<ctrl-->', 'zoom-out')
