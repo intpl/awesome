@@ -41,7 +41,7 @@ theme.tasklist_bg_focus     = "#404040aa"
 
 theme.border_width  = 1
 theme.border_normal = "#222222"
-theme.border_focus  = "#888888"
+theme.border_focus  = "#444444"
 theme.border_marked = "#91231c"
 
 -- Display the taglist squares
