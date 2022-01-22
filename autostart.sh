@@ -13,7 +13,7 @@ maybe_run "unclutter"
 maybe_run "xbindkeys"
 maybe_run "pasystray"
 maybe_run "nm-applet"
-# maybe_run "libinput-gestures" # freezes in Void?
+maybe_run "libinput-gestures" # freezes in Void?
 maybe_run "redshift-gtk"
 maybe_run "flameshot"
 
