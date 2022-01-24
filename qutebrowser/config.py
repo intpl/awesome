@@ -5,9 +5,16 @@ c.auto_save.session = True
 c.content.notifications.enabled = False
 c.content.autoplay = False
 c.url.start_pages = ["https://www.google.com/"]
-c.fonts.hints = 'bold 16px'
+c.hints.uppercase = True
+c.fonts.hints = 'bold 18px Anonymous Pro Bold'
+c.colors.hints.bg = 'rgb(154,205,50)'
+c.colors.hints.fg = 'rgb(0,0,0)'
+
+c.zoom.default = '120%'
 
 config.load_autoconfig(True)
+config.set("colors.webpage.darkmode.enabled", True)
+config.set("colors.webpage.bg", "black")
 
 # Search engines
 c.url.searchengines["DEFAULT"] = 'https://www.google.com/search?q={}'
