@@ -21,5 +21,5 @@ pkill picom  # picom gets weird on additional screen
 pkill conky # multiple screen issue - not changing primary
 sleep 0.3
 
-run "picom --experimental-backends"
+run "picom"
 run "conky"
