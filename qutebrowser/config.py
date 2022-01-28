@@ -7,7 +7,6 @@ c.content.autoplay = False
 c.url.start_pages = ["https://www.google.com/"]
 c.hints.uppercase = True
 c.fonts.hints = 'bold 18px Anonymous Pro Bold'
-c.colors.hints.bg = 'rgb(154,205,50)'
 c.colors.hints.fg = 'rgb(0,0,0)'
 
 c.zoom.default = '120%'
