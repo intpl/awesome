@@ -279,7 +279,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({
     items = {
         -- Essentials
-            { "Qutebrowser", "qutebrowser-with-mesa-driver-overwritten.sh" },
+            { "Qutebrowser", "qutebrowser" },
             { "Terminal (tmux)", terminal_with_tmux },
             { "Terminal (w/o tmux)", terminal },
             { "Emacs", "emacs" },
@@ -594,7 +594,7 @@ globalkeys = gears.table.join(
     awful.key({modkey, "Shift"}, "-", useless_gap_increase, {description = "Increase useless gap", group = "layout"}),
 
     -- My apps / shortcuts
-    awful.key({ modkey }, "w", function () awful.spawn("qutebrowser-with-mesa-driver-overwritten.sh") end,
+    awful.key({ modkey }, "w", function () awful.spawn("qutebrowser") end,
               {description = "qutebrowser", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("google-chrome-stable") end,
               {description = "open google-chrome-stable browser", group = "launcher"}),
