@@ -146,7 +146,7 @@ local mymaximize = function (c)
         end
 
 local chrome_app_string = function(address)
-    return "chromium -app=" .. address
+    return "google-chrome-stable -app=" .. address
 end
 
 local first_empty_tag = function()
