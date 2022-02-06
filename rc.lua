@@ -225,6 +225,8 @@ bling.widget.window_switcher.enable {
     vim_next_key = "l",     -- Alternative key on which to select the next client
 }
 
+qutebrowser_with_flags = "qutebrowser --qt-flag ignore-gpu-blocklist --qt-flag enable-gpu-rasterization"
+
 terminal = "kitty"
 terminal_with_tmux = terminal .. " -e /usr/bin/env tmux"
 
@@ -279,7 +281,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({
     items = {
         -- Essentials
-            { "Qutebrowser", "qutebrowser" },
+            { "Qutebrowser", qutebrowser_with_flags },
             { "Terminal (tmux)", terminal_with_tmux },
             { "Terminal (w/o tmux)", terminal },
             { "Emacs", "emacs" },
@@ -594,7 +596,7 @@ globalkeys = gears.table.join(
     awful.key({modkey, "Shift"}, "-", useless_gap_increase, {description = "Increase useless gap", group = "layout"}),
 
     -- My apps / shortcuts
-    awful.key({ modkey }, "w", function () awful.spawn("qutebrowser") end,
+    awful.key({ modkey }, "w", function () awful.spawn(qutebrowser_with_flags) end,
               {description = "qutebrowser", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("google-chrome-stable") end,
               {description = "open google-chrome-stable browser", group = "launcher"}),
