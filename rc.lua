@@ -378,7 +378,8 @@ local tasklist_buttons = gears.table.join(
                                                   )
                                               end
                                           end),
-                     awful.button({ }, 3, mymaximize), -- awful.menu.client_list({ theme = { width = 250 } })
+                     awful.button({ }, 2, function (c) c:kill() end), -- kill on middleclick
+                     awful.button({ }, 3, mymaximize),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
                                           end),
