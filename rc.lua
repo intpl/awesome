@@ -287,6 +287,8 @@ mymainmenu = awful.menu({
             wibox.widget {widget = wibox.widget.separator},
         -- Accessories
             { "Thunar", "thunar" },
+            { "Firefox Developer Edition", "firefox-developer-edition" },
+            { "Google Chrome", "google-chrome-stable" },
             { "Chromium", "chromium" },
             { "Tranmission GTK", "transmission-gtk" },
             { "rofi-bluetooth", "rofi-bluetooth"}, -- https://github.com/nickclyde/rofi-bluetooth
