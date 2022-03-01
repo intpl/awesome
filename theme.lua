@@ -20,8 +20,8 @@ theme.bg_focus      = "#202020aa"
 theme.bg_urgent     = "#ff0000"
 
 theme.titlebar_fg_normal = "#444444"
-theme.titlebar_fg_focus = "#aaaaaa"
-theme.titlebar_bg_focus = "#404040bb"
+theme.titlebar_fg_focus = "#eeeeee"
+theme.titlebar_bg_focus = "#77777799"
 theme.titlebar_bg_normal = "#282828aa"
 
 theme.fg_normal     = "#aaaaaa"
