@@ -15,8 +15,8 @@ theme.hotkeys_description_font = "Iosevka Term SS09 Semibold 17"
 
 theme.hotkeys_bg               = "#dddddd"
 
-theme.bg_normal     = "#202020aa"
-theme.bg_focus      = "#202020aa"
+theme.bg_normal     = "#202020"
+theme.bg_focus      = "#202020"
 theme.bg_urgent     = "#ff0000"
 
 theme.titlebar_fg_normal = "#444444"
