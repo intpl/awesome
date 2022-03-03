@@ -1067,6 +1067,10 @@ screen.connect_signal("arrange", function (s)
 end)
 
 awful.screen.connect_for_each_screen(function(s)
+        -- Wallpaper
+        gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
+
+        -- Don't add desktop buttons if on laptop
         if mouse.screen.geometry.width <= 1920 then return end;
 
         local my_right_desktop_buttons = wibox {

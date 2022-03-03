@@ -7,7 +7,7 @@ run "xss-lock -- i3lock -c 220000" # NOTE: add symlink to /etc/zzz.d/suspend
 run "dropbox start" # will not interfere if it's already running
 run "xset -dpms" # disable monitors turning off
 run "xset s 3600" # 1 hour before screen blackens
-run "nitrogen --restore"
+# run "nitrogen --restore"
 
 maybe_run "unclutter"
 maybe_run "xbindkeys"
