@@ -285,17 +285,24 @@ mymainmenu = awful.menu({
             { "Terminal (tmux)", terminal_with_tmux },
             { "Terminal (w/o tmux)", terminal },
             { "Emacs", "emacs" },
+        -- Folders
             wibox.widget {widget = wibox.widget.separator},
-        -- Accessories
             { "Thunar", "thunar" },
+            { "~/Downloads", "thunar Downloads" },
+            { "~/D/p/elixir", "thunar Downloads/programming/elixir" },
+            { "~/Documents", "thunar Documents" },
+            { "~/Dropbox_encrypted", "thunar Dropbox_encrypted" },
+            { "~/Videos", "thunar Videos" },
+            { "~/work", "thunar work" },
+        -- Accessories
+            wibox.widget {widget = wibox.widget.separator},
             { "Firefox Developer Edition", "firefox-developer-edition" },
             { "Google Chrome", "google-chrome-stable" },
             { "Chromium", "chromium" },
             { "Tranmission GTK", "transmission-gtk" },
-            { "rofi-bluetooth", "rofi-bluetooth"}, -- https://github.com/nickclyde/rofi-bluetooth
-            { "arandr", "arandr" },
-            wibox.widget {widget = wibox.widget.separator},
+--            { "arandr", "arandr" },
         -- Music
+            wibox.widget {widget = wibox.widget.separator},
             { "Spotify", "flatpak run com.spotify.Client" },
             { "Blanket", "blanket" },
             wibox.widget {widget = wibox.widget.separator},
@@ -307,6 +314,7 @@ mymainmenu = awful.menu({
 --          {"Signal", "flatopak run org.signal.Signal" },
 --          {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
             wibox.widget {widget = wibox.widget.separator},
+        -- Printing
             { "Simple Scan", "simple-scan" },
             { "Print Settings", "system-config-printer" }, -- https://blog.christophersmart.com/2014/01/06/policykit-javascript-rules-with-catchall/
             wibox.widget {widget = wibox.widget.separator},
@@ -698,7 +706,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "\\", function () awful.spawn.with_shell("rofi -show ssh") end,
     {description = "show rofi ssh", group = "launcher"}),
 
-    -- Rofi bluetooth
+    -- Rofi bluetooth -- https://github.com/nickclyde/rofi-bluetooth
     awful.key({ modkey, "Control" }, "b", function () awful.spawn.with_shell("rofi-bluetooth") end,
     {description = "show rofi ssh", group = "launcher"}),
 
