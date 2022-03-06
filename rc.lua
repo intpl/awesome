@@ -163,7 +163,12 @@ end
 
 local show_volume_notification = function()
     local command = "sleep 0.09 ; pacmd list-sinks | grep -zo --color=never '* index:.*base volume' | grep -oaE '[0-9]+\\%' | awk -v RS= '{$1= $1}1'"
-    awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = out, timeout = 1, replaces_id = -1}) end)
+    awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = "Volume: " .. out, timeout = 1, replaces_id = -1}) end)
+end
+
+local show_backlight_notification = function()
+    local command = "sleep 0.009 ; xbacklight -get | awk '{printf \"%.0f\", $0}'"
+    awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = "Brightness: " .. out, timeout = 1, replaces_id = -1}) end)
 end
 
 local no_fullscreen_clients_on_selected_tag = function()
@@ -670,15 +675,17 @@ globalkeys = gears.table.join(
      awful.spawn.with_shell("playerctl previous", false)
    end),
 
-    -- Brightness
-    awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.spawn.with_shell("xbacklight -dec 15") end),
-    awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.spawn.with_shell("xbacklight -inc 15") end),
-    awful.key({modkey, "Control" }, "-", function ()
-        awful.spawn.with_shell("xbacklight -set 1") end),
-    awful.key({modkey, "Control" }, "=", function ()
-        awful.spawn.with_shell("xbacklight -set 100") end),
+   -- Brightness
+   awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn.with_shell("xbacklight -dec 15"); show_backlight_notification() end),
+   awful.key({ }, "XF86MonBrightnessUp", function () awful.spawn.with_shell("xbacklight -inc 15"); show_backlight_notification() end),
+   awful.key({ modkey }, "-", function () awful.spawn.with_shell("xbacklight -dec 10"); show_backlight_notification() end),
+   awful.key({ modkey }, "=", function () awful.spawn.with_shell("xbacklight -inc 10"); show_backlight_notification() end),
+   awful.key({modkey, "Control" }, "-", function () awful.spawn.easy_async_with_shell("xbacklight -set 1", function() show_backlight_notification() end) end),
+   awful.key({modkey, "Control" }, "=", function () awful.spawn.easy_async_with_shell("xbacklight -set 100", function() show_backlight_notification() end) end),
+
+    -- Opacity changes
+    -- awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.02 end, {description = "Decrease opacity", group = "layout"}),
+    -- awful.key({modkey}, "=", function(c) c.opacity = c.opacity + 0.02 end, {description = "Increase opacity", group = "layout"}),
 
    -- Screenshots
    awful.key({ }, "Print", function () awful.spawn.with_shell('import -window root ' .. screenshot_bash_date_path) end,
@@ -763,10 +770,6 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "b", function(c) awful.titlebar.toggle(c) end, {description = 'toggle title bar', group = 'client'}), -- Toggle titlebars
-
-    -- Opacity changes
-    awful.key({modkey}, "-", function(c) c.opacity = c.opacity - 0.02 end, {description = "Decrease opacity", group = "layout"}),
-    awful.key({modkey}, "=", function(c) c.opacity = c.opacity + 0.02 end, {description = "Increase opacity", group = "layout"}),
 
     awful.key({ modkey,           }, "n",
         function (c)
