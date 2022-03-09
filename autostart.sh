@@ -17,9 +17,4 @@ maybe_run "nm-applet"
 maybe_run "redshift-gtk"
 maybe_run "flameshot"
 
-# pkill picom  # picom gets weird on additional screen
-# pkill conky # multiple screen issue - not changing primary
-# sleep 0.3
-
-# run "picom"
-# run "conky"
+pkill picom ; sleep 0.3 ; run "picom"  # picom gets weird on additional screen
