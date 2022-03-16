@@ -182,6 +182,18 @@ local no_fullscreen_clients_on_selected_tag = function()
     return true
 end
 
+local function print_awesome_memory_stats(message)
+    print(os.date(), "\nLua memory usage:", collectgarbage("count"))
+    out_string = tostring(os.date()) .. "\nLua memory usage:"..tostring(collectgarbage("count")).."\n"
+    out_string = out_string .. "Objects alive:"
+    print("Objects alive:")
+    for name, obj in pairs{ button = button, client = client, drawable = drawable, drawin = drawin, key = key, screen = screen, tag = tag } do
+        out_string =out_string .. "\n" .. tostring(name) .. " = " ..tostring(obj.instances())
+        print(name, obj.instances())
+    end
+    naughty.notify({title = "Awesome WM memory statistics " .. message, text = out_string, timeout=20, hover_timeout=20, replaces_id = -1})
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -548,9 +560,18 @@ globalkeys = gears.table.join(
             if client.focus then client.focus:raise() end
         end),
 
-    -- Standard program
-    awful.key({ modkey, "Shift" }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
+    -- AwesomeWM restart and print stats
+    awful.key({ modkey, "Shift" }, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
+
+    awful.key({modkey,"Control" }, "r", function()
+            print_awesome_memory_stats("Precollect")
+            collectgarbage("collect")
+            collectgarbage("collect")
+            gears.timer.start_new(5, function()
+                                      print_awesome_memory_stats("Postcollect")
+                                      return false
+            end)
+    end, {description = "print awesome wm memory statistics", group="awesome"}),
 
     -- Resize tag's master_width_factor
     awful.key({ modkey,           }, "[",     function () awful.tag.incmwfact(-0.05)          end,
