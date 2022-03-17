@@ -22,7 +22,6 @@ require("awful.hotkeys_popup.keys")
 
 -- awesome-wm-widgets
 -- local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify") -- install `sp` tool: https://gist.github.com/fa6258f3ff7b17747ee3.git
 local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
@@ -472,13 +471,6 @@ awful.screen.connect_for_each_screen(function(s)
             view_next_tag_button,
             mytextclock,
             s.mylayoutbox,
-            logout_menu_widget({
-                    onlogout = function() awesome.quit() end,
-                    onlock = function() awful.spawn.with_shell('i3lock -c 111111') end,
-                    onsuspend = function() awful.spawn.with_shell("sudo zzz") end,
-                    onreboot = function() awful.spawn.with_shell("sudo reboot") end,
-                    onpoweroff = function() awful.spawn.with_shell("sudo poweroff") end,
-            }),
             my_minimal_mode.widget
         },
     }
