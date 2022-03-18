@@ -21,8 +21,8 @@ theme.bg_urgent     = "#ff0000"
 
 theme.titlebar_fg_normal = "#444444"
 theme.titlebar_fg_focus = "#eeeeee"
-theme.titlebar_bg_focus = "#77777799"
-theme.titlebar_bg_normal = "#282828aa"
+theme.titlebar_bg_focus = "#aaaaaa77"
+theme.titlebar_bg_normal = "#44444477"
 
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
@@ -48,7 +48,7 @@ theme.border_marked = "#91231c"
 theme.taglist_squares = true
 
 -- Don't show app icons in wibar
--- theme.tasklist_disable_icon = true
+theme.tasklist_disable_icon = true
 
 -- Gaps
 theme.gap_single_client = true
@@ -65,7 +65,7 @@ theme.master_width_factor = 0.7
 theme.menu_width = 200
 
 -- Wibar
-theme.wibar_height = 22
+theme.wibar_height = 16
 
 -- Icons
 theme.awesome_icon = '/usr/share/awesome/themes/sky/awesome-icon.png'

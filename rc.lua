@@ -21,10 +21,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- awesome-wm-widgets
--- local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify") -- install `sp` tool: https://gist.github.com/fa6258f3ff7b17747ee3.git
-local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
 
 -- awesome buttons
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
@@ -443,9 +441,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s, opacity = 0.2 })
-    s.mywibox:connect_signal("mouse::enter", function() s.mywibox.opacity = 0.8 end)
-    s.mywibox:connect_signal("mouse::leave", function() s.mywibox.opacity = 0.2 end)
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, opacity = 0.3 })
+    s.mywibox:connect_signal("mouse::enter", function() s.mywibox.opacity = 0.9 end)
+    s.mywibox:connect_signal("mouse::leave", function() s.mywibox.opacity = 0.3 end)
+
+    local spacer = function () return wibox.widget{markup = ' ', widget = wibox.widget.textbox} end
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -454,21 +454,23 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
             s.mytaglist,
-            wibox.widget{markup = ' ', widget = wibox.widget.textbox},
+            spacer(),
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spotify_widget({font = "Iosevka Term SS09 10", show_tooltip = false}),
+            spacer(),
             wibox.widget.systray(),
-            -- docker_widget(),
-            fs_widget(),
+            spacer(),
+            awful.widget.watch("available_root_space.sh", 10), -- df / -h --output=avail | tail -n 1 | tr -d " "
+            spacer(),
             battery_widget({show_current_level = true, font = beautiful.font, margin_right = 10, notification_position = "bottom_right"}),
             --wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
             move_client_to_prev_tag_button,
             move_client_to_next_tag_button,
-            wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+            spacer(),
             view_prev_tag_button,
             view_next_tag_button,
             mytextclock,
@@ -1031,16 +1033,17 @@ client.connect_signal("request::titlebars", function(c)
       return widget
     end
 
-    awful.titlebar(c, {size = 18}) : setup {
+    awful.titlebar(c, {size = 16}) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Middle
             { -- Title
                 align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
+                -- widget = awful.titlebar.widget.titlewidget(c)
+                widget = wibox.widget{markup = '', widget = wibox.widget.textbox},
             },
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
@@ -1092,7 +1095,8 @@ end)
 
 awful.screen.connect_for_each_screen(function(s)
         -- Wallpaper
-        gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
+        -- gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
+        gears.wallpaper.maximized(string.format("%s/.config/awesome/wallpaper-wood.jpg", os.getenv("HOME")), s)
 
         -- Don't add desktop buttons if on laptop
         if mouse.screen.geometry.width <= 1920 then return end;
@@ -1102,6 +1106,7 @@ awful.screen.connect_for_each_screen(function(s)
             max_widget_size = 500,
             height = 40,
             width = 400,
+            type = "dock",
         }
 
         my_right_desktop_buttons:setup {
