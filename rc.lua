@@ -443,7 +443,9 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, opacity = 0.2 })
+    s.mywibox:connect_signal("mouse::enter", function() s.mywibox.opacity = 0.8 end)
+    s.mywibox:connect_signal("mouse::leave", function() s.mywibox.opacity = 0.2 end)
 
     -- Add widgets to the wibox
     s.mywibox:setup {
