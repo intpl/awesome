@@ -33,7 +33,7 @@ theme.taglist_bg_focus      = "#505050"
 theme.taglist_fg_empty     = "#252525"
 
 -- Only modify empty tasklist fg, rest is inherited from theme.fg_*
-theme.tasklist_fg_minimize     = "#444444"
+-- theme.tasklist_fg_minimize     = "#444444"
 theme.tasklist_maximized     = "<span bgcolor=\"#00DD00\"> + </span> "
 theme.tasklist_fg_normal     = "#666666"
 theme.tasklist_fg_focus     = "#ffffff"

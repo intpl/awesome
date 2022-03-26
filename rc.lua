@@ -294,7 +294,10 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({
     items = {
+            { "Next", function() awful.tag.viewnext() end },
+            { "Previous", function() awful.tag.viewprev() end },
         -- Essentials
+            wibox.widget {widget = wibox.widget.separator},
             { "Qutebrowser", qutebrowser_with_flags },
             { "Terminal (tmux)", terminal_with_tmux },
             { "Terminal (w/o tmux)", terminal },
@@ -310,6 +313,7 @@ mymainmenu = awful.menu({
             { "~/work", "thunar work" },
         -- Accessories
             wibox.widget {widget = wibox.widget.separator},
+            { "Markets", "flatpak run com.bitstower.Markets" },
             { "Firefox Developer Edition", "firefox-developer-edition" },
             { "Google Chrome", "google-chrome-stable" },
             { "Chromium", "chromium" },
@@ -325,8 +329,8 @@ mymainmenu = awful.menu({
             { "Instagram", chrome_app_string("https://instagram.com/") },
             { "Tinder", chrome_app_string("https://tinder.com/") },
             { "Slack", chrome_app_string("https://app.slack.com/client/") },
---          {"Signal", "flatopak run org.signal.Signal" },
---          {"WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
+            { "WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
+--          { "Signal", "flatopak run org.signal.Signal" },
             wibox.widget {widget = wibox.widget.separator},
         -- Printing
             { "Simple Scan", "simple-scan" },
@@ -541,6 +545,14 @@ globalkeys = gears.table.join(
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey }, ".", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
+
+    awful.key({ modkey, }, "F1", function () awful.screen.focus(1) end,
+              {description = "focus screen 1", group = "screen"}),
+    awful.key({ modkey }, "F2", function () awful.screen.focus(2) end,
+              {description = "focus screen 2", group = "screen"}),
+    awful.key({ modkey }, "F3", function () awful.screen.focus(3) end,
+              {description = "focus screen 3", group = "screen"}),
+
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, ";", toggle_useless_gaps,
@@ -679,6 +691,15 @@ globalkeys = gears.table.join(
    awful.key({modkey_alt, modkey }, "=", function ()
            awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%", false)
            show_volume_notification()
+   end),
+
+   awful.key({modkey}, "d", function ()
+           awful.spawn.with_shell("xdotool click --repeat 5 --delay 0 5") -- emulate scroll down
+   end),
+
+   -- this does not work for some reason
+   awful.key({modkey, "Shift"}, "d", function ()
+           awful.spawn.with_shell("xdotool click --repeat 5 --delay 0 4") -- emulate scroll up
    end),
 
    -- Media Keys
@@ -922,8 +943,8 @@ clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end),
-    awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.02 end),
-    awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.02 end),
+    -- awful.button({ modkey }, 4, function(c) c.opacity = c.opacity + 0.02 end),
+    -- awful.button({ modkey }, 5, function(c) c.opacity = c.opacity - 0.02 end),
     awful.button({ modkey }, 8, function(c)
          local t = c.first_tag
          local tag = c.screen.tags[(t.index % 9) + 1]
