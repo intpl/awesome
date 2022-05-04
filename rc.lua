@@ -299,8 +299,8 @@ mymainmenu = awful.menu({
         -- Essentials
             wibox.widget {widget = wibox.widget.separator},
             { "Qutebrowser", qutebrowser_with_flags },
-            { "Terminal (tmux)", terminal_with_tmux },
-            { "Terminal (w/o tmux)", terminal },
+            { "Terminal", terminal },
+            { "Terminal (with tmux)", terminal_with_tmux },
             { "Emacs", "emacs" },
         -- Folders
             wibox.widget {widget = wibox.widget.separator},
@@ -354,10 +354,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(
-    ' <span color="#888888">%d/%m</span> <span color="#ffffff">%H:%M</span> <span color="#888888">%a</span> '
-, 5)
+vanhour = wibox.widget.textclock('<span color="#888888">(%H:%M)</span> ' , 5, "America/Vancouver")
+mytextclock = wibox.widget.textclock(' <span color="#888888">%d/%m</span> <span color="#ffffff">%H:%M</span> <span color="#888888">%a</span> ' , 5)
 
+calendar({position = "bottom_right"}):attach(vanhour)
 calendar({position = "bottom_right"}):attach(mytextclock)
 
 view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-back.png", os.getenv("HOME"))})
@@ -478,6 +478,7 @@ awful.screen.connect_for_each_screen(function(s)
             view_prev_tag_button,
             view_next_tag_button,
             mytextclock,
+            vanhour,
             s.mylayoutbox,
             my_minimal_mode.widget
         },
