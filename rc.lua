@@ -168,17 +168,6 @@ local show_backlight_notification = function()
     awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = "Brightness: " .. out, timeout = 1, replaces_id = -1}) end)
 end
 
-local no_fullscreen_clients_on_selected_tag = function()
-    local clients = awful.screen.focused().selected_tag:clients()
-    for _, c in pairs(clients) do
-        if c.fullscreen then
-            return false
-        end
-    end
-
-    return true
-end
-
 local function print_awesome_memory_stats(message)
     print(os.date(), "\nLua memory usage:", collectgarbage("count"))
     out_string = tostring(os.date()) .. "\nLua memory usage:"..tostring(collectgarbage("count")).."\n"
@@ -296,6 +285,7 @@ mymainmenu = awful.menu({
     items = {
             { "Next", function() awful.tag.viewnext() end },
             { "Previous", function() awful.tag.viewprev() end },
+            { "First empty tag", first_empty_tag },
         -- Essentials
             wibox.widget {widget = wibox.widget.separator},
             { "Qutebrowser", qutebrowser_with_flags },
@@ -1031,6 +1021,9 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
+
+client.connect_signal("focus", function(c) c.border_color = theme.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = theme.border_normal end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
