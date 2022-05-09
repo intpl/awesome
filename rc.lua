@@ -316,6 +316,7 @@ mymainmenu = awful.menu({
             wibox.widget {widget = wibox.widget.separator},
         -- Chat
             { "Messenger/Caprine", "flatpak run com.sindresorhus.Caprine"},
+            { "Discord", "flatpak run com.discordapp.Discord"},
             { "Instagram", chrome_app_string("https://instagram.com/") },
             { "Tinder", chrome_app_string("https://tinder.com/") },
             { "Slack", chrome_app_string("https://app.slack.com/client/") },
@@ -493,8 +494,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    -- awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-    --           {description="show help", group="awesome"}),
+    awful.key({ modkey, modkey_alt}, "s",      hotkeys_popup.show_help,
+              {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "h",   myviewprev,
               {description = "my view previous tag", group = "tag"}),
     awful.key({ modkey,           }, "l",  myviewnext,
