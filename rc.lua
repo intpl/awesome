@@ -1111,8 +1111,9 @@ end)
 
 awful.screen.connect_for_each_screen(function(s)
         -- Wallpaper
-        -- gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
-        gears.wallpaper.maximized(string.format("%s/.config/awesome/wallpaper-wood.jpg", os.getenv("HOME")), s)
+        gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
+        -- gears.wallpaper.maximized(string.format("%s/.config/awesome/wallpaper-wood.jpg", os.getenv("HOME")), s)
+        -- gears.wallpaper.set("#111111")
 
         -- Don't add desktop buttons if on laptop
         if mouse.screen.geometry.width <= 1920 then return end;
