@@ -289,9 +289,9 @@ mymainmenu = awful.menu({
         -- Essentials
             wibox.widget {widget = wibox.widget.separator},
             { "Qutebrowser", qutebrowser_with_flags },
-            { "Terminal", terminal },
-            { "Terminal (with tmux)", terminal_with_tmux },
             { "Emacs", "emacs" },
+            { "Terminal (with tmux)", terminal_with_tmux },
+            { "Terminal", terminal },
         -- Folders
             wibox.widget {widget = wibox.widget.separator},
             { "Thunar", "thunar" },
