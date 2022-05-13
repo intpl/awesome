@@ -8,7 +8,7 @@ local my_top_bar = {}
 
 function my_top_bar.attach_to_screen(s)
   -- Don't add desktop buttons if on laptop
-  if mouse.screen.geometry.width <= 1920 then return end;
+  if s.geometry.width <= 1920 then return end;
 
   local my_right_desktop_buttons = wibox {
     visible = true,
@@ -50,11 +50,16 @@ function my_top_bar.attach_to_screen(s)
     widget = wibox.container.margin
   }
 
-  my_right_desktop_buttons:connect_signal("mouse::enter", function(c) c.ontop = true end)
-  my_right_desktop_buttons:connect_signal("mouse::leave", function(c) c.ontop = false end)
+  my_right_desktop_buttons:connect_signal("mouse::enter", function(c)
+                                            c.opacity = 0.99
+                                            c.ontop = true
+  end)
+  my_right_desktop_buttons:connect_signal("mouse::leave", function(c)
+                                            c.opacity = 0.3
+                                            c.ontop = false
+  end)
 
   awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = s})
-  -- https://awesomewm.org/doc/api/classes/awful.widget.only_on_screen.html
 end
 
 return my_top_bar
