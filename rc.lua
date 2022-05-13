@@ -24,15 +24,13 @@ require("awful.hotkeys_popup.keys")
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery") -- icons: https://github.com/horst3180/arc-icon-theme
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify") -- install `sp` tool: https://gist.github.com/fa6258f3ff7b17747ee3.git
 
--- awesome buttons
-local awesomebuttons = require("awesome-buttons.awesome-buttons")
-
 -- calendar from https://github.com/deficient/calendar
 local calendar = require("calendar")
 
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_tag_expander = require('my_modules.my_tag_expander')
+local my_top_bar = require('my_modules.my_top_bar') -- requires 'awesomebuttons'
 
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
@@ -1115,54 +1113,7 @@ awful.screen.connect_for_each_screen(function(s)
         -- gears.wallpaper.maximized(string.format("%s/.config/awesome/wallpaper-wood.jpg", os.getenv("HOME")), s)
         -- gears.wallpaper.set("#111111")
 
-        -- Don't add desktop buttons if on laptop
-        if mouse.screen.geometry.width <= 1920 then return end;
-
-        local my_right_desktop_buttons = wibox {
-            visible = true,
-            max_widget_size = 500,
-            height = 40,
-            width = 400,
-            type = "dock",
-        }
-
-        my_right_desktop_buttons:setup {
-            {
-                {
-                    {
-                        awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">clients</span>', color = '#040', icon_size = 16, onclick = function()
-                                                               awful.tag.incnmaster( 1, nil, true)
-                        end},
-                        awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">clients</span>', color = '#400', icon_size = 16, onclick = function()
-                                                               awful.tag.incnmaster(-1, nil, true)
-                        end},
-                        wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-                        awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">columns</span>', color = '#040', icon_size = 16, onclick = function()
-                                                               awful.tag.incncol(1, nil, true)
-                        end},
-                        awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">columns</span>', color = '#400', icon_size = 16, onclick = function()
-                                                               awful.tag.incncol(-1, nil, true)
-                        end},
-                        s.mylayoutbox,
-                        spacing = 0,
-                        layout = wibox.layout.fixed.horizontal
-                    },
-                    spacing = 2,
-                    layout = wibox.layout.fixed.vertical,
-                },
-                shape_border_width = 1,
-                valigh = 'center',
-                layout = wibox.container.place
-            },
-            margins = 0,
-            widget = wibox.container.margin
-        }
-
-        my_right_desktop_buttons:connect_signal("mouse::enter", function(c) c.ontop = true end)
-        my_right_desktop_buttons:connect_signal("mouse::leave", function(c) c.ontop = false end)
-
-        awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = s})
-        -- https://awesomewm.org/doc/api/classes/awful.widget.only_on_screen.html
+        my_top_bar.attach_to_screen(s)
 end)
 
 -- Autorun/autostart programs
