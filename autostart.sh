@@ -16,5 +16,6 @@ maybe_run "nm-applet"
 # maybe_run "libinput-gestures" # freezes in Void?
 maybe_run "redshift-gtk"
 maybe_run "flameshot"
+maybe_run "lxpolkit" # for nopasswd: /etc/polkit-1/rules.d/49-nopasswd_global.rules from https://wiki.archlinux.org/title/Polkit
 
 pkill picom ; sleep 0.3 ; run "picom"  # picom gets weird on additional screen
