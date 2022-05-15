@@ -3,8 +3,25 @@ local gears = require("gears")
 local wibox = require("wibox")
 -- awesome buttons
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
+local my_tag_expander = require("my_modules.my_tag_expander")
 
 local my_top_bar = {}
+
+local function expand_left()
+  local tags = my_tag_expander.sorted_tags()
+
+  if my_tag_expander.can_focus_tag_left(tags) then
+    my_tag_expander.focus_tag_left(tags)
+  end
+end
+
+local function expand_right()
+  local tags = my_tag_expander.sorted_tags()
+
+  if my_tag_expander.can_focus_tag_right(tags) then
+    my_tag_expander.focus_tag_right(tags)
+  end
+end
 
 function my_top_bar.attach_to_screen(s)
   -- Don't add desktop buttons if on laptop
@@ -12,9 +29,8 @@ function my_top_bar.attach_to_screen(s)
 
   local my_right_desktop_buttons = wibox {
     visible = true,
-    max_widget_size = 500,
-    height = 40,
-    width = 400,
+    height = 30,
+    width = 660,
     type = "dock",
   }
 
@@ -22,19 +38,63 @@ function my_top_bar.attach_to_screen(s)
     {
       {
         {
-          awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">clients</span>', color = '#040', icon_size = 16, onclick = function()
-                                               awful.tag.incnmaster( 1, nil, true)
-          end},
-          awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">clients</span>', color = '#400', icon_size = 16, onclick = function()
-                                               awful.tag.incnmaster(-1, nil, true)
-          end},
-          wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
-          awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'plus', text = '<span color="#fff">columns</span>', color = '#040', icon_size = 16, onclick = function()
-                                               awful.tag.incncol(1, nil, true)
-          end},
-          awesomebuttons.with_icon_and_text{ type = 'outline', icon = 'minus', text = '<span color="#fff">columns</span>', color = '#400', icon_size = 16, onclick = function()
-                                               awful.tag.incncol(-1, nil, true)
-          end},
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-left',
+                                             text = '<span color="#fff">left</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.viewprev(s) end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-right',
+                                             text = '<span color="#fff">right</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.viewnext(s) end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-up-left',
+                                             text = '<span color="#fff">expand</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() expand_left() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-up-right',
+                                             text = '<span color="#fff">expand</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() expand_right() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'plus',
+                                             text = '<span color="#fff">clients</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.incnmaster( 1, nil, true) end},
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'minus',
+                                             text = '<span color="#fff">clients</span>',
+                                             color = '#400',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.incnmaster(-1, nil, true) end},
+
+          -- wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'plus',
+                                             text = '<span color="#fff">columns</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.incncol(1, nil, true) end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'minus',
+                                             text = '<span color="#fff">columns</span>',
+                                             color = '#400',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.incncol(-1, nil, true) end},
+
           s.mylayoutbox,
           spacing = 0,
           layout = wibox.layout.fixed.horizontal
@@ -59,7 +119,7 @@ function my_top_bar.attach_to_screen(s)
                                             c.ontop = false
   end)
 
-  awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -10, right = 150}, parent = s})
+  awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -2, right = 50}, parent = s})
 end
 
 return my_top_bar
