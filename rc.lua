@@ -168,14 +168,18 @@ end
 
 local function print_awesome_memory_stats(message)
     print(os.date(), "\nLua memory usage:", collectgarbage("count"))
-    out_string = tostring(os.date()) .. "\nLua memory usage:"..tostring(collectgarbage("count")).."\n"
+    local out_string = tostring(os.date()) .. "\nLua memory usage:"..tostring(collectgarbage("count")).."\n"
     out_string = out_string .. "Objects alive:"
     print("Objects alive:")
     for name, obj in pairs{ button = button, client = client, drawable = drawable, drawin = drawin, key = key, screen = screen, tag = tag } do
-        out_string =out_string .. "\n" .. tostring(name) .. " = " ..tostring(obj.instances())
+        out_string = out_string .. "\n" .. tostring(name) .. " = " ..tostring(obj.instances())
         print(name, obj.instances())
     end
     naughty.notify({title = "Awesome WM memory statistics " .. message, text = out_string, timeout=20, hover_timeout=20, replaces_id = -1})
+end
+
+local function launch_rofi_combi()
+    awful.spawn.with_shell("rofi -show combi -combi-modi 'drun,window,run' -modi combi") -- NOTE: removed ssh
 end
 
 -- {{{ Error handling
@@ -723,8 +727,8 @@ globalkeys = gears.table.join(
      {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
 
     -- Rofi combi
-    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn.with_shell("rofi -show combi -combi-modi 'ssh,drun,window,run' -modi combi") end,
-    {description = "show rofi run", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "Return", launch_rofi_combi, {description = "show rofi combi with enter", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "space", launch_rofi_combi, {description = "show rofi combi with space", group = "launcher"}),
 
     -- Rofi calc
     -- install this: https://github.com/svenstaro/rofi-calc
