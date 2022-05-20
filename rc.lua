@@ -170,7 +170,7 @@ local first_empty_tag = function()
 end
 
 local show_volume_notification = function()
-    local command = "sleep 0.09 ; pacmd list-sinks | grep -zo --color=never '* index:.*base volume' | grep -oaE '[0-9]+\\%' | awk -v RS= '{$1= $1}1'"
+    local command = "sleep 0.2 ; pacmd list-sinks | grep -zo --color=never '* index:.*base volume' |  grep -oaE '[0-9]+\\%' | head -n 1 | cut -c -3"
     awful.spawn.easy_async_with_shell(command, function(out) naughty.notify({ text = "Volume: " .. out, timeout = 1, replaces_id = -1}) end)
 end
 
