@@ -36,20 +36,32 @@ local my_top_bar = require('my_modules.my_top_bar') -- requires 'awesomebuttons'
 -- Useful variables to reuse
 local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
 
-local toggle_useless_gaps = function()
+local toggle_useless_gaps_and_mfpol = function()
     local selected_tag = awful.screen.focused().selected_tag
 
     if selected_tag.gap ~= 30 then
         selected_tag.gap = 30
+        if selected_tag.master_fill_policy == "expand" then
+            awful.tag.togglemfpol(selected_tag)
+        end
     else
         selected_tag.gap = 2
+        if selected_tag.master_fill_policy == "master_width_factor" then
+            awful.tag.togglemfpol(selected_tag)
+        end
     end
 
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
 local remove_useless_gaps = function()
-    awful.screen.focused().selected_tag.gap = 0
+    t = awful.screen.focused().selected_tag
+    t.gap = 0
+
+    if t.master_fill_policy == "master_width_factor" then
+        awful.tag.togglemfpol()
+    end
+
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
 end
 
@@ -553,7 +565,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, ";", toggle_useless_gaps,
+    awful.key({ modkey,           }, ";", toggle_useless_gaps_and_mfpol,
               {description = "toggle useless gaps in current tag", group = "client"}),
     awful.key({ modkey, "Shift"   }, ";", remove_useless_gaps,
               {description = "remove useless gaps in current tag", group = "client"}),

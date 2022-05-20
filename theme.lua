@@ -9,6 +9,8 @@ local default_titlebar_path = default_theme_path .. "/titlebar/"
 -- Theme fonts and colors
 theme = {}
 
+theme.master_fill_policy = "master_width_factor"
+
 -- theme.column_count = 2 -- different default column count
 
 theme.font                     = "Iosevka Term SS09 Semibold 11"
