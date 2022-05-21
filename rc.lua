@@ -1134,6 +1134,9 @@ awful.screen.connect_for_each_screen(function(s)
         -- gears.wallpaper.set("#111111")
 
         my_top_bar.attach_to_screen(s)
+
+        s.tags[1].master_fill_policy = "expand"
+        s.tags[1].gap = 2
 end)
 
 -- Autorun/autostart programs
