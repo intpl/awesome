@@ -40,7 +40,7 @@ function my_top_bar.attach_to_screen(s)
   local my_right_desktop_buttons = wibox {
     visible = true,
     height = 30,
-    width = 700,
+    width = 600,
     type = "dock",
   }
 
@@ -48,45 +48,50 @@ function my_top_bar.attach_to_screen(s)
     {
       {
         {
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon{ type = 'outline',
                                              icon = 'arrow-left',
-                                             text = '<span color="#fff">left</span>',
-                                             color = '#040',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() awful.tag.viewprev(s) end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon{ type = 'outline',
                                              icon = 'arrow-right',
-                                             text = '<span color="#fff">right</span>',
-                                             color = '#040',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() awful.tag.viewnext(s) end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'crop',
+                                             text = '<span color="#fff">mfpol</span>',
+                                             color = '#400',
+                                             icon_size = 16,
+                                             onclick = function() awful.tag.togglemfpol() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'arrow-up-left',
-                                             text = '<span color="#fff">expand</span>',
-                                             color = '#040',
+                                             text = '<span color="#fff">exp</span>',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() expand_left() end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'arrow-up-right',
-                                             text = '<span color="#fff">expand</span>',
-                                             color = '#040',
+                                             text = '<span color="#fff">exp</span>',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() expand_right() end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'arrow-down-right',
-                                             text = '<span color="#fff">shrink</span>',
-                                             color = '#040',
+                                             text = '<span color="#fff">shr</span>',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() shrink_left() end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'arrow-down-left',
-                                             text = '<span color="#fff">shrink</span>',
-                                             color = '#040',
+                                             text = '<span color="#fff">shr</span>',
+                                             color = '#444',
                                              icon_size = 16,
                                              onclick = function() shrink_right() end},
 
