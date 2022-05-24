@@ -12,4 +12,4 @@
 	url = https://github.com/Nooo37/bling.git
 [submodule "awesome-buttons"]
 	path = awesome-buttons
-	url = https://github.com/streetturtle/awesome-buttons
+	url = git@github.com:intpl/awesome-buttons.git
