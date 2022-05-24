@@ -23,6 +23,16 @@ local function expand_right()
   end
 end
 
+local function shrink_left()
+  local tags = my_tag_expander.sorted_tags()
+  if #tags > 1 then awful.tag.viewtoggle(tags[1]) end -- 1-indexed arrays lol
+end
+
+local function shrink_right()
+  local tags = my_tag_expander.sorted_tags()
+  if #tags > 1 then awful.tag.viewtoggle(tags[#tags]) end
+end
+
 function my_top_bar.attach_to_screen(s)
   -- Don't add desktop buttons if on laptop
   if s.geometry.width <= 1920 then return end;
@@ -30,7 +40,7 @@ function my_top_bar.attach_to_screen(s)
   local my_right_desktop_buttons = wibox {
     visible = true,
     height = 30,
-    width = 660,
+    width = 700,
     type = "dock",
   }
 
@@ -67,14 +77,28 @@ function my_top_bar.attach_to_screen(s)
                                              onclick = function() expand_right() end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-down-right',
+                                             text = '<span color="#fff">shrink</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() shrink_left() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
+                                             icon = 'arrow-down-left',
+                                             text = '<span color="#fff">shrink</span>',
+                                             color = '#040',
+                                             icon_size = 16,
+                                             onclick = function() shrink_right() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'plus',
-                                             text = '<span color="#fff">clients</span>',
+                                             text = '<span color="#fff">cli</span>',
                                              color = '#040',
                                              icon_size = 16,
                                              onclick = function() awful.tag.incnmaster( 1, nil, true) end},
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'minus',
-                                             text = '<span color="#fff">clients</span>',
+                                             text = '<span color="#fff">cli</span>',
                                              color = '#400',
                                              icon_size = 16,
                                              onclick = function() awful.tag.incnmaster(-1, nil, true) end},
@@ -83,14 +107,14 @@ function my_top_bar.attach_to_screen(s)
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'plus',
-                                             text = '<span color="#fff">columns</span>',
+                                             text = '<span color="#fff">col</span>',
                                              color = '#040',
                                              icon_size = 16,
                                              onclick = function() awful.tag.incncol(1, nil, true) end},
 
           awesomebuttons.with_icon_and_text{ type = 'outline',
                                              icon = 'minus',
-                                             text = '<span color="#fff">columns</span>',
+                                             text = '<span color="#fff">col</span>',
                                              color = '#400',
                                              icon_size = 16,
                                              onclick = function() awful.tag.incncol(-1, nil, true) end},
