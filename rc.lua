@@ -30,7 +30,6 @@ local calendar = require("calendar")
 -- My Modules
 local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_tag_expander = require('my_modules.my_tag_expander')
-local my_mfpol_toggler = require('my_modules.my_mfpol_toggler')
 local my_top_bar = require('my_modules.my_top_bar') -- requires 'awesomebuttons'
 
 -- Useful variables to reuse
@@ -488,7 +487,6 @@ awful.screen.connect_for_each_screen(function(s)
             mytextclock,
             vanhour,
             s.mylayoutbox,
-            my_mfpol_toggler.widget,
             my_minimal_mode.widget
         },
     }
