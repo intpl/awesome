@@ -37,95 +37,95 @@ function my_top_bar.attach_to_screen(s)
   -- Don't add desktop buttons if on laptop
   if s.geometry.width <= 1920 then return end;
 
+  local default_opacity = 0.05
+
   local my_right_desktop_buttons = wibox {
     visible = true,
-    height = 30,
-    width = 600,
+    height = 50,
+    width = 882,
+    opacity = default_opacity,
     type = "dock",
   }
+
+  -- feathericons.com
 
   my_right_desktop_buttons:setup {
     {
       {
         {
-          awesomebuttons.with_icon{ type = 'outline',
-                                             icon = 'arrow-left',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
+                                             icon = 'refresh-ccw',
+                                             text = '<span color="#fff">tag</span>',
                                              color = '#444',
-                                             icon_size = 16,
-                                             onclick = function() awful.tag.viewprev(s) end},
+                                             icon_size = 24,
+                                             onclick = function() awful.tag.history.restore() end},
 
-          awesomebuttons.with_icon{ type = 'outline',
-                                             icon = 'arrow-right',
-                                             color = '#444',
-                                             icon_size = 16,
-                                             onclick = function() awful.tag.viewnext(s) end},
-
-          awesomebuttons.with_icon_and_text{ type = 'outline',
-                                             icon = 'crop',
-                                             text = '<span color="#fff">mfpol</span>',
-                                             color = '#400',
-                                             icon_size = 16,
-                                             onclick = function() awful.tag.togglemfpol() end},
-
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'arrow-up-left',
                                              text = '<span color="#fff">exp</span>',
                                              color = '#444',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() expand_left() end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'arrow-up-right',
                                              text = '<span color="#fff">exp</span>',
                                              color = '#444',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() expand_right() end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'arrow-down-right',
                                              text = '<span color="#fff">shr</span>',
                                              color = '#444',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() shrink_left() end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'arrow-down-left',
                                              text = '<span color="#fff">shr</span>',
                                              color = '#444',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() shrink_right() end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
+                                             icon = 'crop',
+                                             text = '<span color="#fff">mfpol</span>',
+                                             color = '#400',
+                                             icon_size = 24,
+                                             onclick = function() awful.tag.togglemfpol() end},
+
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'plus',
                                              text = '<span color="#fff">cli</span>',
                                              color = '#040',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() awful.tag.incnmaster( 1, nil, true) end},
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'minus',
                                              text = '<span color="#fff">cli</span>',
                                              color = '#400',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() awful.tag.incnmaster(-1, nil, true) end},
 
           -- wibox.widget{markup = ' / ', widget = wibox.widget.textbox},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'plus',
                                              text = '<span color="#fff">col</span>',
                                              color = '#040',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() awful.tag.incncol(1, nil, true) end},
 
-          awesomebuttons.with_icon_and_text{ type = 'outline',
+          awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'minus',
                                              text = '<span color="#fff">col</span>',
                                              color = '#400',
-                                             icon_size = 16,
+                                             icon_size = 24,
                                              onclick = function() awful.tag.incncol(-1, nil, true) end},
-
           s.mylayoutbox,
-          spacing = 0,
+          spacing = 3,
           layout = wibox.layout.fixed.horizontal
         },
         spacing = 2,
@@ -139,14 +139,8 @@ function my_top_bar.attach_to_screen(s)
     widget = wibox.container.margin
   }
 
-  my_right_desktop_buttons:connect_signal("mouse::enter", function(c)
-                                            c.opacity = 0.99
-                                            c.ontop = true
-  end)
-  my_right_desktop_buttons:connect_signal("mouse::leave", function(c)
-                                            c.opacity = 0.3
-                                            c.ontop = false
-  end)
+  my_right_desktop_buttons:connect_signal("mouse::enter", function(c) c.opacity = 0.99 c.ontop = true end)
+  my_right_desktop_buttons:connect_signal("mouse::leave", function(c) c.opacity = default_opacity c.ontop = false end)
 
   awful.placement.top_right(my_right_desktop_buttons, { margins = {top = -2, right = 50}, parent = s})
 end

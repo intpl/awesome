@@ -324,7 +324,7 @@ mymainmenu = awful.menu({
             { "Messenger/Caprine", "flatpak run com.sindresorhus.Caprine"},
             { "Discord", "flatpak run com.discordapp.Discord"},
             { "Instagram", chrome_app_string("https://instagram.com/") },
-            { "Tinder", chrome_app_string("https://tinder.com/") },
+            -- { "Tinder", chrome_app_string("https://tinder.com/") },
             { "Slack", chrome_app_string("https://app.slack.com/client/") },
             { "WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
 --          { "Signal", "flatopak run org.signal.Signal" },
