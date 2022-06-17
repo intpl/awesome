@@ -25,7 +25,7 @@ theme.bg_urgent     = "#ff0000"
 
 theme.titlebar_fg_normal = "#444444"
 theme.titlebar_fg_focus = "#eeeeee"
-theme.titlebar_bg_focus = "#777777ee"
+theme.titlebar_bg_focus = "#555555ee"
 theme.titlebar_bg_normal = "#222222ee"
 
 theme.fg_normal     = "#aaaaaa"
@@ -44,7 +44,7 @@ theme.tasklist_fg_focus     = "#ffffff"
 theme.tasklist_bg_focus     = "#404040aa"
 
 theme.border_width  = 1
-theme.border_normal = "#111111"
+theme.border_normal = "#222222"
 theme.border_focus  = "#444444"
 -- theme.border_marked = "#91231c"
 
@@ -118,7 +118,7 @@ theme.titlebar_maximized_button_focus_inactive  = default_titlebar_path .. "maxi
 theme.titlebar_maximized_button_normal_active   = default_titlebar_path .. "maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = default_titlebar_path .. "maximized_focus_active.png"
 
-theme.titlebar_move_to_prev_tag_button_normal = "~/.config/awesome/arrow-back.png"
-theme.titlebar_move_to_next_tag_button_normal = "~/.config/awesome/arrow-forward.png"
+-- theme.titlebar_move_to_prev_tag_button_normal = "~/.config/awesome/arrow-back.png"
+-- theme.titlebar_move_to_next_tag_button_normal = "~/.config/awesome/arrow-forward.png"
 
 return theme

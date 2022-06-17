@@ -32,22 +32,17 @@ local my_minimal_mode = require('my_modules.my_minimal_mode')
 local my_tag_expander = require('my_modules.my_tag_expander')
 local my_top_bar = require('my_modules.my_top_bar') -- requires 'awesomebuttons'
 
--- Useful variables to reuse
-local screenshot_bash_date_path = '~/Pictures/`date +"%F-%H:%M.%N"`.png'
-
 local toggle_useless_gaps_and_mfpol = function()
     local selected_tag = awful.screen.focused().selected_tag
 
     if selected_tag.gap ~= 30 then
         selected_tag.gap = 30
-        if selected_tag.master_fill_policy == "expand" then
-            awful.tag.togglemfpol(selected_tag)
+        if selected_tag.index ~= 1 then
+            selected_tag.master_fill_policy = "master_width_factor"
         end
     else
         selected_tag.gap = 2
-        if selected_tag.master_fill_policy == "master_width_factor" then
-            awful.tag.togglemfpol(selected_tag)
-        end
+        selected_tag.master_fill_policy = "expand"
     end
 
     awful.screen.connect_for_each_screen(function(s) awful.layout.arrange(s) end)
@@ -274,14 +269,14 @@ awful.layout.layouts = {
     bling.layout.equalarea,
     bling.layout.mstab,
     -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
+    awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
-    awful.layout.suit.floating,
+    -- awful.layout.suit.floating,
 }
 -- }}}
 
@@ -324,7 +319,9 @@ mymainmenu = awful.menu({
             { "Messenger/Caprine", "flatpak run com.sindresorhus.Caprine"},
             { "Discord", "flatpak run com.discordapp.Discord"},
             { "Instagram", chrome_app_string("https://instagram.com/") },
-            -- { "Tinder", chrome_app_string("https://tinder.com/") },
+            { "Badoo", chrome_app_string("https://badoo.com/") },
+            { "Bumble", chrome_app_string("https://bumble.com/app") },
+            { "Tinder", chrome_app_string("https://tinder.com/") },
             { "Slack", chrome_app_string("https://app.slack.com/client/") },
             { "WhatsApp", chrome_app_string("https://web.whatsapp.com/") },
 --          { "Signal", "flatopak run org.signal.Signal" },
@@ -345,7 +342,7 @@ mymainmenu = awful.menu({
             wibox.widget {widget = wibox.widget.separator},
             { "awesome", myawesomemenu, beautiful.awesome_icon },
             wibox.widget {widget = wibox.widget.separator},
-            {'lock', 'i3lock -c 111111'},
+            {'lock', 'i3lock -i /opt/i3lock.png'},
             {'suspend', 'sudo zzz'},
             {'reboot', 'sudo reboot'},
             {'poweroff', 'sudo poweroff'}
@@ -366,16 +363,16 @@ mytextclock = wibox.widget.textclock(' <span color="#888888">%d/%m</span> <span 
 calendar({position = "bottom_right"}):attach(vanhour)
 calendar({position = "bottom_right"}):attach(mytextclock)
 
-view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-back.png", os.getenv("HOME"))})
+view_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/icons/arrow-single-back.png", os.getenv("HOME"))})
 view_prev_tag_button:connect_signal("button::press", function() awful.tag.viewprev(awful.screen.focused()) end)
 
-view_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-single-forward.png", os.getenv("HOME"))})
+view_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/icons/arrow-single-forward.png", os.getenv("HOME"))})
 view_next_tag_button:connect_signal("button::press", function() awful.tag.viewnext(awful.screen.focused()) end)
 
-move_client_to_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-back.png", os.getenv("HOME"))})
+move_client_to_prev_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/icons/arrow-back.png", os.getenv("HOME"))})
 move_client_to_prev_tag_button:connect_signal("button::press", move_client_to_prev_tag)
 
-move_client_to_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/arrow-forward.png", os.getenv("HOME"))})
+move_client_to_next_tag_button = awful.widget.button({image = string.format("%s/.config/awesome/icons/arrow-forward.png", os.getenv("HOME"))})
 move_client_to_next_tag_button:connect_signal("button::press", move_client_to_next_tag)
 
 -- Create a wibox for each screen and add it
@@ -648,13 +645,15 @@ globalkeys = gears.table.join(
 
     -- My apps / shortcuts
     awful.key({ modkey }, "w", function () awful.spawn(qutebrowser_with_flags) end,
-              {description = "qutebrowser", group = "launcher"}),
+              {description = "open qutebrowser", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "w", function () awful.spawn("google-chrome-stable") end,
-              {description = "open google-chrome-stable browser", group = "launcher"}),
+              {description = "open google-chrome-stable", group = "launcher"}),
+    awful.key({ modkey, "Control"}, "w", function () awful.spawn("firefox-developer-edition") end,
+              {description = "open firefox-developer-edition", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn("emacs") end,
-              {description = "emacs", group = "launcher"}),
+              {description = "open emacs", group = "launcher"}),
     awful.key({ modkey, "Shift"}, "e", function () awful.spawn(terminal .. " -e nvim") end,
-              {description = "nvim in default teraminal", group = "launcher"}),
+              {description = "open nvim in default teraminal", group = "launcher"}),
     awful.key({ modkey }, "f", function () awful.spawn(terminal .. " -e ranger") end,
         {description = "open ranger", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "f", function () awful.spawn("thunar") end,
@@ -669,7 +668,7 @@ globalkeys = gears.table.join(
     -- system
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn.with_shell("sudo zzz") end,
               {description = "Suspend", group = "system"}),
-    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("i3lock -c 111111") end,
+    awful.key({ modkey, "Control" }, "s", function () awful.spawn.with_shell("i3lock -i /opt/i3lock.png") end,
               {description = "Lock", group = "system"}),
     awful.key({ modkey, }, "a", function () awful.spawn.with_shell("arandr") end,
               {description = "arandr", group = "launcher"}),
@@ -728,7 +727,7 @@ globalkeys = gears.table.join(
    awful.key({modkey, "Control" }, "=", function () awful.spawn.easy_async_with_shell("xbacklight -set 100", function() show_backlight_notification() end) end),
 
    -- Screenshots
-   awful.key({ }, "Print", function () awful.spawn.with_shell('import -window root ' .. screenshot_bash_date_path) end,
+   awful.key({ }, "Print", function () awful.spawn.with_shell('import -window root ~/Pictures/`date +"%F-%H:%M.%N"`.png') end,
      {description = "Take a screenshot of entire screen", group = "screenshot"}),
    awful.key({ modkey, "Shift" }, "Print", function () awful.spawn.with_shell('flameshot gui') end,
      {description = "Take a screenshot of selection using flameshot", group = "screenshot"}),
@@ -1056,7 +1055,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    function mymaximizedbutton(c)
+    local function mymaximizedbutton(c)
         local widget = awful.titlebar.widget.button(c, "maximized",
                                               function(cl) return cl.maximized end,
                                               function(cl, state) mymaximize(cl) end
@@ -1081,13 +1080,13 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.button (c, "move_to_prev_tag", function () return awful.util.get_configuration_dir() .. "/arrow-back.png" end, function ()
+            awful.titlebar.widget.button (c, "move_to_prev_tag", function () return awful.util.get_configuration_dir() .. "/icons/arrow-back.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index - 2) % 9 + 1]
                                               c:move_to_tag(tag)
                                               -- tag:view_only()
                                               end),
-            awful.titlebar.widget.button (c, "move_to_next_tag", function () return awful.util.get_configuration_dir() .. "/arrow-forward.png" end, function ()
+            awful.titlebar.widget.button (c, "move_to_next_tag", function () return awful.util.get_configuration_dir() .. "/icons/arrow-forward.png" end, function ()
                                               local t = c.first_tag
                                               local tag = c.screen.tags[(t.index % 9) + 1]
                                               c:move_to_tag(tag)
@@ -1126,15 +1125,21 @@ screen.connect_signal("arrange", function (s)
 end)
 
 awful.screen.connect_for_each_screen(function(s)
-        -- Wallpaper
-        gears.wallpaper.maximized(string.format("%s/.config/awesome/best-wallpaper-ever.png", os.getenv("HOME")), s)
-        -- gears.wallpaper.maximized(string.format("%s/.config/awesome/wallpaper-wood.jpg", os.getenv("HOME")), s)
-        -- gears.wallpaper.set("#111111")
+        if screen:count() == 1 then
+            gears.wallpaper.set("#161616")
+            return
+        end
 
-        my_top_bar.attach_to_screen(s)
+        if s.geometry.width <= 1920 then
+            -- Don't add desktop buttons if on laptop
+            gears.wallpaper.fit(string.format("%s/.config/awesome/wallpapers/homerow.png", os.getenv("HOME")), s)
+        else
+            gears.wallpaper.fit(string.format("%s/.config/awesome/wallpapers/traveller.png", os.getenv("HOME")), s)
+            my_top_bar.attach_to_screen(s)
+        end;
 
         s.tags[1].master_fill_policy = "expand"
-        s.tags[1].gap = 2
+        -- s.tags[1].gap = 2
 end)
 
 -- Autorun/autostart programs

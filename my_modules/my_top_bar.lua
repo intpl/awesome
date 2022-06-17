@@ -34,15 +34,12 @@ local function shrink_right()
 end
 
 function my_top_bar.attach_to_screen(s)
-  -- Don't add desktop buttons if on laptop
-  if s.geometry.width <= 1920 then return end;
-
-  local default_opacity = 0.05
+  local default_opacity = 0.2
 
   local my_right_desktop_buttons = wibox {
     visible = true,
     height = 50,
-    width = 882,
+    width = 700,
     opacity = default_opacity,
     type = "dock",
   }
@@ -52,7 +49,6 @@ function my_top_bar.attach_to_screen(s)
   my_right_desktop_buttons:setup {
     {
       {
-        {
           awesomebuttons.with_icon_and_text{ type = 'basic',
                                              icon = 'refresh-ccw',
                                              text = '<span color="#fff">tag</span>',
@@ -124,14 +120,10 @@ function my_top_bar.attach_to_screen(s)
                                              color = '#400',
                                              icon_size = 24,
                                              onclick = function() awful.tag.incncol(-1, nil, true) end},
-          s.mylayoutbox,
-          spacing = 3,
-          layout = wibox.layout.fixed.horizontal
-        },
-        spacing = 2,
-        layout = wibox.layout.fixed.vertical,
+        spacing = 0,
+        layout = wibox.layout.fixed.horizontal
       },
-      shape_border_width = 1,
+      shape_border_width = 0,
       valigh = 'center',
       layout = wibox.container.place
     },

@@ -8,11 +8,11 @@ function enable_minimal_mode()
   -- hide all titlebars
   for _, c in pairs(client.get()) do awful.titlebar.hide(c) end
 
-  -- disable useless gaps
-  for _, t in pairs(root.tags()) do t.gap = 0 end
-
-  -- expand master_fill_policy
-  -- beautiful.master_fill_policy = 'expand'
+  -- disable useless gaps and reset master width factor
+  for _, t in pairs(root.tags()) do
+    t.gap = 0
+    t.master_fill_policy = "expand"
+  end
 
   my_minimal_mode.is_enabled = true
 end
@@ -25,11 +25,11 @@ function disable_minimal_mode()
     end
   end
 
-  -- enable useless gaps
-  for _, t in pairs(root.tags()) do t.gap = beautiful.useless_gap end
-
-  -- reset master_fill_policy
-  -- beautiful.master_fill_policy = 'master_width_factor'
+  -- enable useless gaps and bring back fancy master width factor
+  for _, t in pairs(root.tags()) do
+    t.gap = beautiful.useless_gap
+    if t.index ~= 1 then t.master_fill_policy = "master_width_factor" end
+  end
 
   my_minimal_mode.is_enabled = false
 end
