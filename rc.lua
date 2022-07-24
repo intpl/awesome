@@ -309,6 +309,7 @@ mymainmenu = awful.menu({
             { "Chromium", "chromium" },
             { "Tranmission GTK", "transmission-gtk" },
             { "Baobab", "baobab" },
+            { "Volume Pavucontrol", "pavucontrol" },
 --            { "arandr", "arandr" },
         -- Music
             wibox.widget {widget = wibox.widget.separator},
