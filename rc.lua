@@ -1143,5 +1143,11 @@ awful.screen.connect_for_each_screen(function(s)
         -- s.tags[1].gap = 2
 end)
 
+local current_tag = awful.screen.focused().selected_tag
+if current_tag.index == 1 then
+   current_tag.master_fill_policy = "expand"
+   current_tag.gap = 2
+end
+
 -- Autorun/autostart programs
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
